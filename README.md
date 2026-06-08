@@ -1,2 +1,2 @@
 # shdos
-Modern DOS Command Shell
+Retro with modern features DOS Command Shell
