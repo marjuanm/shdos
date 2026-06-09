@@ -1,0 +1,9 @@
+0.1.0
+
+- ShDOS project started, a repository was created on Github, the goal is to create a cmd for 16-32 bits running from the command console but that will bring more commands and features than the current Windows console.
+
+- The basic structure of the program was started with the necessary files and folders.
+
+- I started implementing reading from the keyboard, it is already saved in an array "command" and it checks what the user typed. There are still problems with special keys like uppercase which was resolved, but there could be issues with others.
+
+- The code was improved a bit, now it works well when pressing the shift key (it no longer introduces a blank space when pressed), the code was moved to C instead of C++ since classes will not be used and the size of the final .exe has been reduced. The boot code was moved to core.h/.c to be reusable in both 16-bit and 32-bit mode at the same time.
