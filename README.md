@@ -22,7 +22,7 @@ As I mentioned at the beginning, this project is in its early stages; we'll be m
 Here are some useful resources:
 
 DOSBox Portable (Windows), I prefer it, but you can use the regular version if you wish:
-
+<br>
 https://portableapps.com/apps/games/dosbox_portable
 <br>
 https://www.dosbox.com/download.php?main=1
