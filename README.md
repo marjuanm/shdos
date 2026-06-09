@@ -24,10 +24,13 @@ Here are some useful resources:
 DOSBox Portable (Windows), I prefer it, but you can use the regular version if you wish:
 
 https://portableapps.com/apps/games/dosbox_portable
+<br>
 https://www.dosbox.com/download.php?main=1
 
 FreeDOS (run in VirtualBox or another virtual machine)
+<br>
 https://www.freedos.org/download/
 
 VirtualBox (available for Windows and other operating systems)
+<br>
 https://www.virtualbox.org/wiki/Downloads
