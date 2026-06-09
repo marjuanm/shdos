@@ -16,3 +16,18 @@ For some reason, back then I had to install everything in a folder without space
 We'll open the shdos.wpj file from the 16-bit or 32-bit folder, click the "Make target" icon to generate the executable, and if we're using the 32-bit version, we can run it directly in Windows. Otherwise, we'll need to run our .exe in DOSBox, MS-DOS, or FreeDOS from a virtual machine.
 
 As I mentioned at the beginning, this project is in its early stages; we'll be making contributions gradually.
+
+-------------------------------------
+
+Here are some useful resources:
+
+DOSBox Portable (Windows), I prefer it, but you can use the regular version if you wish:
+
+https://portableapps.com/apps/games/dosbox_portable
+https://www.dosbox.com/download.php?main=1
+
+FreeDOS (run in VirtualBox or another virtual machine)
+https://www.freedos.org/download/
+
+VirtualBox (available for Windows and other operating systems)
+https://www.virtualbox.org/wiki/Downloads
