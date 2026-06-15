@@ -11,8 +11,11 @@
 #include <string.h>
 
 #include "../includes/constants.h"
+#include "../includes/console.h"
+#include "../includes/dosconsole.h"
 #include "../includes/core.h"
 
+#include "../platform/16bits.c"
 #include "../core/core.c"
 
 /* 

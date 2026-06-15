@@ -1,15 +1,14 @@
 /*
   shDOS - Command interpreter
-  Original file name: core.h
+  Original file name: dosconsole.h
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
-*/ 
+ */ 
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef DOSCONSOLE_H
+#define DOSCONSOLE_H
 
-void cmd();
-void showWelcome();
-void clearcmdbuffer();
+int getOriginalCmdTextColor();
+void restoreCmdTextColor(unsigned short);
 
 #endif

@@ -3,7 +3,7 @@
   Original file name: main.c
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
- */
+*/
 
 #include <conio.h>
 #include <stdio.h>
@@ -11,8 +11,11 @@
 #include <string.h>
 
 #include "../includes/constants.h"
+#include "../includes/console.h"
+#include "../includes/winconsole.h"
 #include "../includes/core.h"
 
+#include "../platform/32bits.c"
 #include "../core/core.c"
 
 /* 
@@ -22,7 +25,7 @@
   Last modified date: 08/06/2026
   Last modified username: Juan Manuel Mar Hdz. 
   Thanks to chatGPT
- */
+*/
 int main()
 {
 	
@@ -30,4 +33,3 @@ int main()
 	return 0;
 	
 }
-

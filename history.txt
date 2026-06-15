@@ -1,3 +1,19 @@
+0.1.2
+
+- Text coloring functions were successfully implemented, and the console header function was prepared to mimic the style of the Reactos console (discontinued in recent versions). Currently, this only works on 16-bit systems.
+
+- Text coloring was implemented for 32-bit systems. The console text was also forced to be white, as it was appearing green when run on the Windows 11 console. This will be configurable later.
+
+- The ver and cls commands were implemented, returning the current ShellDOS version and clearing the screen, respectively.
+
+- The base commands were set to display in light gray. This works on 16-bit versions, but when run on Windows 11, the base color is light green, and the title is also light blue. Microsoft changed this to modernize its color palette in the Windows 11 command prompt (use color themes in cmd configuration) (I'm not sure if this happens in Windows 10). This will need to be adjusted in later versions.
+
+0.1.1
+
+- Part of the code was rewritten to support the getCmdWidth function, making it available for both 16-bit and 32-bit systems. Now, each project has its own main.c file containing the necessary libraries, but each will load a 16bits.c or 32bits.c file when operating system-specific functions are required.
+
+- The getCmdWidth function was successfully tested on FreeDOS, MS-DOS, and Windows 95. It worked correctly for the 16-bit executable, returning 80 columns. When tested on Windows 11 (command console), the same function returned 83 columns from the 32-bit executable.
+
 0.1.0
 
 - ShDOS project started, a repository was created on Github, the goal is to create a cmd for 16-32 bits running from the command console but that will bring more commands and features than the current Windows console.

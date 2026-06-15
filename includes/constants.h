@@ -5,9 +5,9 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
  */
 
-#define PROJECT_NAME "ShDOS"
+#define PROJECT_NAME "ShellDOS"
 #define PROJECT_SHORT_NAME "ShDOS"
-#define PROJECT_VERSION "1.0.0"
+#define PROJECT_VERSION "0.1.2"
 #define PROJECT_YEAR "2026"
 #define TEAM_NAME "ShDOS & Contributors"
 
