@@ -29,16 +29,16 @@ As I mentioned at the beginning, this project is in its early stages; we'll be m
 
 # Here are some useful resources:
 
-DOSBox Portable (Windows), I prefer it, but you can use the regular version if you wish:
-<br>
-https://portableapps.com/apps/games/dosbox_portable
-<br>
-https://www.dosbox.com/download.php?main=1
+DOSBox:
+<ul>
+<li><a href="https://portableapps.com/apps/games/dosbox_portable" target="_blank">Portable edition</a> (only to Windows)</li>
+<li><a href="https://www.dosbox.com/download.php?main=1" target="_blank">Regular version</a></li>
+</ul>
 
 FreeDOS (run in VirtualBox or another virtual machine)
 <br>
-https://www.freedos.org/download/
+<a href="https://www.freedos.org/download/" target="_blank">Descargar</a>
 
 VirtualBox (available for Windows and other operating systems)
 <br>
-https://www.virtualbox.org/wiki/Downloads
+<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">Descargar</a>
