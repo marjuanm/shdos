@@ -1,4 +1,4 @@
-# ShellDOS (shDOS)
+# Whats is ShellDOS (shDOS)?
 ShellDOS (or simply shDOS) will be a retro-style DOS command interpreter with modern features similar to those found in Linux and other operating systems.
 
 The project is still in its early stages, currently limited to simply running the executable and displaying the user's input on the screen. The goal, of course, is to interpret this input as a command to be executed by the console.
@@ -15,7 +15,7 @@ It can also run in 32-bit mode (tested so far only on Windows 11), but I've enco
 
 It has a very limited number of commands: ver, cls, and exit.
 
-# Resources needed to compile ShellDOS:
+# Building:
 
 ShellDOS or shDOS is programmed in C using the OpenWatcom compiler to create 16-bit and 32-bit executables. Therefore, you need to download and install this IDE beforehand, which you can find at this URL: https://openwatcom.org/ftp/install/
 
@@ -27,7 +27,30 @@ We'll open the shdos.wpj file from the 16-bit or 32-bit folder, click the "Make 
 
 As I mentioned at the beginning, this project is in its early stages; we'll be making contributions gradually.
 
-# Here are some useful resources:
+# Binaries
+
+shDOS is a free software project distributed under the GPL-3.0 license. The source code will be publicly available for anyone who wants to study, modify, or compile the project.
+
+However, the repository will not include official binaries. The 16-bit and 32-bit executables will be offered as a paid download for approximately $6 USD.
+
+The idea is to help fund the project's development without limiting the freedoms granted by the GPL license. Those who purchase the download will receive a ZIP file with the ready-to-use executables and a more recent version of the source code (the version on GitHub will be synchronized a few months later).
+
+Of course, anyone who does not wish to purchase the download can obtain the source code, install OpenWatcom, and compile the project themselves. The process is simple and is part of shDOS's open philosophy.
+
+Furthermore, as mentioned, the commercial versions will be updated more frequently, and the public repository may remain a few months behind the officially distributed version.
+
+Thank you for supporting the development of shDOS.
+
+----------------------------------
+
+When available, users will be able to purchase a copy for approximately $6 USD. The download will include:
+
+* Complete project source code.
+* Ready-to-use 16-bit executables.
+* Ready-to-use 32-bit executables.
+* Files and resources needed to compile the project.
+
+# Useful resources:
 
 DOSBox:
 <ul>
