@@ -27,7 +27,7 @@ We'll open the shdos.wpj file from the 16-bit or 32-bit folder, click the "Make 
 
 As I mentioned at the beginning, this project is in its early stages; we'll be making contributions gradually.
 
-# Binaries
+# Binaries:
 
 shDOS is a free software project distributed under the GPL-3.0 license. The source code will be publicly available for anyone who wants to study, modify, or compile the project.
 
