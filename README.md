@@ -5,7 +5,7 @@
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
 </p>
 
-# Whats is ShellDOS (shDOS)?
+# Whats is ShellDOS?
 ShellDOS (or simply shDOS) will be a retro-style DOS command interpreter with modern features similar to those found in Linux and other operating systems.
 
 The project is still in its early stages, currently limited to simply running the executable and displaying the user's input on the screen. The goal, of course, is to interpret this input as a command to be executed by the console.
