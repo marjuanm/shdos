@@ -6,11 +6,9 @@
 </p>
 
 # Whats is ShellDOS?
-ShellDOS (or simply shDOS) will be a retro-style DOS command interpreter with modern features similar to those found in Linux and other operating systems.
+ShellDOS (or simply ShDOS) is a retro-style DOS command interpreter designed to bring modern features to classic environments. The project aims to provide a command-line experience inspired by MS-DOS and FreeDOS while incorporating functionality commonly found in Linux and other modern operating systems.
 
-The project is still in its early stages, currently limited to simply running the executable and displaying the user's input on the screen. The goal, of course, is to interpret this input as a command to be executed by the console.
-
-The aim is to create a retro console capable of running on 16-bit (MS-DOS and FreeDOS) and 32-bit DOS (tested on Windows 11 only), adding some Linux features such as the execution of Linux commands and color-coded output (although it does not yet support running Linux applications).
+The project is currently in its early stages and can execute the shell while displaying user input. Future versions will interpret and execute commands, support colorized output, and include selected Linux-inspired commands. ShDOS is intended to run on both 16-bit DOS systems (MS-DOS and FreeDOS) and 32-bit environments (currently tested on Windows 11), combining retro compatibility with modern usability.
 
 # Updates for the latest version (0.2.0):
 
@@ -24,18 +22,11 @@ ShellDOS is released under GPL-3 license, but is provided "as is". Use at your o
 
 The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss. Always keep backups of important data.
 
-
 # Building:
 
-ShellDOS or shDOS is programmed in C using the OpenWatcom compiler to create 16-bit and 32-bit executables. Therefore, you need to download and install this IDE beforehand, which you can find at this URL: https://openwatcom.org/ftp/install/
+ShDOS is written in C language using the OpenWatcom compiler, allowing it to generate both 16 / 32-bit executables. Before building the project, download and install <a href="https://openwatcom.org/ftp/install/" target="_blank">OpenWatcom</a>, preferably in a directory without spaces (for example, C:\OpenWatcom), and run BINNT\IDE.EXE.
 
-I first encountered OpenWatcom about 15 years ago when I was still using Windows XP. I honestly don't remember which installer I used (I no longer have that file), but I assume it must have been "open-watcom-c-win32-1.9.exe". Just download it and proceed with the installation.
-
-For some reason, back then I had to install everything in a folder without spaces because it kept failing. So, I recommend installing it in c:\openwatcom or something similar. Look for the BINNT\IDE.EXE file and run it. Then, simply locate the project file to begin compiling.
-
-We'll open the shdos.wpj file from the 16-bit or 32-bit folder, click the "Make target" icon to generate the executable, and if we're using the 32-bit version, we can run it directly in Windows. Otherwise, we'll need to run our .exe in DOSBox, MS-DOS, or FreeDOS from a virtual machine.
-
-As I mentioned at the beginning, this project is in its early stages; we'll be making contributions gradually.
+To compile ShDOS, open the shdos.wpj project file located in either the 16 or 32-bit folder and click Make Target. The 32-bit version can be executed directly on modern Windows systems, while the 16-bit version should be tested in DOSBox, MS-DOS, or FreeDOS. As the project is still in its early stages, new features and improvements will be added gradually over time.
 
 # Binaries:
 
