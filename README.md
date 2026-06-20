@@ -22,11 +22,18 @@ ShellDOS is released under GPL-3 license, but is provided "as is". Use at your o
 
 The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss. Always keep backups of important data.
 
-# Building:
+# Building and how to use:
 
 ShDOS is written in C language using the OpenWatcom compiler, allowing it to generate both 16 / 32-bit executables. Before building the project, download and install <a href="https://openwatcom.org/ftp/install/" target="_blank">OpenWatcom</a>, preferably in a directory without spaces (for example, C:\OpenWatcom), and run BINNT\IDE.EXE.
 
 To compile shDOS, open the shdos.wpj project file located in either the 16 or 32-bit folder and click Make Target. The 32-bit version can be executed directly on modern Windows systems, while the 16-bit version should be tested in DOSBox, MS-DOS, or FreeDOS. As the project is still in its early stages, new features and improvements will be added gradually over time.
+
+<b>Implemented Commands:</b><br>
+Once the project console is running, type one of the following commands to start working.
+
+* ver: displays the current version of shDOS.
+* cls: clears the screen.
+* exit: exits the shDOS console and returns to the system that launched it.
 
 # Binaries:
 
