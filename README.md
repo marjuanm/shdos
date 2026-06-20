@@ -1,6 +1,6 @@
 <p align="center">
     <img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=1" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=2" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png" height="20" alt="Download current version"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
 </p>
@@ -12,15 +12,11 @@ The project is still in its early stages, currently limited to simply running th
 
 The aim is to create a retro console capable of running on 16-bit (MS-DOS and FreeDOS) and 32-bit DOS (tested on Windows 11 only), adding some Linux features such as the execution of Linux commands and color-coded output (although it does not yet support running Linux applications).
 
-# Updates for the latest version (0.1.2):
+# Updates for the latest version (0.2.0):
 
-The console now displays a title bar with the version and copyright information in blue with white text (the copyright is on a separate line), along with the prompt "Type HELP = Help," recreating the look of older consoles.
+The system was prone to overflow errors when closing the program after receiving very large commands. Now, the system truncates commands if they exceed the buffer size and uses safe functions to display text on the screen, preventing this overflow error.
 
-It's fully functional on 16-bit platforms such as <a href="https://www.freedos.org/" target="_blank">FreeDOS</a>, MS-DOS, <a href="https://reactos.org/" target="_blank">Reactos</a> (it's 32-bit but allows running 16-bit applications) and Windows 95.
-
-It can also run in 32-bit mode (tested so far only on Windows 11), but I've encountered the problem that the command console uses color templates that don't always match the colors specified for the program being developed.
-
-It has a very limited number of commands: ver, cls, and exit.
+I've begun partially implementing the "commands" module, which will contain the implementations of the internal commands, of course, it has a very limited number of commands: ver, cls, and exit.
 
 # Building:
 
