@@ -18,6 +18,13 @@ The system was prone to overflow errors when closing the program after receiving
 
 I've begun partially implementing the "commands" module, which will contain the implementations of the internal commands, of course, it has a very limited number of commands: ver, cls, and exit.
 
+# License:
+
+ShellDOS is released under GPL-3 license, but is provided "as is". Use at your own risk, the author is not responsible for loss of data, file corruption, hardware damage, lost profits, or any other consequences resulting from the use of this software.
+
+The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss. Always keep backups of important data.
+
+
 # Building:
 
 ShellDOS or shDOS is programmed in C using the OpenWatcom compiler to create 16-bit and 32-bit executables. Therefore, you need to download and install this IDE beforehand, which you can find at this URL: https://openwatcom.org/ftp/install/
@@ -42,9 +49,7 @@ Of course, anyone who does not wish to purchase the download can obtain the sour
 
 Furthermore, as mentioned, the commercial versions will be updated more frequently, and the public repository may remain a few months behind the officially distributed version.
 
-<b>Thank you for supporting the development of shDOS</b>; ShDOS is provided "as is", use at your own risk. The author is not responsible for loss of data, file corruption, hardware damage, lost profits, or any other consequences resulting from the use of this software. The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss.
-
-Always keep backups of important data.
+Thank you for supporting the development of shDOS.
 
 ----------------------------------
 
