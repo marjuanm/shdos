@@ -10,11 +10,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../includes/constants.h"
-#include "../includes/console.h"
-#include "../includes/dosconsole.h"
 #include "../includes/core.h"
+#include "../includes/console.h"
+#include "../includes/commands.h"
+#include "../includes/constants.h"
+#include "../includes/dosconsole.h"
 
+#include "../core/commands.c"
 #include "../platform/16bits.c"
 #include "../core/core.c"
 

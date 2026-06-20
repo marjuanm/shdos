@@ -13,14 +13,14 @@ char command[MAX_BUFFER];
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd()
 {
 
   int ext;
-	char c, buffer[128], tmp[2];
+	char c, buffer[MAX_BUFFER], tmp[2];
 
   original_attr = getOriginalCmdTextColor();
 	attr = (BLACK << 4) | LIGHTGRAY;
@@ -51,39 +51,29 @@ void cmd()
 			if(stricmp(command, "exit") == 0)
 			{
 				
-				clearcmdbuffer();
-				fflush(stdout);
-				clrsrc();
-				
+				cls();
 				break;
 				
 			}
 			else if(stricmp(command, "ver") == 0)
-			{
-				
-				clearcmdbuffer();
-				sprintf(buffer, "\n%s %s\n", PROJECT_NAME, PROJECT_VERSION);
-				print_colored_text(buffer, attr);
-				fflush(stdout);
-				
-			}
+			  ver(attr);
 			else if(stricmp(command, "cls") == 0)
 			{
 				
 				clearcmdbuffer();
 				fflush(stdout);
-				clrsrc();
+				cls();
 				
 			}
 			else
 			{
 				
-				sprintf(buffer, "\nEl comando ingresado es: %s\nPresione cualquier tecla para continuar...\n", command);
+				snprintf(buffer, sizeof(buffer), "\nEl comando ingresado es: %s\nPresione cualquier tecla para continuar...\n", command);
 				print_colored_text(buffer, attr);
 				clearcmdbuffer();
 				
 				//ignore special keys
-				while(TRUE)
+				/*while(TRUE)
 				{
 					
 					if(c == 0 || c == 224)
@@ -91,8 +81,33 @@ void cmd()
 					else
 						break;
 					
+				}*/
+				
+				/* 
+				  EXTRA PROTECTION HERE!
+					If the user continues typing but the command is already full,
+					we trap the remaining characters in a loop so they don't echo
+					or wait on the keyboard, UNTIL ENTER is pressed (13).
+				*/
+				if(c != 13) 
+				{
+        
+					while((ext = getch()) != 13) 
+					{
+            
+						// If a special key (2 bytes) is pressed within the excess,
+						// we also consume its second byte so as not to break the cycle.
+            if(ext == 0 || ext == 224) 
+							getch(); 
+            
+					}
+					
+					// We simulate that the current character 'c' is now ENTER (13)
+					// so that the main loop knows that the user has finished.
+					c = 13; 
+    
 				}
-
+				
 			}
 			
     }
@@ -108,21 +123,26 @@ void cmd()
     
 			}
 			
-			// add chars to command array
-			command[pos] = c;
-			pos++;
-			command[pos] = '\0';
-
-			//colored putch(c);
-			tmp[0] = c;
-			tmp[1] = '\0';
-			print_colored_text(tmp, attr);
+			// add chars to command array, but prevent overflow
+			if(pos < MAX_BUFFER - 1)
+			{
+        
+				command[pos] = c;
+        pos++;
+				command[pos] = '\0';
+				
+				//colored putch(c);
+			  tmp[0] = c;
+			  tmp[1] = '\0';
+			  print_colored_text(tmp, attr);
+			
+			}
 			
 		}
 		
 	}
 	
-	restoreCmdTextColor(original_attr);
+	//restoreCmdTextColor(original_attr);
 
 }
 
@@ -130,20 +150,21 @@ void cmd()
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 14/06/2026
+  Last modified date: 19/06/2026
   Last modified username: Juan Manuel Mar Hdz.
+	Thanks to chatgpt and gemini
 */
 void showWelcome()
 {
 	
-	char buffer[128];
+	char buffer[MAX_BUFFER];
 	int attr = (BLUE << 4) | WHITE;
 	int pos, columns = getCmdWidth();
 	
-	clrsrc();
+	cls();
 	
 	fill_line(0, attr);
-	sprintf(buffer, "%s %s", PROJECT_NAME, PROJECT_VERSION);
+	snprintf(buffer, sizeof(buffer), "%s %s", PROJECT_NAME, PROJECT_VERSION);
 	print_colored_text_xy(0, 0, buffer, attr);
 	fflush(stdout);
 
@@ -152,7 +173,7 @@ void showWelcome()
   fflush(stdout);
 	
 	setCursorPosition(1, 2);
-	sprintf(buffer, "(C) %s %s", PROJECT_YEAR, TEAM_NAME);
+	snprintf(buffer, sizeof(buffer), "(C) %s %s", PROJECT_YEAR, TEAM_NAME);
 	print_colored_text(buffer, (BLACK << 4) | WHITE);
 	fflush(stdout);
 	

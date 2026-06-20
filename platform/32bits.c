@@ -29,13 +29,17 @@ int getCmdWidth()
 /* Purpose: Clear console window
 	 Created date: 13/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 13/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-void clrsrc()
+void cls()
 {
+	
+  clearcmdbuffer();
+	fflush(stdout);		  
 	system("cls");
+	
 }
 
 /* Purpose: Return initial console text color
@@ -88,7 +92,7 @@ void setCursorPosition(int x, int y)
 /* Purpose: Set background line color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -100,8 +104,8 @@ void fill_line(int y, int attr)
   int width, i;
 
   COORD pos;
-  WORD attributes[256];
-  char spaces[256];
+  WORD attributes[MAX_BUFFER];
+  char spaces[MAX_BUFFER];
 
   hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   width = getCmdWidth();
@@ -144,7 +148,7 @@ void print_colored_text(const char *s, int color)
 /* Purpose: Set color to string
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt and gemini
 */
@@ -154,7 +158,7 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
 	COORD pos;
 	HANDLE hConsole;
   DWORD written;
-  WORD attributes[256];
+  WORD attributes[MAX_BUFFER];
   int len, i;
 
   hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

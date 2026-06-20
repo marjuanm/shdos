@@ -29,13 +29,15 @@ int getCmdWidth()
 /* Purpose: Clear console window
 	 Created date: 13/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 13/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-void clrsrc()
+void cls()
 {
 	
+	clearcmdbuffer();
+	fflush(stdout);		  
 	system("cls");
 
 	cursor_x = 0;
@@ -59,14 +61,14 @@ int getOriginalCmdTextColor()
 /* Purpose: Restore console text color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/06/2026
+   Last modified date: 19/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void restoreCmdTextColor(unsigned short original_attr)
 {
 	
-	char buffer[128];
-	sprintf(buffer, "");
+	char buffer[MAX_BUFFER];
+	snprintf(buffer, sizeof(buffer), "");
 	print_colored_text(buffer, original_attr);
 	
 }

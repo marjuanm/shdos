@@ -7,16 +7,20 @@
 
 #define PROJECT_NAME "ShellDOS"
 #define PROJECT_SHORT_NAME "ShDOS"
-#define PROJECT_VERSION "0.1.2"
+#define PROJECT_VERSION "0.2.0"
 #define PROJECT_YEAR "2026"
 #define TEAM_NAME "ShDOS & Contributors"
 
-#define MAX_FILES 10
-#define MAX_BUFFER 255
-#define MAX_TRY_ATTEMPS 10
-
 #define TRUE 1
 #define FALSE 0
+#define MAX_BUFFER 255
+
+
+#define MAX_FILES 10
+
+#define MAX_TRY_ATTEMPS 10
+
+
 
 #define FILE_COPY_OK 1
 #define FILE_COPY_FAILSOURCE 2

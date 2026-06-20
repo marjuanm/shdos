@@ -1,6 +1,6 @@
 Open Watcom Linker Version 1.9
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       26/06/15 09:46:59
+Created on:       26/06/19 17:57:56
 Executable Image: shdos.exe
 creating a DOS executable
 
@@ -12,7 +12,7 @@ creating a DOS executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          04a0:0000            00000e50
+DGROUP                          04ac:0000            00000e50
 
 
 
@@ -23,24 +23,24 @@ DGROUP                          04a0:0000            00000e50
 Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
-main_TEXT              CODE           AUTO           0000:0000       0000066c
-_TEXT                  CODE           AUTO           0000:0670       00004383
-FAR_DATA               FAR_DATA       AUTO           049f:0003       00000000
-_NULL                  BEGDATA        DGROUP         04a0:0000       00000020
-_AFTERNULL             BEGDATA        DGROUP         04a2:0000       00000002
-CONST                  DATA           DGROUP         04a2:0002       00000174
-CONST2                 DATA           DGROUP         04b9:0006       00000000
-_DATA                  DATA           DGROUP         04b9:0006       00000254
-XIB                    DATA           DGROUP         04de:000a       00000000
-XI                     DATA           DGROUP         04de:000a       0000001e
-XIE                    DATA           DGROUP         04e0:0008       00000000
-YIB                    DATA           DGROUP         04e0:0008       00000000
-YI                     DATA           DGROUP         04e0:0008       0000000c
-YIE                    DATA           DGROUP         04e1:0004       00000000
-STRINGS                DATA           DGROUP         04e1:0004       00000000
-DATA                   DATA           DGROUP         04e1:0004       00000000
-_BSS                   BSS            DGROUP         04e1:0004       00000230
-STACK                  STACK          DGROUP         0505:0000       00000800
+main_TEXT              CODE           AUTO           0000:0000       000006be
+_TEXT                  CODE           AUTO           0000:06c0       000043fb
+FAR_DATA               FAR_DATA       AUTO           04ab:000b       00000000
+_NULL                  BEGDATA        DGROUP         04ac:0000       00000020
+_AFTERNULL             BEGDATA        DGROUP         04ae:0000       00000002
+CONST                  DATA           DGROUP         04ae:0002       00000174
+CONST2                 DATA           DGROUP         04c5:0006       00000000
+_DATA                  DATA           DGROUP         04c5:0006       00000254
+XIB                    DATA           DGROUP         04ea:000a       00000000
+XI                     DATA           DGROUP         04ea:000a       0000001e
+XIE                    DATA           DGROUP         04ec:0008       00000000
+YIB                    DATA           DGROUP         04ec:0008       00000000
+YI                     DATA           DGROUP         04ec:0008       0000000c
+YIE                    DATA           DGROUP         04ed:0004       00000000
+STRINGS                DATA           DGROUP         04ed:0004       00000000
+DATA                   DATA           DGROUP         04ed:0004       00000000
+_BSS                   BSS            DGROUP         04ed:0004       00000230
+STACK                  STACK          DGROUP         0511:0000       00000800
 
 
                         +----------------+
@@ -54,332 +54,332 @@ Address        Symbol
 =======        ======
 
 Module: main.obj(C:\trabajos\programas\shdos\16bits\main.c)
-04a0:0196+     _cursor_x
-04a0:0198+     _cursor_y
-0000:0000+     getCmdWidth_
-0000:0032+     clrsrc_
-0000:007a+     getOriginalCmdTextColor_
-0000:009f+     restoreCmdTextColor_
-0000:00e9+     setCursorPosition_
-0000:014e+     fill_line_
-0000:01b0+     print_colored_char_
-0000:0257+     print_colored_text_
-0000:029c+     print_colored_text_xy_
-0000:030c+     cmd_
-0000:04f3+     showWelcome_
-0000:060c+     clearcmdbuffer_
-0000:0643      main_
-04a0:019e+     _pos
-04a0:01a0+     _firsttime
-04a0:0414+     _attr
-04a0:0416+     _original_attr
-04a0:0418+     _command
+04ac:0196+     _cursor_x
+04ac:0198+     _cursor_y
+0000:0000+     ver_
+0000:0070+     getCmdWidth_
+0000:00a2+     cls_
+0000:00fc+     getOriginalCmdTextColor_
+0000:0121+     restoreCmdTextColor_
+0000:016f+     setCursorPosition_
+0000:01d4+     fill_line_
+0000:0236+     print_colored_char_
+0000:02dd+     print_colored_text_
+0000:0322+     print_colored_text_xy_
+0000:0392+     cmd_
+0000:053b+     showWelcome_
+0000:065e+     clearcmdbuffer_
+0000:0695      main_
+04ac:019e+     _pos
+04ac:01a0+     _firsttime
+04ac:0414+     _attr
+04ac:0416+     _original_attr
+04ac:0418+     _command
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(stk)
-0000:0675      __STK
-0000:0695*     __STKOVERFLOW_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(system.c)
-0000:06b2      system_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(sprintf.c)
-0000:072d      sprintf_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(intx086.c)
-0000:075c+     int86x_
-0000:07f5      int86_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(memset.c)
-0000:0822      memset_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(getch.c)
-0000:0839      getch_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(stricmp.c)
-0000:0853      stricmp_
+0000:06c5      __STK
+0000:06e5*     __STKOVERFLOW_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(snprintf.c)
+0000:0739+     vsnprintf_
+0000:07bd      snprintf_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(iob.c)
-04a0:01a4      ___iob
-04a0:030c*     __fmode
-04a0:0518      ___OpenStreams
-04a0:051c      ___ClosedStreams
+04ac:01a4      ___iob
+04ac:030c*     __fmode
+04ac:0518      ___OpenStreams
+04ac:051c      ___ClosedStreams
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fflush.c)
-0000:0890      fflush_
+0000:07ec      fflush_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(system.c)
+0000:0801      system_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(intx086.c)
+0000:087c+     int86x_
+0000:0915      int86_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(memset.c)
+0000:0942      memset_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(getch.c)
+0000:0959      getch_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(stricmp.c)
+0000:0973      stricmp_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(strlen.c)
-0000:08a5      strlen_
+0000:09b0      strlen_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(cstart)
-04a0:0000*     __nullarea
-04a0:030e*     __ovlflag
-04a0:030f*     __intno
-04a0:0310*     __ovlvec
-0000:08ba      _cstart_
-0000:098d*     _Not_Enough_Memory_
-0000:0ac1      __exit_
-0000:0ae0      __do_exit_with_msg__
-0000:0b3e      __GETDS
+04ac:0000*     __nullarea
+04ac:030e*     __ovlflag
+04ac:030f*     __intno
+04ac:0310*     __ovlvec
+0000:09c6      _cstart_
+0000:0a99*     _Not_Enough_Memory_
+0000:0bcd      __exit_
+0000:0bec      __do_exit_with_msg__
+0000:0c4a      __GETDS
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(cmodel)
-0000:0b48      _big_code_
-0000:0b48*     CodeModelMismatch
+0000:0c54      _big_code_
+0000:0c54*     CodeModelMismatch
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(xmsg.c)
-0000:0b48*     __exit_with_msg_
-0000:0b4d      __fatal_runtime_error_
+0000:0c54*     __exit_with_msg_
+0000:0c59      __fatal_runtime_error_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(crwdata)
-04a0:0314      __curbrk
-04a0:031c      __STACKLOW
-04a0:031e      __STACKTOP
-04a0:0320      __cbyte
-04a0:0322      __child
-04a0:0324      __no87
-04a0:0332      ___FPE_handler
-04a0:0316      __psp
-04a0:0326      __get_ovl_stack
-04a0:032a      __restore_ovl_stack
-04a0:032e      __close_ovl_file
-04a0:0336      __LpCmdLine
-04a0:033a      __LpPgmName
-04a0:0318      __osmajor
-04a0:0319      __osminor
-04a0:031a      __osmode
-04a0:031b      __HShift
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(getenv.c)
-0000:0b6c      getenv_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(_slashc.c)
-0000:0c31      __Slash_C_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(splp.c)
-0000:0c5d      spawnlp_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(vsprintf.c)
-0000:0c94      vsprintf_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(intr.c)
-0000:0cbf      intr_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(segread.c)
-0000:0cd3      segread_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(initfile.c)
-0000:0cf3      __InitFiles_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(ioexit.c)
-0000:0e41*     fcloseall_
-0000:0e48      __full_io_exit_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(flushall.c)
-0000:0e52*     __flushall_
-0000:0eaf      flushall_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(flush.c)
-0000:0eb4      __flush_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(cmain086.c)
-0000:0fe7      __CMain
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(initrtns.c)
-0000:104d      __InitRtns
-0000:104d*     __FInitRtns
-0000:10a8      __FiniRtns
-0000:10a8*     __FFiniRtns
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(uselfn.c)
-04a0:033e      ___uselfn
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dosseg)
-0000:110c      __DOSseg__
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(enterdb.c)
-0000:110d      __EnterWVIDEO_
-04a0:0340+     ___WD_Present
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(environ.c)
-04a0:0520      ___env_mask
-04a0:0524      _environ
-04a0:0528*     __wenviron
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbterm.c)
-0000:1131      _mbterm_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsnextc.c)
-0000:1173      _mbsnextc_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbcupper.c)
-0000:11a4      _mbctoupper_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsinc.c)
-0000:11c7      _mbsinc_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spvp.c)
-0000:1203      spawnvp_
+04ac:0314      __curbrk
+04ac:031c      __STACKLOW
+04ac:031e      __STACKTOP
+04ac:0320      __cbyte
+04ac:0322      __child
+04ac:0324      __no87
+04ac:0332      ___FPE_handler
+04ac:0316      __psp
+04ac:0326      __get_ovl_stack
+04ac:032a      __restore_ovl_stack
+04ac:032e      __close_ovl_file
+04ac:0336      __LpCmdLine
+04ac:033a      __LpPgmName
+04ac:0318      __osmajor
+04ac:0319      __osminor
+04ac:031a      __osmode
+04ac:031b      __HShift
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(prtf.c)
-0000:1224      __prtf_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dointr)
-0000:1ff2      _DoINTR_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(nmalloc.c)
-0000:236b      _nmalloc_
-04a0:0342      ___nheapbeg
-04a0:0344      ___MiniHeapRover
-04a0:0346      ___LargestSizeB4MiniHeapRover
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fmalloc.c)
-0000:2445*     _fmalloc_
-0000:2445      malloc_
-04a0:0348+     ___fheap
-04a0:034a      ___fheapRover
-04a0:034c      ___LargestSizeB4Rover
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fclose.c)
-0000:2552+     __doclose_
-0000:2603      __shutdown_stream_
-0000:261d*     fclose_
-04a0:052c+     ___RmTmpFileFn
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(freefp.c)
-0000:2668      __freefp_
-0000:26e3      __purgefp_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(__lseek.c)
-0000:2724      __lseek_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(qwrit.c)
-0000:275e      __qwrite_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(seterrno.c)
-0000:27bb      __set_errno_
-0000:27cf*     __set_EDOM_
-0000:27e1*     __set_ERANGE_
-0000:27f3*     __set_EINVAL_
-0000:2808      __set_doserrno_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fsync.c)
-0000:2814      fsync_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(___argc.c)
-04a0:0530      ____Argv
-04a0:0534      ____Argc
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(amblksiz.c)
-04a0:034e      __amblksiz
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(exit.c)
-0000:2819+     __null_int23_exit_
-0000:281a      exit_
-0000:284b*     _exit_
-04a0:0350+     ___int23_exit
-04a0:0354+     ___FPE_handler_exit
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(sgdef086)
-04a0:03ea      __Start_XI
-04a0:0408      __End_XI
-04a0:0408      __Start_YI
-04a0:0414      __End_YI
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(setenvp.c)
-0000:2882      __setenvp_
-0000:2985      __freeenvp_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbisdbcs.c)
-04a0:053a      ___IsDBCS
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbislead.c)
-0000:29e3*     _ismbblead_
-04a0:053c      ___MBCSIsTable
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbinit.c)
-0000:2a3d      __mbinit_
-04a0:0358      ___MBCodePage
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbdtoupp.c)
-0000:2b18      _mbdtoupper_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(toupper.c)
-0000:2b26      toupper_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spvpe.c)
-0000:2b34      spawnvpe_
+0000:0c78      __prtf_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(initfile.c)
+0000:1a46      __InitFiles_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(ioexit.c)
+0000:1b94*     fcloseall_
+0000:1b9b      __full_io_exit_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(flushall.c)
+0000:1ba5*     __flushall_
+0000:1c02      flushall_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(flush.c)
+0000:1c07      __flush_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(getenv.c)
+0000:1d3a      getenv_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(_slashc.c)
+0000:1dff      __Slash_C_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(splp.c)
+0000:1e2b      spawnlp_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(intr.c)
+0000:1e49      intr_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(segread.c)
+0000:1e5d      segread_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(cmain086.c)
+0000:1e7d      __CMain
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(initrtns.c)
+0000:1ee3      __InitRtns
+0000:1ee3*     __FInitRtns
+0000:1f3e      __FiniRtns
+0000:1f3e*     __FFiniRtns
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(uselfn.c)
+04ac:033e      ___uselfn
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dosseg)
+0000:1fa2      __DOSseg__
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(enterdb.c)
+0000:1fa3      __EnterWVIDEO_
+04ac:0340+     ___WD_Present
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(wctomb.c)
-0000:2cb1      wctomb_
+0000:1fc7      wctomb_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(itoa.c)
-0000:2cda+     utoa_
-0000:2d37      itoa_
+0000:1ff0+     utoa_
+0000:204d      itoa_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(i4m)
-0000:2d5c*     __I4M
-0000:2d5c      __U4M
+0000:2072*     __I4M
+0000:2072      __U4M
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(strupr.c)
-0000:2d74      strupr_
+0000:208a      strupr_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(noefgfmt.c)
-04a0:035a      ___EFG_printf
-04a0:035e*     ___EFG_scanf
+04ac:0342      ___EFG_printf
+04ac:0346*     ___EFG_scanf
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbisdbcs.c)
+04ac:0520      ___IsDBCS
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbislead.c)
+0000:20bf*     _ismbblead_
+04ac:0522      ___MBCSIsTable
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(lltoa.c)
-0000:2da9      ulltoa_
-0000:2e8e*     lltoa_
+0000:20db      ulltoa_
+0000:21c0*     lltoa_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(ltoa.c)
-0000:2ef0      ultoa_
-0000:2f5f*     ltoa_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(nmemneed.c)
-0000:2f8e      __nmemneed_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mem.c)
-0000:2fa0      __MemAllocator
-0000:306a      __MemFree
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(grownear.c)
-0000:324c      __LastFree_
-0000:32c6      __ExpandDGROUP_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(hpgrw086.c)
-0000:33d7      __CMain_nheapgrow_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(growseg.c)
-0000:33dc      __GrowSeg_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(allocseg.c)
-0000:34ce      __AllocSeg_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fmemneed.c)
-0000:3565      __fmemneed_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(_clse.c)
-0000:3568      __close_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(ffree.c)
-0000:359b*     _ffree_
-0000:359b      free_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dosret.c)
-0000:35e1      _dosretax_
-0000:35e6*     _dosret0_
-0000:35ed      __set_errno_dos_
-0000:364b*     __set_errno_dos_reterr_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(iomode.c)
-0000:3656      __GetIOMode_
-0000:367b      __SetIOMode_nogrow_
-04a0:0376+     ___NFiles
-04a0:0378+     ___init_mode
-04a0:03a0+     ___io_mode
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(errno.c)
-0000:369e      __get_errno_ptr_
-0000:36a5      __get_doserrno_ptr_
-04a0:063e+     _errno
-04a0:0640+     __doserrno
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(filedos.c)
-0000:36ac*     _dos_close_
-0000:36ba      _dos_commit_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(clearenv.c)
-0000:36ca      clearenv_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spve.c)
-0000:3818      spawnve_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(strchr.c)
-0000:3c1a      strchr_
-Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(memcpy.c)
-0000:3c39      memcpy_
+0000:2222      ultoa_
+0000:2291*     ltoa_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(nmalloc.c)
+0000:22c0      _nmalloc_
+04ac:034a      ___nheapbeg
+04ac:034c      ___MiniHeapRover
+04ac:034e      ___LargestSizeB4MiniHeapRover
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fmalloc.c)
+0000:239a*     _fmalloc_
+0000:239a      malloc_
+04ac:0350+     ___fheap
+04ac:0352      ___fheapRover
+04ac:0354      ___LargestSizeB4Rover
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fclose.c)
+0000:24a7+     __doclose_
+0000:2558      __shutdown_stream_
+0000:2572*     fclose_
+04ac:0624+     ___RmTmpFileFn
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(freefp.c)
+0000:25bd      __freefp_
+0000:2638      __purgefp_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(__lseek.c)
+0000:2679      __lseek_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(qwrit.c)
+0000:26b3      __qwrite_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(seterrno.c)
+0000:2710      __set_errno_
+0000:2724*     __set_EDOM_
+0000:2736*     __set_ERANGE_
+0000:2748*     __set_EINVAL_
+0000:275d      __set_doserrno_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fsync.c)
+0000:2769      fsync_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(environ.c)
+04ac:0628      ___env_mask
+04ac:062c      _environ
+04ac:0630*     __wenviron
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbterm.c)
+0000:276e      _mbterm_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsnextc.c)
+0000:27b0      _mbsnextc_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbcupper.c)
+0000:27e1      _mbctoupper_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsinc.c)
+0000:2804      _mbsinc_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spvp.c)
+0000:2840      spawnvp_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dointr)
+0000:2862      _DoINTR_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(___argc.c)
+04ac:0634      ____Argv
+04ac:0638      ____Argc
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(amblksiz.c)
+04ac:0356      __amblksiz
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(exit.c)
+0000:2bdb+     __null_int23_exit_
+0000:2bdc      exit_
+0000:2c0d*     _exit_
+04ac:0358+     ___int23_exit
+04ac:035c+     ___FPE_handler_exit
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(sgdef086)
+04ac:03ea      __Start_XI
+04ac:0408      __End_XI
+04ac:0408      __Start_YI
+04ac:0414      __End_YI
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(alphabet.c)
-04a0:0170      ___Alphabet
+04ac:0144      ___Alphabet
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbinit.c)
+0000:2c64      __mbinit_
+04ac:0360      ___MBCodePage
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(nmemneed.c)
+0000:2d3f      __nmemneed_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mem.c)
+0000:2d50      __MemAllocator
+0000:2e1a      __MemFree
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(grownear.c)
+0000:2ffc      __LastFree_
+0000:3076      __ExpandDGROUP_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(hpgrw086.c)
+0000:3187      __CMain_nheapgrow_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(growseg.c)
+0000:318c      __GrowSeg_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(allocseg.c)
+0000:327e      __AllocSeg_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fmemneed.c)
+0000:3315      __fmemneed_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(_clse.c)
+0000:3318      __close_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(ffree.c)
+0000:334b*     _ffree_
+0000:334b      free_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dosret.c)
+0000:3391      _dosretax_
+0000:3396*     _dosret0_
+0000:339d      __set_errno_dos_
+0000:33fb*     __set_errno_dos_reterr_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(iomode.c)
+0000:3406      __GetIOMode_
+0000:342b      __SetIOMode_nogrow_
+04ac:0376+     ___NFiles
+04ac:0378+     ___init_mode
+04ac:03a0+     ___io_mode
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(errno.c)
+0000:344e      __get_errno_ptr_
+0000:3455      __get_doserrno_ptr_
+04ac:063a+     _errno
+04ac:063c+     __doserrno
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(filedos.c)
+0000:345c*     _dos_close_
+0000:346a      _dos_commit_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(setenvp.c)
+0000:3498      __setenvp_
+0000:359b      __freeenvp_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbdtoupp.c)
+0000:35f9      _mbdtoupper_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(toupper.c)
+0000:3607      toupper_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spvpe.c)
+0000:3615      spawnvpe_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(heapen.c)
-0000:3c5b*     _heapenable_
-04a0:03a4      ___heap_enabled
+0000:3792*     _heapenable_
+04ac:03a4      ___heap_enabled
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(sbrk.c)
-0000:3c6c*     sbrk_
-0000:3c7c      __brk_
+0000:37a3*     sbrk_
+0000:37b3      __brk_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(nfree.c)
-0000:3ce6      _nfree_
-04a0:0642+     ___MiniHeapFreeRover
+0000:381d      _nfree_
+04ac:0642+     ___MiniHeapFreeRover
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(heapgrow.c)
-0000:3de1*     _heapgrow_
-0000:3de1*     _fheapgrow_
-0000:3de2      _nheapgrow_
+0000:3918*     _heapgrow_
+0000:3918*     _fheapgrow_
+0000:3919      _nheapgrow_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(doserror)
-0000:3e5c      __doserror_
+0000:3994      __doserror_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(clearenv.c)
+0000:39a2      clearenv_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spve.c)
+0000:3af0      spawnve_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(strchr.c)
+0000:3ef2      strchr_
+Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(memcpy.c)
+0000:3f11      memcpy_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(finddos.c)
-0000:3e6a      _dos_findfirst_
-0000:3e9d*     _dos_findnext_
-0000:3eb0*     _dos_findclose_
+0000:3f33      _dos_findfirst_
+0000:3f66*     _dos_findnext_
+0000:3f79*     _dos_findclose_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(cenvarg.c)
-0000:3ecd      __cenvarg_
-0000:40bd      __ccmdline_
+0000:3f96      __cenvarg_
+0000:4186      __ccmdline_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dospawn)
-0000:414e      __dospawn
+0000:4217      __dospawn
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(execaddr.c)
-0000:4236      __execaddr_
-04a0:03de+     ___Exec_addr
+0000:42ff      __execaddr_
+04ac:03de+     ___Exec_addr
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(stack086.c)
-0000:4243      stackavail_
+0000:430c      stackavail_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(split2.c)
-0000:42cb      _splitpath2_
+0000:4394      _splitpath2_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(save8087.c)
-04a0:03e2      ___Save8087
-04a0:03e6      ___Rest8087
+04ac:03e2      ___Save8087
+04ac:03e6      ___Rest8087
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(dosmem)
-0000:447e      _dos_allocmem_
-0000:44a0      _dos_freemem_
-0000:44ae*     _dos_setblock_
+0000:4546      _dos_allocmem_
+0000:4568      _dos_freemem_
+0000:4576*     _dos_setblock_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(fmemcpy.c)
-0000:44ca      _fmemcpy_
+0000:4592      _fmemcpy_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(makepath.c)
-0000:4506      _makepath_
+0000:45ce      _makepath_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(strcpy.c)
-0000:4752      strcpy_
+0000:481a      strcpy_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(spl.c)
-0000:479d      spawnl_
+0000:4865      spawnl_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsnccnt.c)
-0000:47c8      _mbsnccnt_
+0000:4890      _mbsnccnt_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsncpy.c)
-0000:47fc      _mbsncpy_
+0000:48c4      _mbsncpy_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsnbcnt.c)
-0000:4832      _mbsnbcnt_
+0000:48fa      _mbsnbcnt_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbconv.c)
-0000:48ab      _mbvtop_
+0000:4973      _mbvtop_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbclen.c)
-0000:48c0      _mbclen_
+0000:4988      _mbclen_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsdec.c)
-0000:48ee      _mbsdec_
+0000:49b6      _mbsdec_
 Module: C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib(mbsnbcpy.c)
-0000:497b      _mbsnbcpy_
+0000:4a43      _mbsnbcpy_
 
 
                         +--------------------+
@@ -394,6 +394,6 @@ C:\trabajos\programas\openwatcom/lib286/dos\clibl.lib
                         +-----------------------+
 
 Stack size:  0800 (2048.)
-Memory size:  5850 (22608.)
-Entry point address: 0000:08ba
+Memory size:  5910 (22800.)
+Entry point address: 0000:09c6
 Link time: 00:00.00

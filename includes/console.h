@@ -26,7 +26,6 @@
 #define WHITE           0xF
 
 int getCmdWidth();
-void clrsrc();
 void setCursorPosition(int, int);
 void fill_line(int, int);
 void print_colored_char(char, int);

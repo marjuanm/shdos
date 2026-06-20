@@ -1,3 +1,12 @@
+0.2.0
+
+- Use the buffer size defined by the constant MAX_BUFFER for array sizes, protecting the size of the entered command by adhering to the MAX_BUFFER buffer size.
+
+- The snprintf function was used before using print_colored_text, but if the text size to be used was larger than the buffer size, the program would cause an overflow upon closing. Now, snprintf, which uses the buffer size, is used, and this problem no longer occurs.
+
+- First partial implementation of the "commands" module, where the code for internal commands common to both 16-bit and 32-bit systems will be placed. Otherwise, they will only be declared in commands.h, but each version (16-bit and 32-bit) will have its own implementation. Otherwise, they will remain in commands.c. Organize the source code too.
+
+
 0.1.2
 
 - Text coloring functions were successfully implemented, and the console header function was prepared to mimic the style of the Reactos console (discontinued in recent versions). Currently, this only works on 16-bit systems.
