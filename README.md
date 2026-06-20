@@ -61,10 +61,8 @@ When available, users will be able to purchase a copy for approximately $6 USD. 
 # Useful resources:
 
 DOSBox:
-<ul>
-<li><a href="https://portableapps.com/apps/games/dosbox_portable" target="_blank">Portable edition</a> (only to Windows)</li>
-<li><a href="https://www.dosbox.com/download.php?main=1" target="_blank">Regular version</a></li>
-</ul>
+* <a href="https://portableapps.com/apps/games/dosbox_portable" target="_blank">Portable edition</a> (only to Windows)
+* <a href="https://www.dosbox.com/download.php?main=1" target="_blank">Regular version</a>
 
 FreeDOS (run in VirtualBox or another virtual machine)
 <br>
