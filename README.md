@@ -1,6 +1,6 @@
 <p align="center">
     <img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=2" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=3" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png" height="20" alt="Download current version"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
 </p>
@@ -10,11 +10,11 @@ ShellDOS (or simply shDOS) is a retro-style DOS command interpreter designed to 
 
 The project is currently in its early stages and can execute the shell while displaying user input. Future versions will interpret and execute commands, support colorized output, and include selected Linux-inspired commands. ShDOS is intended to run on both 16-bit DOS systems (tested on DOSBox / MS-DOS / FreeDOS /  Windows 95 and Reactos) and 32-bit environments (tested on Windows 95 / 7, 11 and Reactos), combining retro compatibility with modern usability.
 
-# Updates for the latest version (0.2.0):
+# Updates for the latest version (0.2.1):
 
-The system was prone to overflow errors when closing the program after receiving very large commands. Now, the system truncates commands if they exceed the buffer size and uses safe functions to display text on the screen, preventing this overflow error.
+ShellDOS can read the shdos.cfg configuration file and load the data (without applying it yet), or create the file if it's not available and preload a configuration to be applied on the next boot.
 
-I've begun partially implementing the "commands" module, which will contain the implementations of the internal commands, of course, it has a very limited number of commands: ver, cls, and exit.
+The 16-bit and 32-bit executables have been successfully tested on DOSBox, FreeDOS, MS-DOS, Windows 95/7/11 and ReactOS. However, if run from a CD-ROM, it fails silently because it doesn't validate that the path is read-only. Therefore, it's necessary to copy and paste the shdos.exe file to a folder that allows both reading and writing.
 
 # License:
 
@@ -36,8 +36,7 @@ Alternatively, you can simply double-click the shdos.exe file and wait for the c
 
 From the ShellDOS console, execute the implemented commands to begin managing your files, programs, etc., <b>just like in the old days!</b>
 
-<b>Implemented Commands:</b><br>
-Once the project console is running, type one of the following commands to start working.
+<b>Implemented Commands:</b>
 
 * ver: displays the current version of shDOS.
 * cls: clears the screen.
