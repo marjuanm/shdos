@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../includes/structures.h"
 #include "../includes/core.h"
 #include "../includes/console.h"
 #include "../includes/commands.h"
@@ -24,14 +25,14 @@
   Purpose: Create the main laucher of the console
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 08/06/2026
+  Last modified date: 21/06/2026
   Last modified username: Juan Manuel Mar Hdz. 
   Thanks to chatGPT
 */
-int main()
+int main(int argc, char *argv[])
 {
 	
-	cmd();
+	cmd(argv);
 	return 0;
 	
 }

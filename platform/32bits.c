@@ -174,3 +174,33 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
 	WriteConsoleOutputAttribute(hConsole, attributes, len, pos, &written);
 	
 }
+
+/* Purpose: Return default console configuration
+	 Created date: 20/06/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 21/06/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt and gemini
+*/
+struct CONFIGURATION getDefaultCmdConfiguration()
+{
+	
+	struct CONFIGURATION conf;
+    
+  conf.showheader = 1;                    // 1 = yes, 0 = false
+  conf.headertype = 1;                    // 1 = full (version + help and copyright in new row), 2 = version + copyright in 2 rows
+  conf.headerbgcolor = BLUE;              // default value    
+  conf.headertextcolor = WHITE;           // default value
+  conf.consolebgcolor = BLACK;            // default value
+  conf.consoletextcolor = WHITE;          // default value
+  conf.prompttextcolor = GREEN;           // default value
+	conf.usecmdthemes = 1;									//1 = yes, 0 = false
+    
+  memset(conf.promptlabel, 0, MAX_BUFFER);
+  strncpy(conf.promptlabel, "$p$g", sizeof(conf.promptlabel) - 1); // prompt like C:\>
+	conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
+  
+	return conf;
+
+}
+

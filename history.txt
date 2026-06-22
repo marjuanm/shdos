@@ -1,3 +1,13 @@
+0.2.1
+
+- Implementation of the CONFIGURATION structure, which serves as a template for creating the "shdos.cfg" file that stores the default ShellDOS configuration.
+
+- Was discovered that the system was crashing in DOSBox due to excessive memory consumption. With the applied changes, it now works without problems.
+
+- ShellDOS detects if the shdos.cfg file exists. If it exists, loads the configuration (although it's not yet applied); otherwise, it creates the file with default values. Successfully tested on Dosbox, FreeDOS, MS-DOS, Windows 95, 7, and 11. It works well in ReactOS, but the 16-bit version runs very slowly when typing a command; the 32-bit version works perfectly.
+
+- Although the system works, I found that if it's run from a CD-ROM, the system crashes because don't validate that the media is read-only. The .exe file needs to be copied to a different location; I'll fix that problem.
+
 0.2.0
 
 - Use the buffer size defined by the constant MAX_BUFFER for array sizes, protecting the size of the entered command by adhering to the MAX_BUFFER buffer size.

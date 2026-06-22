@@ -7,22 +7,217 @@
 
 int pos = 0;
 int firsttime = TRUE;
+struct CONFIGURATION conf;
 unsigned short original_attr, attr;
-char command[MAX_BUFFER];
-
+char value[MAX_BUFFER], stmp[MAX_BUFFER];
+char command[MAX_BUFFER], currentpath[MAX_BUFFER];
+char buffer[MAX_BUFFER], line[MAX_BUFFER], tmp[2];
+	
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 19/06/2026
+   Last modified date: 21/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
-void cmd()
+void cmd(char *argv[])
 {
 
-  int ext;
-	char c, buffer[MAX_BUFFER], tmp[2];
+  FILE *fp;
+	char c;
+	int ext, exists, itmp;
+	
+	// read shdos.cfg, if not exists then create by default
 
-  original_attr = getOriginalCmdTextColor();
+  getExePath(argv[0], currentpath);
+	strcat(currentpath, "shdos.cfg");
+	fp = fopen("shdos.cfg", "r");
+	conf = getDefaultCmdConfiguration();
+	
+	if(fp != NULL)
+  {
+		
+		//load configuration from shdos.cfg, every line start with key=value
+		while(fgets(line, MAX_BUFFER, fp) != NULL)
+	  {
+			
+			line[strcspn(line, "\r\n")] = '\0';
+
+			if(strncasecmp(line, "showheader=", strlen("showheader=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					
+					if(strcasecmp(stmp, "1")	== 0 || strcasecmp(stmp, "0") == 0) 
+						conf.showheader = atoi(stmp);
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headertype=", strlen("headertype=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					
+					if(strcasecmp(stmp, "1")	== 0 || strcasecmp(stmp, "2") == 0) 
+						conf.headertype = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headerbgcolor=", strlen("headerbgcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.headerbgcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headertextcolor=", strlen("headertextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(value, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.headertextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "consolebgcolor=", strlen("consolebgcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(value, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.consolebgcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "consoletextcolor=", strlen("consoletextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(value, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.consoletextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "prompttextcolor=", strlen("prompttextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					if(itmp >= BLACK && itmp <= WHITE) conf.prompttextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "promptlabel=", strlen("promptlabel=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					
+					memset(conf.promptlabel, 0, MAX_BUFFER);
+					strncpy(conf.promptlabel, stmp, sizeof(conf.promptlabel) - 1);
+					conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
+					
+				}
+				
+			}
+				
+		}
+
+		fclose(fp);
+    exists = TRUE;
+
+	}
+	else
+	  exists = FALSE;
+	
+	//create configuration file
+	if(exists == FALSE)
+	{
+		
+		printf("Archivo no encontrado, ha sido creado con valores predeterminados...");
+		fflush(stdout);
+		
+		fp = fopen("shdos.cfg", "w");
+		
+		if(conf.showheader == 1)
+			fprintf(fp, "showheader=yes\n");
+		else
+			fprintf(fp, "showheader=no\n");
+		
+    fprintf(fp, "headertype=%d\n", conf.headertype);
+    fprintf(fp, "headerbgcolor=%X\n", conf.headerbgcolor);
+    fprintf(fp, "headertextcolor=%X\n", conf.headertextcolor);
+    fprintf(fp, "consolebgcolor=%X\n", conf.consolebgcolor);
+    fprintf(fp, "consoletextcolor=%X\n", conf.consoletextcolor);
+    fprintf(fp, "prompttextcolor=%X\n", conf.prompttextcolor);
+		
+		if(conf.usecmdthemes == 1)
+			fprintf(fp, "usecmdthemes=yes ;work only with Windows 10 or superior\n");
+		else
+			fprintf(fp, "usecmdthemes=no ;work only with Windows 10 or superior\n");
+		
+		fprintf(fp, "promptlabel=%s\n", conf.promptlabel);
+
+    fclose(fp);
+		cls();
+		
+	}
+	
+	// read shdos.cfg, if not exists then create by default
+	
+	original_attr = getOriginalCmdTextColor();
 	attr = (BLACK << 4) | LIGHTGRAY;
 	
 	while(TRUE)
@@ -98,7 +293,7 @@ void cmd()
 						// If a special key (2 bytes) is pressed within the excess,
 						// we also consume its second byte so as not to break the cycle.
             if(ext == 0 || ext == 224) 
-							getch(); 
+							ext = getch(); 
             
 					}
 					
@@ -142,7 +337,7 @@ void cmd()
 		
 	}
 	
-	//restoreCmdTextColor(original_attr);
+	restoreCmdTextColor(original_attr);
 
 }
 
@@ -196,3 +391,131 @@ void clearcmdbuffer()
 	
 }
 
+/* 
+  Purpose: Return folder from path
+  Created date: 21/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 21/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+void getExePath(char *fullpath, char *path)
+{
+	
+	char *p;
+
+  memset(path, 0, MAX_BUFFER);
+	strncpy(path, fullpath, MAX_BUFFER - 1);
+	path[MAX_BUFFER - 1] = '\0';
+
+  p = strrchr(path, '\\');
+
+  if(p != NULL)
+    *(p + 1) = '\0';
+  else
+    path[0] = '\0';
+
+}
+
+/* 
+  Purpose: Return value from string in key=value format
+  Created date: 21/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 21/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+void getValueFromKey(char *stream, char *val)
+{
+	
+	char *p;
+
+  //ignore full comments
+	if(stream[0] == ';' || stream[0] == '#')
+  {
+		
+		val[0] = '\0';
+    return;
+    
+	}
+	
+	//ignore comments section on the line, the line is truncate at found ; or #
+	p = strpbrk(stream, ";#");
+  if(p != NULL) *p = '\0';
+	
+	//extract value at found '=' on the line
+	
+	p = strchr(stream, '=');
+  
+	//no value found to line
+	if(p == NULL)
+  {
+		
+		val[0] = '\0';
+    return;
+    
+	}
+	
+	//copy the value section
+	p++;
+	while(*p == ' ' || *p == '\t') p++;
+
+	memset(val, 0, MAX_BUFFER);
+  strncpy(val, p, MAX_BUFFER - 1);
+  val[MAX_BUFFER - 1] = '\0';
+
+}
+
+/* 
+  Purpose: Return value from string in correct format (convert yes and on to 1, no, off to 0)
+  Created date: 21/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 21/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+void getCorrectValueToLoad(char *stream, char *value)
+{
+	
+	memset(value, 0, MAX_BUFFER);
+	
+	if(value != NULL) 
+	{
+		
+	  if(
+			strcasecmp(value, "1") == 0 ||
+			strcasecmp(value, "yes") == 0 ||
+			strcasecmp(value, "on") == 0
+		)
+    {
+		
+			strncpy(value, "1", MAX_BUFFER - 1);
+			value[MAX_BUFFER - 1] = '\0';
+
+		}
+		else
+		{
+			
+			if(
+				strcasecmp(value, "0") == 0 ||
+				strcasecmp(value, "no") == 0 ||
+				strcasecmp(value, "off") == 0
+			)
+			{
+		
+				strncpy(value, "0", MAX_BUFFER - 1);
+				value[MAX_BUFFER - 1] = '\0';
+
+			}
+			else
+			{
+		
+				strncpy(value, stream, MAX_BUFFER - 1);
+				value[MAX_BUFFER - 1] = '\0';
+
+			}
+			
+		}
+		
+	}
+	else
+		value[0] = '\0';
+	
+}

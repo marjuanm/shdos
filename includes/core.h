@@ -8,8 +8,11 @@
 #ifndef CORE_H
 #define CORE_H
 
-void cmd();
+void cmd(char *[]);
 void showWelcome();
 void clearcmdbuffer();
+void getExePath(char *, char *);
+void getValueFromKey(char *, char *);
+void getCorrectValueToLoad(char *stream, char *value);
 
 #endif
