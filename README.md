@@ -8,7 +8,7 @@
 # Whats is ShellDOS?
 ShellDOS (or simply shDOS) is a retro-style DOS command interpreter designed to bring modern features to classic environments. The project aims to provide a command-line experience inspired by MS-DOS and FreeDOS while incorporating functionality commonly found in Linux and other modern operating systems.
 
-The project is currently in its early stages and can execute the shell while displaying user input. Future versions will interpret and execute commands, support colorized output, and include selected Linux-inspired commands. ShDOS is intended to run on both 16-bit DOS systems (MS-DOS and FreeDOS) and 32-bit environments (currently tested on Windows 11), combining retro compatibility with modern usability.
+The project is currently in its early stages and can execute the shell while displaying user input. Future versions will interpret and execute commands, support colorized output, and include selected Linux-inspired commands. ShDOS is intended to run on both 16-bit DOS systems (tested on DOSBox / MS-DOS / FreeDOS /  Windows 95 and Reactos) and 32-bit environments (tested on Windows 95 / 7, 11 and Reactos), combining retro compatibility with modern usability.
 
 # Updates for the latest version (0.2.0):
 
@@ -27,6 +27,14 @@ The software will be regularly updated to correct any bugs that may appear durin
 ShDOS is written in C language using the OpenWatcom compiler, allowing it to generate both 16 / 32-bit executables. Before building the project, download and install <a href="https://openwatcom.org/ftp/install/" target="_blank">OpenWatcom</a>, preferably in a directory without spaces (for example, C:\OpenWatcom), and run BINNT\IDE.EXE.
 
 To compile shDOS, open the shdos.wpj project file located in either the 16 or 32-bit folder and click Make Target. The 32-bit version can be executed directly on modern Windows systems, while the 16-bit version should be tested in DOSBox, MS-DOS, or FreeDOS. As the project is still in its early stages, new features and improvements will be added gradually over time.
+
+<b>How to run:</b>
+
+For Windows platforms, you can run the executable from the command prompt. Simply open it, navigate to the folder containing the shdos.exe file and run the program.
+
+Alternatively, you can simply double-click the shdos.exe file and wait for the command prompt window to open. If you are using DOSBox or FreeDOS/MS-DOS you must navigate to the folder containing the shdos.exe file and launch the program.
+
+From the ShellDOS console, execute the implemented commands to begin managing your files, programs, etc., <b>just like in the old days!</b>
 
 <b>Implemented Commands:</b><br>
 Once the project console is running, type one of the following commands to start working.
@@ -67,6 +75,10 @@ DOSBox:
 FreeDOS (run in VirtualBox or another virtual machine)
 <br>
 <a href="https://www.freedos.org/download/" target="_blank">Descargar</a>
+
+Reactos (run in VirtualBox or another virtual machine)
+<br>
+<a href="https://reactos.org/" target="_blank">Descargar</a>
 
 VirtualBox (available for Windows and other operating systems)
 <br>
