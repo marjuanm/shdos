@@ -46,7 +46,7 @@ Alternatively, you can simply double-click the shdos.exe file and wait for the c
 
 From the ShellDOS console, execute the implemented commands to begin managing your files, programs, etc., <b>just like in the old days!</b>
 
-<b>🖥️ Implemented Commands:</b>
+<b>Implemented Commands:</b>
 
 * `ver`: displays the current version of shDOS.
 * `cls`: clears the screen.
