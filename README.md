@@ -26,7 +26,7 @@ The software will be regularly updated to correct any bugs that may appear durin
 
 | Operating System | Architecture Support | Configuration & Stability Notes |
 | :--- | :---: | :--- |
-| **Windows 10 / 7** | `32-bit (x86)` | Fully functional |
+| **Windows 11 / 7** | `32-bit (x86)` | Fully functional |
 | **Windows 95** | `16-bit` / `32-bit` | Supported. Great for hybrid retro-compatibility testing. |
 | **MS-DOS / FreeDOS**| `16-bit` only | Native support. Ideal for pure legacy disk environments. |
 | **DOSBox** | `16-bit` emulation | Fully supported. Recommended emulator for safe testing. |
