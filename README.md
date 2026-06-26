@@ -12,18 +12,18 @@ The project is currently in its early stages and can execute the shell while dis
 
 ### 🗺️ Development Roadmap
 
-- [x] 🐻 Visual identity and core system concept
+- [/] 🐻 Visual identity and core system concept
 - [/] ⚙️ Main command interpreter architecture
 - [/] 🛠️ Basic command support *(In progress)*
 - [ ] 💾 Implementation of all native MS-DOS commands
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.1):
+# 🚀 Updates for the latest version (0.2.2):
 
-ShellDOS can read the shdos.cfg configuration file and load the data (without applying it yet), or create the file if it's not available and preload a configuration to be applied on the next boot.
+Preliminary implementation of external command handling: the system checks whether the command is an executable by verifying if the file has a .exe or .bat extension, or a .com extension for 16-bit executables.
 
-The 16-bit and 32-bit executables have been successfully tested on DOSBox, FreeDOS, MS-DOS, Windows 95/7/11 and ReactOS. However, if run from a CD-ROM, it fails silently because it doesn't validate that the path is read-only. Therefore, it's necessary to copy and paste the shdos.exe file to a folder that allows both reading and writing.
+If it's an executable, it's marked for potential execution. If it lacks an extension, the system checks the current folder for the same command with a .exe or .bat extension—or .com for the 16-bit version. If found, it's marked for execution; otherwise, the system indicates that it's not a valid command.
 
 # 📋 License:
 
