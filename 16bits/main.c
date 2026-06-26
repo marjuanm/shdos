@@ -5,12 +5,15 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
  */
 
+#include <io.h>
 #include <conio.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "../includes/structures.h"
+#include "../includes/os.h"
 #include "../includes/core.h"
 #include "../includes/console.h"
 #include "../includes/commands.h"

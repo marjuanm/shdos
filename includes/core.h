@@ -8,8 +8,19 @@
 #ifndef CORE_H
 #define CORE_H
 
+char smallbuffer[SMALL_BUFFER];
+char mediumbuffer[MEDIUM_BUFFER];
+char largebuffer[LARGE_BUFFER];
+
+char confpath[LARGE_BUFFER];
+char shellpath[LARGE_BUFFER];
+char currentpath[LARGE_BUFFER];
+
+void trim(char *);
 void cmd(char *[]);
 void showWelcome();
+void setPromptBuffer();
+void drawPrompt();
 void clearcmdbuffer();
 void getExePath(char *, char *);
 void getValueFromKey(char *, char *);

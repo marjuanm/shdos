@@ -9,35 +9,44 @@ int pos = 0;
 int firsttime = TRUE;
 struct CONFIGURATION conf;
 unsigned short original_attr, attr;
-char value[MAX_BUFFER], stmp[MAX_BUFFER];
-char command[MAX_BUFFER], currentpath[MAX_BUFFER];
-char buffer[MAX_BUFFER], line[MAX_BUFFER], tmp[2];
-	
+char line[SMALL_BUFFER], tmp[2];
+char value[SMALL_BUFFER], stmp[SMALL_BUFFER];
+char command[MEDIUM_BUFFER], prompt[LARGE_BUFFER];
+
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 21/06/2026
+   Last modified date: 25/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
 {
 
   FILE *fp;
-	char c;
+	char c, *args;
 	int ext, exists, itmp;
 	
 	// read shdos.cfg, if not exists then create by default
 
   getExePath(argv[0], currentpath);
-	strcat(currentpath, "shdos.cfg");
-	fp = fopen("shdos.cfg", "r");
+	
+	strcat(shellpath, currentpath);
+	strcat(confpath, currentpath);
+	strcat(confpath, "shdos.cfg");
+	
+	if(strcasecmp(shellpath, "/")	== 0)
+		separator = '/';
+	else
+		separator = '\\';
+	
+	fp = fopen(confpath, "r");
 	conf = getDefaultCmdConfiguration();
 	
 	if(fp != NULL)
   {
 		
 		//load configuration from shdos.cfg, every line start with key=value
-		while(fgets(line, MAX_BUFFER, fp) != NULL)
+		while(fgets(line, SMALL_BUFFER, fp) != NULL)
 	  {
 			
 			line[strcspn(line, "\r\n")] = '\0';
@@ -165,7 +174,7 @@ void cmd(char *argv[])
 					
 					getCorrectValueToLoad(value, stmp);
 					
-					memset(conf.promptlabel, 0, MAX_BUFFER);
+					memset(conf.promptlabel, 0, SMALL_BUFFER);
 					strncpy(conf.promptlabel, stmp, sizeof(conf.promptlabel) - 1);
 					conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
 					
@@ -189,7 +198,7 @@ void cmd(char *argv[])
 		printf("Archivo no encontrado, ha sido creado con valores predeterminados...");
 		fflush(stdout);
 		
-		fp = fopen("shdos.cfg", "w");
+		fp = fopen(confpath, "w");
 		
 		if(conf.showheader == 1)
 			fprintf(fp, "showheader=yes\n");
@@ -217,6 +226,10 @@ void cmd(char *argv[])
 	
 	// read shdos.cfg, if not exists then create by default
 	
+	setPromptBuffer();
+	
+	// process commands area
+	
 	original_attr = getOriginalCmdTextColor();
 	attr = (BLACK << 4) | LIGHTGRAY;
 	
@@ -226,7 +239,7 @@ void cmd(char *argv[])
 		if(firsttime == TRUE)
 		{
 			
-			memset(command, 0, MAX_BUFFER);  //clear command array
+			memset(command, 0, MEDIUM_BUFFER);  //clear command array
 			firsttime = FALSE;
 			showWelcome();
 
@@ -243,6 +256,17 @@ void cmd(char *argv[])
       
 			//execute command
 			
+			trim(command);
+			args = strchr(command, ' ');
+			
+			if(args)
+			{
+    
+				*args = '\0';  // split command and args
+				args++;        // args
+				
+			}
+			
 			if(stricmp(command, "exit") == 0)
 			{
 				
@@ -251,32 +275,52 @@ void cmd(char *argv[])
 				
 			}
 			else if(stricmp(command, "ver") == 0)
-			  ver(attr);
-			else if(stricmp(command, "cls") == 0)
 			{
 				
+				/*if(stricmp(command, "uname") == 0)
+				{
+
+					if(arg == NULL || *arg == '\0')
+						uname('s', attr);
+					else if(stricmp(arg, "-n") == 0)
+						uname('n', attr);
+					else if(stricmp(arg, "-r") == 0)
+						uname('r', attr);
+					else if(stricmp(arg, "-v") == 0)
+						uname('v', attr);
+					else if(stricmp(arg, "-m") == 0)
+						uname('m', attr);
+					else if(stricmp(arg, "-a") == 0)
+						uname('a', attr);
+					else
+					  uname('s', attr);
+					
+				}
+				else*/
+				ver(attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "cls") == 0 || stricmp(command, "clear") == 0)
+			{
+				
+				//clear and clear -x exists function on Linux
 				clearcmdbuffer();
 				fflush(stdout);
-				cls();
+				cls(); // clear all screen, maybe on the future support clear command from Linux or similar
+				drawPrompt();
 				
 			}
 			else
 			{
 				
-				snprintf(buffer, sizeof(buffer), "\nEl comando ingresado es: %s\nPresione cualquier tecla para continuar...\n", command);
-				print_colored_text(buffer, attr);
-				clearcmdbuffer();
+				if(args == NULL || *args == '\0')
+					executeCommand(command, NULL, attr);
+				else
+					executeCommand(command, args, attr);
 				
-				//ignore special keys
-				/*while(TRUE)
-				{
-					
-					if(c == 0 || c == 224)
-					  ext = getch(); // consume second byte
-					else
-						break;
-					
-				}*/
+				clearcmdbuffer();
+				drawPrompt();
 				
 				/* 
 				  EXTRA PROTECTION HERE!
@@ -319,7 +363,7 @@ void cmd(char *argv[])
 			}
 			
 			// add chars to command array, but prevent overflow
-			if(pos < MAX_BUFFER - 1)
+			if(pos < MEDIUM_BUFFER - 2)
 			{
         
 				command[pos] = c;
@@ -337,30 +381,68 @@ void cmd(char *argv[])
 		
 	}
 	
+	// process commands area
+	
 	restoreCmdTextColor(original_attr);
 
+}
+
+/* 
+  Purpose: Trim string
+  Created date: 10/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 24/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+	Thanks to chatgpt
+*/
+void trim(char *str)
+{
+	
+	char *start = str;
+  char *end;
+
+  while(*start && isspace((unsigned char)*start))
+		start++;
+
+  if(start != str)
+    memmove(str, start, strlen(start) + 1);
+
+  /* if empty string? */
+  if(*str == '\0')
+    return;
+
+  end = str + strlen(str) - 1;
+
+  /* remove spaces chars */
+  while(end >= str && isspace((unsigned char)*end))
+  {
+    
+    *end = '\0';
+    end--;
+    
+	}
+	
 }
 
 /* 
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 19/06/2026
+  Last modified date: 24/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
 void showWelcome()
 {
 	
-	char buffer[MAX_BUFFER];
 	int attr = (BLUE << 4) | WHITE;
 	int pos, columns = getCmdWidth();
 	
 	cls();
 	
 	fill_line(0, attr);
-	snprintf(buffer, sizeof(buffer), "%s %s", PROJECT_NAME, PROJECT_VERSION);
-	print_colored_text_xy(0, 0, buffer, attr);
+	snprintf(largebuffer, sizeof(largebuffer), "%s %s", PROJECT_NAME, PROJECT_VERSION);
+	print_colored_text_xy(0, 0, largebuffer, attr);
 	fflush(stdout);
 
 	pos = columns - strlen("Type HELP = Help");
@@ -368,11 +450,50 @@ void showWelcome()
   fflush(stdout);
 	
 	setCursorPosition(1, 2);
-	snprintf(buffer, sizeof(buffer), "(C) %s %s", PROJECT_YEAR, TEAM_NAME);
-	print_colored_text(buffer, (BLACK << 4) | WHITE);
+	snprintf(largebuffer, sizeof(largebuffer), "(C) %s %s", PROJECT_YEAR, TEAM_NAME);
+	print_colored_text(largebuffer, (BLACK << 4) | WHITE);
 	fflush(stdout);
 	
 	setCursorPosition(1, 4);
+	drawPrompt();
+}
+
+/* 
+  Purpose: Prepare prompt buffer
+  Created date: 24/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 24/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+	Thanks to chatgpt
+*/
+void setPromptBuffer()
+{
+	
+	// path
+	memset(prompt, 0, LARGE_BUFFER);
+  strncpy(prompt, currentpath, sizeof(prompt) - 1);
+	
+	// >
+	if(strlen(prompt) > 0 && prompt[strlen(prompt) - 1] == '\\')
+		prompt[strlen(prompt) - 1] = '\0';
+
+	strcat(prompt, ">");
+	
+}
+
+/* 
+  Purpose: Print prompt buffer on the screen
+  Created date: 24/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 25/06/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+void drawPrompt()
+{
+	
+	snprintf(largebuffer, sizeof(largebuffer), prompt);
+	print_colored_text(largebuffer, attr);
+	fflush(stdout);
 	
 }
 
@@ -380,14 +501,14 @@ void showWelcome()
   Purpose: Clear command buffer
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 10/06/2026
+  Last modified date: 22/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void clearcmdbuffer()
 {
 	
 	pos = 0;
-	memset(command, 0, MAX_BUFFER);
+	memset(command, 0, MEDIUM_BUFFER);
 	
 }
 
@@ -395,7 +516,7 @@ void clearcmdbuffer()
   Purpose: Return folder from path
   Created date: 21/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 21/06/2026
+  Last modified date: 22/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void getExePath(char *fullpath, char *path)
@@ -403,9 +524,9 @@ void getExePath(char *fullpath, char *path)
 	
 	char *p;
 
-  memset(path, 0, MAX_BUFFER);
-	strncpy(path, fullpath, MAX_BUFFER - 1);
-	path[MAX_BUFFER - 1] = '\0';
+  memset(path, 0, LARGE_BUFFER);
+	strncpy(path, fullpath, LARGE_BUFFER - 1);
+	path[LARGE_BUFFER - 1] = '\0';
 
   p = strrchr(path, '\\');
 
@@ -420,7 +541,7 @@ void getExePath(char *fullpath, char *path)
   Purpose: Return value from string in key=value format
   Created date: 21/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 21/06/2026
+  Last modified date: 22/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void getValueFromKey(char *stream, char *val)
@@ -458,9 +579,9 @@ void getValueFromKey(char *stream, char *val)
 	p++;
 	while(*p == ' ' || *p == '\t') p++;
 
-	memset(val, 0, MAX_BUFFER);
-  strncpy(val, p, MAX_BUFFER - 1);
-  val[MAX_BUFFER - 1] = '\0';
+	memset(val, 0, SMALL_BUFFER);
+  strncpy(val, p, SMALL_BUFFER - 1);
+  val[SMALL_BUFFER - 1] = '\0';
 
 }
 
@@ -468,13 +589,13 @@ void getValueFromKey(char *stream, char *val)
   Purpose: Return value from string in correct format (convert yes and on to 1, no, off to 0)
   Created date: 21/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 21/06/2026
+  Last modified date: 22/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void getCorrectValueToLoad(char *stream, char *value)
 {
 	
-	memset(value, 0, MAX_BUFFER);
+	memset(value, 0, LARGE_BUFFER);
 	
 	if(value != NULL) 
 	{
@@ -486,8 +607,8 @@ void getCorrectValueToLoad(char *stream, char *value)
 		)
     {
 		
-			strncpy(value, "1", MAX_BUFFER - 1);
-			value[MAX_BUFFER - 1] = '\0';
+			strncpy(value, "1", SMALL_BUFFER - 1);
+			value[SMALL_BUFFER - 1] = '\0';
 
 		}
 		else
@@ -500,15 +621,15 @@ void getCorrectValueToLoad(char *stream, char *value)
 			)
 			{
 		
-				strncpy(value, "0", MAX_BUFFER - 1);
-				value[MAX_BUFFER - 1] = '\0';
+				strncpy(value, "0", SMALL_BUFFER - 1);
+				value[SMALL_BUFFER - 1] = '\0';
 
 			}
 			else
 			{
 		
-				strncpy(value, stream, MAX_BUFFER - 1);
-				value[MAX_BUFFER - 1] = '\0';
+				strncpy(value, stream, SMALL_BUFFER - 1);
+				value[SMALL_BUFFER - 1] = '\0';
 
 			}
 			

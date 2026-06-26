@@ -1,3 +1,20 @@
+0.2.2
+
+
+- Several buffer types of varying sizes were defined to avoid always using the same ones and to save memory by not relying on a single, fixed buffer size. However, the size was increased to accommodate potentially long user commands, without making them absurdly large.
+
+- The current path is now a global variable, just like the configuration file path; the latter remains unchanged and is automatically assigned upon launching shdos.exe.
+
+- Fixed an issue where the executable's current path was being overwritten by the configuration file path; the two variables have now been separated.
+
+- shDOS now displays a prompt similar to DOS systems (e.g., C:\DOS>), but shows the actual path from which the program is running.
+
+- Implemented a "trim" function to improve command validation by removing leading and trailing whitespace from the captured input.
+
+- Implemented shellpath variable; while currentpath holds the current working directory (which changes with the cd command), shellpath remains constant—much like confpath, which stores the fixed path to the configuration file.
+
+- Partially implemented external command execution; it's now possible to "execute" certain external commands. The process isolates the executable name and checks for .exe, .bat, or (for 16-bit) .com formats. If the check passes, it confirms the executable exists; if the command lacks an extension, it checks the current directory for corresponding .exe, .bat, or .com variants. If all checks fail, it indicates the command is invalid. Currently, commands must be located in the same folder as shdos.exe.
+
 0.2.1
 
 - Implementation of the CONFIGURATION structure, which serves as a template for creating the "shdos.cfg" file that stores the default ShellDOS configuration.

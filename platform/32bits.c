@@ -92,7 +92,7 @@ void setCursorPosition(int x, int y)
 /* Purpose: Set background line color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 19/06/2026
+   Last modified date: 22/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -104,8 +104,8 @@ void fill_line(int y, int attr)
   int width, i;
 
   COORD pos;
-  WORD attributes[MAX_BUFFER];
-  char spaces[MAX_BUFFER];
+  WORD attributes[LARGE_BUFFER];
+  char spaces[LARGE_BUFFER];
 
   hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   width = getCmdWidth();
@@ -148,7 +148,7 @@ void print_colored_text(const char *s, int color)
 /* Purpose: Set color to string
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 19/06/2026
+   Last modified date: 22/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt and gemini
 */
@@ -158,7 +158,7 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
 	COORD pos;
 	HANDLE hConsole;
   DWORD written;
-  WORD attributes[MAX_BUFFER];
+  WORD attributes[LARGE_BUFFER];
   int len, i;
 
   hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -178,7 +178,7 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
 /* Purpose: Return default console configuration
 	 Created date: 20/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 21/06/2026
+   Last modified date: 22/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt and gemini
 */
@@ -196,7 +196,7 @@ struct CONFIGURATION getDefaultCmdConfiguration()
   conf.prompttextcolor = GREEN;           // default value
 	conf.usecmdthemes = 1;									//1 = yes, 0 = false
     
-  memset(conf.promptlabel, 0, MAX_BUFFER);
+  memset(conf.promptlabel, 0, SMALL_BUFFER);
   strncpy(conf.promptlabel, "$p$g", sizeof(conf.promptlabel) - 1); // prompt like C:\>
 	conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
   
@@ -204,3 +204,13 @@ struct CONFIGURATION getDefaultCmdConfiguration()
 
 }
 
+/* Purpose: Return OS bit number
+	 Created date: 25/06/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 25/06/2026
+   Last modified username: Juan Manuel Mar Hdz.
+*/
+int getOSBits()
+{
+	return 32;
+}

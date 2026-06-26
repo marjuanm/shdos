@@ -21,7 +21,7 @@ struct CONFIGURATION
 	int consoletextcolor;
 	int prompttextcolor;
 	int usecmdthemes;
-	char promptlabel[MAX_BUFFER];
+	char promptlabel[SMALL_BUFFER];
 	
 };
 
