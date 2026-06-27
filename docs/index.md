@@ -2,7 +2,7 @@
 ## 🚀 Getting started
 A section dedicated to learning about the ShellDOS project and taking your first steps with this retro-style console featuring modern capabilities.
 
-* <a href="https://github.com/marjuanm/shdos/edit/main/docs/getting-started.md"Introduction</a>
+* <a href="https://github.com/marjuanm/shdos/edit/main/docs/getting-started.md">Introduction</a>
 * Installation
 * Building from source
 * Running ShellDOS
