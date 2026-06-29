@@ -19,11 +19,10 @@ The project is currently in its early stages and can execute the shell while dis
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.2):
+# 🚀 Updates for the latest version (0.2.3):
 
-Preliminary implementation of external command handling: the system checks whether the command is an executable by verifying if the file has a .exe or .bat extension, or a .com extension for 16-bit executables.
-
-If it's an executable, it's marked for potential execution. If it lacks an extension, the system checks the current folder for the same command with a .exe or .bat extension—or .com for the 16-bit version. If found, it's marked for execution; otherwise, the system indicates that it's not a valid command.
+Headers were implemented for most internal MS-DOS commands, although they do nothing for the time being.
+Some optimizations and aesthetic changes were made.
 
 # 📋 License:
 
