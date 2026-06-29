@@ -1,3 +1,9 @@
+0.2.3
+
+- The "ver" command now also displays the bit-depth for which the console is available; additionally, the message "Type HELP or press F1 = Help" now appears at the top, indicating that help can be accessed by pressing the F1 key or typing the command into the console.
+
+- Only the headers for calling standard MS-DOS internal commands have been set up; headers for handling PATH, other "sensitive" functions, or memory management are not yet in place—these might only be available for 16-bit mode.
+
 0.2.2
 
 

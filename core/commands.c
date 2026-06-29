@@ -5,42 +5,20 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-/* Purpose: Show shdos version like Linux command
-	 Created date: 24/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 24/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-void uname(char arg, unsigned short attr)
-{
-	
-	/*
-				
-				uname -s: Muestra el nombre del kernel (por ejemplo, Linux). Es lo que hace el comando por defecto.uname -n: Muestra el nombre de red del equipo (hostname).uname -r: Muestra la versión de lanzamiento del kernel (kernel release). Es muy útil para verificar compatibilidad de software.uname -v: Muestra la fecha y hora de compilación de ese kernel específico.uname -m: Muestra la arquitectura del hardware (por ejemplo, x86_64 para 64 bits o aarch64 para procesadores ARM).uname -a: Muestra toda la información junta en una sola línea.
-				
-				*/
-				
-
-  clearcmdbuffer();
-	snprintf(mediumbuffer, sizeof(mediumbuffer), "\n%s %s\n\n", PROJECT_NAME, PROJECT_VERSION);
-	print_colored_text(mediumbuffer, attr);
-	fflush(stdout);
-	
-}
-
 /* Purpose: Show shdos version
 	 Created date: 19/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 22/06/2026
+   Last modified date: 29/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
 void ver(unsigned short attr)
 {
 
+  int bits = getOSBits();
+	
   clearcmdbuffer();
-	snprintf(mediumbuffer, sizeof(mediumbuffer), "\n%s %s\n\n", PROJECT_NAME, PROJECT_VERSION);
+	snprintf(mediumbuffer, sizeof(mediumbuffer), "\n%s %s, %i bits edition\n\n", PROJECT_NAME, PROJECT_VERSION, bits);
 	print_colored_text(mediumbuffer, attr);
 	fflush(stdout);
 	
@@ -49,7 +27,7 @@ void ver(unsigned short attr)
 /* Purpose: Execute command with parameters from os terminal
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
+   Last modified date: 29/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -91,6 +69,7 @@ void executeCommand(char *command, char *args, unsigned short attr)
 			else
 			{
 				
+				clearcmdbuffer();
 				snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
 				print_colored_text(mediumbuffer, attr);
 				fflush(stdout);
@@ -205,6 +184,7 @@ CHECK_COM_16_BITS:
 					if(ok == TRUE)
 					{
 						
+						clearcmdbuffer();
 						snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
 						print_colored_text(mediumbuffer, attr);
 						fflush(stdout);
@@ -233,6 +213,7 @@ CHECK_COM_16_BITS:
 					stricmp(dot, ".bat") == 0))
 					{
 						
+						clearcmdbuffer();
 						snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
 						print_colored_text(mediumbuffer, attr);
 						fflush(stdout);
@@ -279,12 +260,14 @@ int isExecutable(char command[MEDIUM_BUFFER])
 /* Purpose: Show command not found message
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
+   Last modified date: 29/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
 void commandNotFound(unsigned short attr)
 {
+	
+	clearcmdbuffer();
 	
 	if(separator == '\\')
   {
@@ -306,14 +289,15 @@ void commandNotFound(unsigned short attr)
 /* Purpose: Show invalid executable format file message
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
+   Last modified date: 29/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
 void invalidExecutable(unsigned short attr)
 {
 	
-	snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEl comando ejecutable debe de tener extension .com, .exe o .bat\n\n");
+	clearcmdbuffer();
+	snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEl comando ejecutable debe de tener extension .com (16 bits), .exe o .bat\n\n");
 	print_colored_text(mediumbuffer, attr);
   fflush(stdout);
 
@@ -322,13 +306,14 @@ void invalidExecutable(unsigned short attr)
 /* Purpose: Show unsupported executable format message (.com files)
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
+   Last modified date: 29/06/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
 void unsupportedComFile(unsigned short attr)
 {
 	
+	clearcmdbuffer();
 	snprintf(mediumbuffer, sizeof(mediumbuffer), "\nLos ejecutables .COM no son compatibles con equipos de 64 bits.\n\n");
 	print_colored_text(mediumbuffer, attr);
   fflush(stdout);

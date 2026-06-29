@@ -277,49 +277,117 @@ void cmd(char *argv[])
 			else if(stricmp(command, "ver") == 0)
 			{
 				
-				/*if(stricmp(command, "uname") == 0)
-				{
-
-					if(arg == NULL || *arg == '\0')
-						uname('s', attr);
-					else if(stricmp(arg, "-n") == 0)
-						uname('n', attr);
-					else if(stricmp(arg, "-r") == 0)
-						uname('r', attr);
-					else if(stricmp(arg, "-v") == 0)
-						uname('v', attr);
-					else if(stricmp(arg, "-m") == 0)
-						uname('m', attr);
-					else if(stricmp(arg, "-a") == 0)
-						uname('a', attr);
-					else
-					  uname('s', attr);
-					
-				}
-				else*/
 				ver(attr);
 				drawPrompt();
 				
 			}
-			else if(stricmp(command, "cls") == 0 || stricmp(command, "clear") == 0)
+			else if(stricmp(command, "cls") == 0)
 			{
 				
-				//clear and clear -x exists function on Linux
-				clearcmdbuffer();
-				fflush(stdout);
-				cls(); // clear all screen, maybe on the future support clear command from Linux or similar
+				cls();
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "cd") == 0 || stricmp(command, "chdir") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "dir") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "md") == 0 || stricmp(command, "mkdir") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "rd") == 0 || stricmp(command, "rmdir") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "copy") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "del") == 0 || stricmp(command, "erase") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "ren") == 0 || stricmp(command, "rename") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "type") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "date") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "time") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "prompt") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "vol") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
+				drawPrompt();
+				
+			}
+			else if(stricmp(command, "truename") == 0)
+			{
+				
+				executeCommand(command, NULL, attr);
 				drawPrompt();
 				
 			}
 			else
 			{
 				
+				//process external commands
 				if(args == NULL || *args == '\0')
 					executeCommand(command, NULL, attr);
 				else
 					executeCommand(command, args, attr);
 				
-				clearcmdbuffer();
 				drawPrompt();
 				
 				/* 
@@ -428,7 +496,7 @@ void trim(char *str)
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 24/06/2026
+  Last modified date: 29/06/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
@@ -437,6 +505,11 @@ void showWelcome()
 	
 	int attr = (BLUE << 4) | WHITE;
 	int pos, columns = getCmdWidth();
+	char helpstr[SMALL_BUFFER];
+	
+	memset(helpstr, 0, SMALL_BUFFER);
+  strncpy(helpstr, "Type HELP or press F1 = Help", SMALL_BUFFER - 1);
+  helpstr[SMALL_BUFFER - 1] = '\0';
 	
 	cls();
 	
@@ -445,12 +518,12 @@ void showWelcome()
 	print_colored_text_xy(0, 0, largebuffer, attr);
 	fflush(stdout);
 
-	pos = columns - strlen("Type HELP = Help");
-	print_colored_text_xy(pos, 0, "Type HELP = Help", attr);
+	pos = columns - strlen(helpstr);
+	print_colored_text_xy(pos, 0, helpstr, attr);
   fflush(stdout);
 	
 	setCursorPosition(1, 2);
-	snprintf(largebuffer, sizeof(largebuffer), "(C) %s %s", PROJECT_YEAR, TEAM_NAME);
+	snprintf(largebuffer, sizeof(largebuffer), "(c) %s %s", PROJECT_YEAR, TEAM_NAME);
 	print_colored_text(largebuffer, (BLACK << 4) | WHITE);
 	fflush(stdout);
 	
