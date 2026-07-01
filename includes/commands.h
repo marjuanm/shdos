@@ -8,8 +8,6 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-void exit();
-void uname(char, unsigned short);
 void ver(unsigned short);
 void cls();
 

@@ -1,0 +1,16 @@
+!define BLANK ""
+C:\trabajos\programas\shdos\pr16bits\main.obj : C:\trabajos\programas\shdos\&
+pr16bits\main.c .AUTODEPEND
+ @C:
+ cd C:\trabajos\programas\shdos\pr16bits
+ *wcc main.c -i="C:\trabajos\programas\openwatcom/h" -w4 -e25 -zq -od -d2 -b&
+t=dos -fo=.obj -ml
+
+C:\trabajos\programas\shdos\pr16bits\shdos.exe : C:\trabajos\programas\shdos&
+\pr16bits\main.obj .AUTODEPEND
+ @C:
+ cd C:\trabajos\programas\shdos\pr16bits
+ @%write shdos.lk1 FIL main.obj
+ @%append shdos.lk1 
+ *wlink name shdos d all sys dos op m op maxe=25 op q op symf @shdos.lk1
+

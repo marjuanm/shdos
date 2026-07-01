@@ -30,11 +30,14 @@
 #define YELLOW          0xE
 #define WHITE           0xF
 
-int getCmdWidth();
+int getWidth();
+
 void setCursorPosition(int, int);
 void fill_line(int, int);
 void print_colored_char(char, int);
 void print_colored_text(const char *, int);
-struct CONFIGURATION getDefaultCmdConfiguration();
+
+void drawPrompt();
+void setPromptBuffer();
 
 #endif

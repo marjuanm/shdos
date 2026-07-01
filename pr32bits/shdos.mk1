@@ -1,15 +1,15 @@
 !define BLANK ""
-C:\trabajos\programas\shdos\32bits\main.obj : C:\trabajos\programas\shdos\32&
-bits\main.c .AUTODEPEND
+C:\trabajos\programas\shdos\pr32bits\main.obj : C:\trabajos\programas\shdos\&
+pr32bits\main.c .AUTODEPEND
  @C:
- cd C:\trabajos\programas\shdos\32bits
+ cd C:\trabajos\programas\shdos\pr32bits
  *wcc386 main.c -i="C:\trabajos\programas\openwatcom/h;C:\trabajos\programas&
 \openwatcom/h/nt" -w4 -e25 -zq -od -d2 -6r -bt=nt -fo=.obj -mf
 
-C:\trabajos\programas\shdos\32bits\shdos.exe : C:\trabajos\programas\shdos\3&
-2bits\main.obj .AUTODEPEND
+C:\trabajos\programas\shdos\pr32bits\shdos.exe : C:\trabajos\programas\shdos&
+\pr32bits\main.obj .AUTODEPEND
  @C:
- cd C:\trabajos\programas\shdos\32bits
+ cd C:\trabajos\programas\shdos\pr32bits
  @%write shdos.lk1 FIL main.obj
  @%append shdos.lk1 
 !ifneq BLANK ""

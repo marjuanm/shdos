@@ -16,14 +16,16 @@ char confpath[LARGE_BUFFER];
 char shellpath[LARGE_BUFFER];
 char currentpath[LARGE_BUFFER];
 
+char prompt[LARGE_BUFFER];
+unsigned short original_attr, attr;
+
 void trim(char *);
 void cmd(char *[]);
 void showWelcome();
-void setPromptBuffer();
-void drawPrompt();
 void clearcmdbuffer();
 void getExePath(char *, char *);
 void getValueFromKey(char *, char *);
 void getCorrectValueToLoad(char *stream, char *value);
+struct CONFIGURATION getDefaultConfiguration();
 
 #endif

@@ -8,15 +8,14 @@
 int pos = 0;
 int firsttime = TRUE;
 struct CONFIGURATION conf;
-unsigned short original_attr, attr;
+char command[MEDIUM_BUFFER];
 char line[SMALL_BUFFER], tmp[2];
 char value[SMALL_BUFFER], stmp[SMALL_BUFFER];
-char command[MEDIUM_BUFFER], prompt[LARGE_BUFFER];
 
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
+   Last modified date: 01/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
@@ -40,7 +39,7 @@ void cmd(char *argv[])
 		separator = '\\';
 	
 	fp = fopen(confpath, "r");
-	conf = getDefaultCmdConfiguration();
+	conf = getDefaultConfiguration();
 	
 	if(fp != NULL)
   {
@@ -50,7 +49,7 @@ void cmd(char *argv[])
 	  {
 			
 			line[strcspn(line, "\r\n")] = '\0';
-
+		  
 			if(strncasecmp(line, "showheader=", strlen("showheader=")) == 0) 
 			{
 				
@@ -190,7 +189,7 @@ void cmd(char *argv[])
 	}
 	else
 	  exists = FALSE;
-	
+
 	//create configuration file
 	if(exists == FALSE)
 	{
@@ -225,7 +224,7 @@ void cmd(char *argv[])
 	}
 	
 	// read shdos.cfg, if not exists then create by default
-	
+
 	setPromptBuffer();
 	
 	// process commands area
@@ -496,7 +495,7 @@ void trim(char *str)
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 29/06/2026
+  Last modified date: 01/07/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
@@ -504,7 +503,7 @@ void showWelcome()
 {
 	
 	int attr = (BLUE << 4) | WHITE;
-	int pos, columns = getCmdWidth();
+	int pos, columns = getWidth();
 	char helpstr[SMALL_BUFFER];
 	
 	memset(helpstr, 0, SMALL_BUFFER);
@@ -529,45 +528,6 @@ void showWelcome()
 	
 	setCursorPosition(1, 4);
 	drawPrompt();
-}
-
-/* 
-  Purpose: Prepare prompt buffer
-  Created date: 24/06/2026
-  Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 24/06/2026
-  Last modified username: Juan Manuel Mar Hdz.
-	Thanks to chatgpt
-*/
-void setPromptBuffer()
-{
-	
-	// path
-	memset(prompt, 0, LARGE_BUFFER);
-  strncpy(prompt, currentpath, sizeof(prompt) - 1);
-	
-	// >
-	if(strlen(prompt) > 0 && prompt[strlen(prompt) - 1] == '\\')
-		prompt[strlen(prompt) - 1] = '\0';
-
-	strcat(prompt, ">");
-	
-}
-
-/* 
-  Purpose: Print prompt buffer on the screen
-  Created date: 24/06/2026
-  Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 25/06/2026
-  Last modified username: Juan Manuel Mar Hdz.
-*/
-void drawPrompt()
-{
-	
-	snprintf(largebuffer, sizeof(largebuffer), prompt);
-	print_colored_text(largebuffer, attr);
-	fflush(stdout);
-	
 }
 
 /* 
@@ -662,13 +622,13 @@ void getValueFromKey(char *stream, char *val)
   Purpose: Return value from string in correct format (convert yes and on to 1, no, off to 0)
   Created date: 21/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 22/06/2026
+  Last modified date: 01/07/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void getCorrectValueToLoad(char *stream, char *value)
 {
 	
-	memset(value, 0, LARGE_BUFFER);
+	//memset(value, 0, LARGE_BUFFER);
 	
 	if(value != NULL) 
 	{
@@ -713,3 +673,33 @@ void getCorrectValueToLoad(char *stream, char *value)
 		value[0] = '\0';
 	
 }
+
+/* 
+  Purpose: Return default shellDOS configuration
+  Created date: 08/06/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 01/07/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+struct CONFIGURATION getDefaultConfiguration()
+{
+	
+	struct CONFIGURATION conf;
+    
+  conf.showheader = 1;                    // 1 = yes, 0 = false
+  conf.headertype = 1;                    // 1 = full (version + help and copyright in new row), 2 = version + copyright in 2 rows
+  conf.headerbgcolor = BLUE;              // default value    
+  conf.headertextcolor = WHITE;           // default value
+  conf.consolebgcolor = BLACK;            // default value
+  conf.consoletextcolor = WHITE;          // default value
+  conf.prompttextcolor = GREEN;           // default value
+	conf.usecmdthemes = 1;									//1 = yes, 0 = false
+    
+  memset(conf.promptlabel, 0, SMALL_BUFFER);
+  strncpy(conf.promptlabel, "$p$g", sizeof(conf.promptlabel) - 1); // prompt like C:\>
+	conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
+  
+	return conf;
+
+}
+

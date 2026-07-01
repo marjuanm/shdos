@@ -1,3 +1,7 @@
+0.2.4
+
+- The code was reorganized by moving files into different folders to improve organization and make it easier to understand and maintain. Some duplicate headers were found, so the code was cleaned up a bit.
+
 0.2.3
 
 - The "ver" command now also displays the bit-depth for which the console is available; additionally, the message "Type HELP or press F1 = Help" now appears at the top, indicating that help can be accessed by pressing the F1 key or typing the command into the console.

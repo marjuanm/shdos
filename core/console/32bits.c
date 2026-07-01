@@ -10,11 +10,11 @@
 /* Purpose: Return command columns number
 	 Created date: 10/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 10/06/2026
+   Last modified date: 01/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-int getCmdWidth()
+int getWidth()
 {
 	
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -24,22 +24,6 @@ int getCmdWidth()
   else
     return 80;
 
-}
-
-/* Purpose: Clear console window
-	 Created date: 13/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 19/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-void cls()
-{
-	
-  clearcmdbuffer();
-	fflush(stdout);		  
-	system("cls");
-	
 }
 
 /* Purpose: Return initial console text color
@@ -92,7 +76,7 @@ void setCursorPosition(int x, int y)
 /* Purpose: Set background line color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 22/06/2026
+   Last modified date: 01/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -108,7 +92,7 @@ void fill_line(int y, int attr)
   char spaces[LARGE_BUFFER];
 
   hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  width = getCmdWidth();
+  width = getWidth();
 
   for(i = 0; i < width; i++)
   {
@@ -173,44 +157,4 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
   WriteConsoleOutputCharacter(hConsole, text, len, pos, &written);
 	WriteConsoleOutputAttribute(hConsole, attributes, len, pos, &written);
 	
-}
-
-/* Purpose: Return default console configuration
-	 Created date: 20/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 22/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt and gemini
-*/
-struct CONFIGURATION getDefaultCmdConfiguration()
-{
-	
-	struct CONFIGURATION conf;
-    
-  conf.showheader = 1;                    // 1 = yes, 0 = false
-  conf.headertype = 1;                    // 1 = full (version + help and copyright in new row), 2 = version + copyright in 2 rows
-  conf.headerbgcolor = BLUE;              // default value    
-  conf.headertextcolor = WHITE;           // default value
-  conf.consolebgcolor = BLACK;            // default value
-  conf.consoletextcolor = WHITE;          // default value
-  conf.prompttextcolor = GREEN;           // default value
-	conf.usecmdthemes = 1;									//1 = yes, 0 = false
-    
-  memset(conf.promptlabel, 0, SMALL_BUFFER);
-  strncpy(conf.promptlabel, "$p$g", sizeof(conf.promptlabel) - 1); // prompt like C:\>
-	conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
-  
-	return conf;
-
-}
-
-/* Purpose: Return OS bit number
-	 Created date: 25/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-*/
-int getOSBits()
-{
-	return 32;
 }
