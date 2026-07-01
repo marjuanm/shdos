@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://software.webxpress.top/projects/shdos" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"></a><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=5" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=6" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png" height="20" alt="Download current version"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
 </p>
@@ -19,10 +19,9 @@ The project is currently in its early stages and can execute the shell while dis
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.3):
+# 🚀 Updates for the latest version (0.2.4):
 
-Headers were implemented for most internal MS-DOS commands, although they do nothing for the time being.
-Some optimizations and aesthetic changes were made.
+The code was reorganized by moving files into different folders to improve organization and make it easier to understand and maintain. Some duplicate headers were found, so the code was cleaned up a bit.
 
 # 📋 License:
 
