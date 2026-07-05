@@ -32,14 +32,14 @@ void setPromptBuffer()
   Purpose: Print prompt buffer on the screen
   Created date: 24/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 25/06/2026
+  Last modified date: 05/07/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void drawPrompt()
 {
 	
 	snprintf(largebuffer, sizeof(largebuffer), prompt);
-	print_colored_text(largebuffer, attr);
+	print_colored_text(largebuffer, global_attr);
 	fflush(stdout);
 	
 }

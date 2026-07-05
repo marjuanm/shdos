@@ -1,3 +1,9 @@
+0.2.5
+
+- ShellDOS can now run on read-only devices by loading the default configuration; if the device allows writing, it checks for the existence of a configuration file—creating a default one if none is found—but reverts to the base configuration if writing fails.
+
+- ShellDOS now applies the default configuration loaded from the configuration file; however, this implementation is still in the early stages, affecting only the header colors (partially) and the option to show or hide the header. There are still some bugs that will be addressed in future versions.
+
 0.2.4
 
 - The code was reorganized by moving files into different folders to improve organization and make it easier to understand and maintain. Some duplicate headers were found, so the code was cleaned up a bit.

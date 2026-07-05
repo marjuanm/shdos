@@ -8,7 +8,7 @@
 /* Purpose: Show shdos version
 	 Created date: 19/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 29/06/2026
+   Last modified date: 02/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -18,7 +18,7 @@ void ver(unsigned short attr)
   int bits = getOSBits();
 	
   clearcmdbuffer();
-	snprintf(mediumbuffer, sizeof(mediumbuffer), "\n%s %s, %i bits edition\n\n", PROJECT_NAME, PROJECT_VERSION, bits);
+	snprintf(mediumbuffer, sizeof(mediumbuffer), "\n%s %s, %i bits edition\n(c) %s %s\n\n", PROJECT_NAME, PROJECT_VERSION, bits, PROJECT_YEAR, TEAM_NAME);
 	print_colored_text(mediumbuffer, attr);
 	fflush(stdout);
 	

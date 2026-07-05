@@ -17,6 +17,7 @@ struct CONFIGURATION
 	int headertype;
 	int headerbgcolor;
 	int headertextcolor;
+	int headerhighttextcolor;
 	int consolebgcolor;
 	int consoletextcolor;
 	int prompttextcolor;

@@ -17,7 +17,7 @@ char shellpath[LARGE_BUFFER];
 char currentpath[LARGE_BUFFER];
 
 char prompt[LARGE_BUFFER];
-unsigned short original_attr, attr;
+unsigned short original_attr, global_attr;
 
 void trim(char *);
 void cmd(char *[]);

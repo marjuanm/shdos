@@ -7,7 +7,7 @@
 
 #define PROJECT_NAME "ShellDOS"
 #define PROJECT_SHORT_NAME "ShDOS"
-#define PROJECT_VERSION "0.2.4"
+#define PROJECT_VERSION "0.2.5"
 #define PROJECT_YEAR "2026"
 #define TEAM_NAME "ShDOS & Contributors"
 
