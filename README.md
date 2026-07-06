@@ -43,6 +43,8 @@ The software will be regularly updated to correct any bugs that may appear durin
 
 ShellDOS is written in C language using the OpenWatcom compiler, allowing it to generate both 16 / 32-bit executables. Before building the project, download and install <a href="https://openwatcom.org/ftp/install/" target="_blank">OpenWatcom</a>, preferably in a directory without spaces (for example, C:\OpenWatcom), and run BINNT\IDE.EXE.
 
+Download and unzip the project file, since the project is constantly changing due to ongoing development, it's recommended delete any existing folders and unzip the project un a new clean project folder and not unzipping into a folder containing a previously tested version.
+
 To compile ShellDOS, open the shdos.wpj project file located in either the 16 or 32-bit folder and click Make Target. The 32-bit version can be executed directly on modern Windows systems, while the 16-bit version should be tested in DOSBox, MS-DOS, or FreeDOS. As the project is still in its early stages, new features and improvements will be added gradually over time.
 
 # ⚙️ How to run:
