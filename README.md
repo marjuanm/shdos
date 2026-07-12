@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://software.webxpress.top/projects/shdos" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"></a><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/history.txt"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=7" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/CHANGELOG"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=8" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png" height="20" alt="Download current version"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
 </p>
@@ -21,7 +21,7 @@ The project is currently in its early stages and can execute the shell while dis
 
 # 🚀 Updates for the latest version (0.2.5):
 
-ShellDOS can now load and apply the configuration from the shdos.cfg file! However, this is only partial, and there are still several bugs to fix.
+ShellDOS is now also on <b><a href="https://gitlab.com/marjuanm/shdos">GitLab!</b></b> However, the main repository will remain on GitHub and will be synchronized every few weeks.
 
 # 📋 License:
 
