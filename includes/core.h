@@ -18,6 +18,8 @@ char currentpath[LARGE_BUFFER];
 
 char prompt[LARGE_BUFFER];
 unsigned short original_attr, global_attr;
+unsigned short console_attr, prompt_attr;
+unsigned short original_text_attr, original_bg_attr;
 
 void trim(char *);
 void cmd(char *[]);
@@ -27,5 +29,6 @@ void getExePath(char *, char *);
 void getValueFromKey(char *, char *);
 void getCorrectValueToLoad(char *stream, char *value);
 struct CONFIGURATION getDefaultConfiguration();
+void loadConfiguration();
 
 #endif

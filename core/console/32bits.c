@@ -26,14 +26,33 @@ int getWidth()
 
 }
 
-/* Purpose: Return initial console text color
-	 Created date: 14/06/2026
+/* Purpose: Return command rows number
+	 Created date: 08/07/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/06/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-int getOriginalCmdTextColor()
+int getHeight()
+{
+	
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+  if(GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
+    return csbi.dwSize.Y;
+  else
+    return 25;
+
+}
+
+/* Purpose: Return initial console text color
+	 Created date: 14/06/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 08/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+int getOriginalConsole()
 {
 	
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -45,13 +64,26 @@ int getOriginalCmdTextColor()
 /* Purpose: Restore console text color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/06/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-void restoreCmdTextColor(WORD original_attr)
+void restoreConsole(WORD original_attr)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), original_attr);
+	
+	HANDLE hConsole;
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  DWORD written, cells;
+  COORD origin = {0,0};
+		
+  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  GetConsoleScreenBufferInfo(hConsole, &csbi);
+	cells = csbi.dwSize.X * csbi.dwSize.Y;
+
+  FillConsoleOutputAttribute(hConsole, original_attr, cells, origin, &written);
+	SetConsoleTextAttribute(hConsole, original_attr);
+  SetConsoleCursorPosition(hConsole, origin);
+
 }
 
 /* Purpose: Set cursor text position
@@ -157,4 +189,39 @@ void print_colored_text_xy(int x, int y, const char *text, int attr)
   WriteConsoleOutputCharacter(hConsole, text, len, pos, &written);
 	WriteConsoleOutputAttribute(hConsole, attributes, len, pos, &written);
 	
+}
+
+
+/* Purpose: Set background console color
+	 Created date: 07/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 08/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+void setConsoleColor(int attr)
+{
+	
+	HANDLE hConsole;
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  DWORD written;
+  COORD origin = {0, 0};
+	
+	console_attr = attr;
+
+  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+	FillConsoleOutputAttribute(hConsole, (WORD)attr, csbi.dwSize.X * csbi.dwSize.Y, origin, &written);
+  SetConsoleTextAttribute(hConsole, (WORD)attr);
+
+}
+
+int getTextColor(WORD attr)
+{
+    return attr & 0x0F;
+}
+
+int getBackgroundColor(WORD attr)
+{
+    return (attr >> 4) & 0x0F;
 }

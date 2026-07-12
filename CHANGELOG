@@ -1,3 +1,9 @@
+0.2.6
+
+- A mirror repository was created on GitLab; it will be synchronized regularly with the GitHub repository. However, GitHub will remain the primary repository, so they may—at times—be out of sync for up to several weeks.
+
+- The file "history.txt" was renamed to "CHANGELOG" to align with the naming convention used on GitLab.
+
 0.2.5
 
 - ShellDOS can now run on read-only devices by loading the default configuration; if the device allows writing, it checks for the existence of a configuration file—creating a default one if none is found—but reverts to the base configuration if writing fails.

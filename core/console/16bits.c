@@ -26,14 +26,30 @@ int getWidth()
 		
 }
 
-/* Purpose: Return initial console text color
-	 Created date: 14/06/2026
+/* Purpose: Return command rows number
+	 Created date: 07/07/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/06/2026
+   Last modified date: 07/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-int getOriginalCmdTextColor()
+int getHeight()
+{
+	
+	unsigned char far *rows;
+	rows = (unsigned char far *)MK_FP(0x40, 0x84);
+	return (*rows) + 1;
+
+}
+
+/* Purpose: Return initial console text color
+	 Created date: 14/06/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 08/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+int getOriginalConsole()
 {
 	return (BLACK << 4) | LIGHTGRAY;
 }
@@ -41,10 +57,10 @@ int getOriginalCmdTextColor()
 /* Purpose: Restore console text color
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 22/06/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
-void restoreCmdTextColor(unsigned short original_attr)
+void restoreCconsole(unsigned short original_attr)
 {
 	
 	snprintf(largebuffer, sizeof(largebuffer), "");
@@ -79,7 +95,7 @@ void setCursorPosition(int x, int y)
 /* Purpose: Set background line color
 	 Created date: 10/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 01/07/2026
+   Last modified date: 07/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -89,14 +105,14 @@ void fill_line(int y, int attr)
 	int x;
 
   for(x = 0; x < getWidth(); x++)
-    video[y * 80 + x] = ((unsigned short)attr << 8) | ' ';
+    video[y * getWidth() + x] = ((unsigned short)attr << 8) | ' ';
     
 }
 
 /* Purpose: Set color to char
 	 Created date: 10/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/06/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt and gemini
 */
@@ -117,10 +133,10 @@ void print_colored_char(char c, int color)
   if(c == '\r')
     return;
 			
-	video[cursor_y * 80 + cursor_x] = ((unsigned short)color << 8) | c;
+	video[cursor_y * getWidth() + cursor_x] = ((unsigned short)color << 8) | c;
 	cursor_x++;
 
-  if(cursor_x >= 80)
+  if(cursor_x >= getWidth())
   {
     
     cursor_x = 0;
@@ -155,7 +171,7 @@ void print_colored_text(const char *s, int color)
 /* Purpose: Set color to string using x, y position
 	 Created date: 10/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 10/06/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt and gemini
 */
@@ -165,10 +181,36 @@ void print_colored_text_xy(int x, int y, const char *s, int attr)
 	while(*s)
   {
     
-    video[y * 80 + x] = ((unsigned short)attr << 8) | *s;
+    video[y * getWidth() + x] = ((unsigned short)attr << 8) | *s;
 		x++;
     s++;
     
 	}
 	
+}
+
+/* Purpose: Set background console color
+	 Created date: 07/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 07/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+void setConsoleColor(int attr)
+{
+	
+	int x, y;
+
+  for(y = 0; y < getHeight(); y++)
+  {
+		
+		for(x = 0; x < getWidth(); x++)
+      video[y * getWidth() + x] = ((unsigned short)attr << 8) | ' ';
+        
+  }
+
+  cursor_x = 0;
+  cursor_y = 0;
+  setCursorPosition(1, 1);
+
 }

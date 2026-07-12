@@ -16,11 +16,13 @@
 #include "../includes/structures.h"
 #include "../includes/os.h"
 #include "../includes/core.h"
+#include "../includes/colors.h"
 #include "../includes/console.h"
 #include "../includes/commands.h"
 #include "../includes/dosconsole.h"
 
 #include "../core/console/16bits.c"
+#include "../core/console/colors.c"
 #include "../core/console/generic.c"
 #include "../core/os/16bits.c"
 #include "../core/commands/execute.c"

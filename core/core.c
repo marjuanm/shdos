@@ -15,19 +15,16 @@ char value[SMALL_BUFFER], stmp[SMALL_BUFFER];
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 05/07/2026
+   Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
 {
 
-  FILE *fp;
-	char c, *args;
-	int ext, exists, itmp;
-	
-	// read shdos.cfg, if not exists then create by default
-
-  getExePath(argv[0], currentpath);
+  int ext;
+  char c, *args;
+		
+	getExePath(argv[0], currentpath);
 	
 	strcat(shellpath, currentpath);
 	strcat(confpath, currentpath);
@@ -38,221 +35,25 @@ void cmd(char *argv[])
 	else
 		separator = '\\';
 	
-	fp = fopen(confpath, "r");
+	// load configuration
+	
 	conf = getDefaultConfiguration();
+	loadConfiguration();
 	
-	if(fp != NULL)
-  {
-		
-		//load configuration from shdos.cfg, every line start with key=value
-		while(fgets(line, SMALL_BUFFER, fp) != NULL)
-	  {
-			
-			line[strcspn(line, "\r\n")] = '\0';
-		  
-			if(strncasecmp(line, "showheader=", strlen("showheader=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					
-					if(strcasecmp(stmp, "1")	== 0 || strcasecmp(stmp, "0") == 0) 
-						conf.showheader = atoi(stmp);
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "headertype=", strlen("headertype=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-
-					if(strcasecmp(value, "1")	== 0 || strcasecmp(value, "2") == 0) 
-						conf.headertype = atoi(value);
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "headerbgcolor=", strlen("headerbgcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					itmp = (int)strtol(stmp, NULL, 16);
-					if(itmp >= BLACK && itmp <= WHITE) conf.headerbgcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "headertextcolor=", strlen("headertextcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					itmp = (int)strtol(stmp, NULL, 16);
-					if(itmp >= BLACK && itmp <= WHITE) conf.headertextcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "headerhighttextcolor=", strlen("headerhighttextcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					itmp = (int)strtol(stmp, NULL, 16);
-					if(itmp >= BLACK && itmp <= WHITE) conf.headerhighttextcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "consolebgcolor=", strlen("consolebgcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					itmp = (int)strtol(stmp, NULL, 16);
-					if(itmp >= BLACK && itmp <= WHITE) conf.consolebgcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "consoletextcolor=", strlen("consoletextcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					itmp = (int)strtol(stmp, NULL, 16);
-					if(itmp >= BLACK && itmp <= WHITE) conf.consoletextcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "prompttextcolor=", strlen("prompttextcolor=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					if(itmp >= BLACK && itmp <= WHITE) conf.prompttextcolor = itmp;
-					
-				}
-				
-			}
-			
-			if(strncasecmp(line, "promptlabel=", strlen("promptlabel=")) == 0) 
-			{
-				
-				getValueFromKey(line, value);
-				
-				if(value != NULL) 
-				{
-					
-					getCorrectValueToLoad(value, stmp);
-					
-					memset(conf.promptlabel, 0, SMALL_BUFFER);
-					strncpy(conf.promptlabel, stmp, sizeof(conf.promptlabel) - 1);
-					conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
-					
-				}
-				
-			}
-				
-		}
-
-		fclose(fp);
-    exists = TRUE;
-
-	}
-	else
-	  exists = FALSE;
-
-	//create configuration file
-	if(exists == FALSE)
-	{
-		
-		//printf("Archivo no encontrado, ha sido creado con valores predeterminados...");
-		//fflush(stdout);
-		
-		fp = fopen(confpath, "w");
+	//conf.consolebgcolor=RED;
+	original_attr = getOriginalConsole();
+	original_text_attr = getTextColor(original_attr);
+	original_bg_attr = getBackgroundColor(original_attr);
 	
-    //if not fail then write on the created file (fail to write on cdrom by example)	
-		if(fp != NULL)
-		{
-			
-			if(conf.showheader == 1)
-				fprintf(fp, "showheader=yes\n");
-			else
-				fprintf(fp, "showheader=no\n");
-		
-			fprintf(fp, "headertype=%d\n", conf.headertype);
-			fprintf(fp, "headerbgcolor=%X\n", conf.headerbgcolor);
-			fprintf(fp, "headertextcolor=%X\n", conf.headertextcolor);
-			fprintf(fp, "headerhighttextcolor=%X\n", conf.headerhighttextcolor);
-			fprintf(fp, "consolebgcolor=%X\n", conf.consolebgcolor);
-			fprintf(fp, "consoletextcolor=%X\n", conf.consoletextcolor);
-			fprintf(fp, "prompttextcolor=%X\n", conf.prompttextcolor);
-		
-			if(conf.usecmdthemes == 1)
-				fprintf(fp, "usecmdthemes=yes ;work only with Windows 10 or superior\n");
-			else
-				fprintf(fp, "usecmdthemes=no ;work only with Windows 10 or superior\n");
-		
-			fprintf(fp, "promptlabel=%s\n", conf.promptlabel);
-
-		  fclose(fp);
-			
-		}
-		
-		cls();
-		
-	}
+	console_attr = (conf.consolebgcolor << 4) | conf.consoletextcolor;
+	prompt_attr = (conf.consolebgcolor << 4) | conf.prompttextcolor;
+	setConsoleColor((conf.consolebgcolor << 4) | conf.consoletextcolor);
 	
-	// read shdos.cfg, if not exists then create by default
-
+	// load configuration
+	
 	setPromptBuffer();
 	
 	// process commands area
-	
-	original_attr = getOriginalCmdTextColor();
-	global_attr = (BLACK << 4) | LIGHTGRAY;
 	
 	while(TRUE)
 	{
@@ -298,7 +99,7 @@ void cmd(char *argv[])
 			else if(stricmp(command, "ver") == 0)
 			{
 				
-				ver(global_attr);
+				ver(console_attr);
 				drawPrompt();
 				
 			}
@@ -312,91 +113,91 @@ void cmd(char *argv[])
 			else if(stricmp(command, "cd") == 0 || stricmp(command, "chdir") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "dir") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "md") == 0 || stricmp(command, "mkdir") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "rd") == 0 || stricmp(command, "rmdir") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "copy") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "del") == 0 || stricmp(command, "erase") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "ren") == 0 || stricmp(command, "rename") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "type") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "date") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "time") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "prompt") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "vol") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
 			else if(stricmp(command, "truename") == 0)
 			{
 				
-				executeCommand(command, NULL, global_attr);
+				executeCommand(command, NULL, console_attr);
 				drawPrompt();
 				
 			}
@@ -405,9 +206,9 @@ void cmd(char *argv[])
 				
 				//process external commands
 				if(args == NULL || *args == '\0')
-					executeCommand(command, NULL, global_attr);
+					executeCommand(command, NULL, console_attr);
 				else
-					executeCommand(command, args, global_attr);
+					executeCommand(command, args, console_attr);
 				
 				drawPrompt();
 				
@@ -462,7 +263,7 @@ void cmd(char *argv[])
 				//colored putch(c);
 			  tmp[0] = c;
 			  tmp[1] = '\0';
-			  print_colored_text(tmp, global_attr);
+			  print_colored_text(tmp, console_attr);
 			
 			}
 			
@@ -472,7 +273,7 @@ void cmd(char *argv[])
 	
 	// process commands area
 	
-	restoreCmdTextColor(original_attr);
+	restoreConsole(original_attr);
 
 }
 
@@ -517,13 +318,12 @@ void trim(char *str)
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 05/07/2026
+  Last modified date: 08/07/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
 void showWelcome()
 {
-	
 	int attr = (conf.headerbgcolor << 4) | conf.headertextcolor;
 	int pos, columns = getWidth();
 	char helpstr[SMALL_BUFFER];
@@ -549,11 +349,11 @@ void showWelcome()
 		  pos = columns - strlen(helpstr);
 		  print_colored_text_xy(pos, 0, helpstr, attr);
 		  fflush(stdout);
-	
+		
 	    //write on second row
 		  setCursorPosition(1, 2);
 		  snprintf(largebuffer, sizeof(largebuffer), "(c) %s %s", PROJECT_YEAR, TEAM_NAME);
-		  print_colored_text(largebuffer, (BLACK << 4) | conf.headerhighttextcolor);
+		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.headerhighttextcolor);
 		  fflush(stdout);
 	
 	    //write on fourth row
@@ -566,13 +366,13 @@ void showWelcome()
 			//write on first row
 		  setCursorPosition(1, 1);
 		  snprintf(largebuffer, sizeof(largebuffer), "%s %s", PROJECT_NAME, PROJECT_VERSION);
-		  print_colored_text(largebuffer, (BLACK << 4) | LIGHTGRAY);
+		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.consoletextcolor);
 		  fflush(stdout);
 
 		  //write on second row
 		  setCursorPosition(1, 2);
 		  snprintf(largebuffer, sizeof(largebuffer), "(c) %s %s", PROJECT_YEAR, TEAM_NAME);
-		  print_colored_text(largebuffer, (BLACK << 4) | LIGHTGRAY);
+		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.consoletextcolor);
 		  fflush(stdout);
 	
 	    //write on fourth row
@@ -716,7 +516,7 @@ void getCorrectValueToLoad(char *stream, char *val)
   Purpose: Return default shellDOS configuration
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 05/07/2026
+  Last modified date: 08/07/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 struct CONFIGURATION getDefaultConfiguration()
@@ -730,8 +530,8 @@ struct CONFIGURATION getDefaultConfiguration()
   conf.headertextcolor = WHITE;           // default value
   conf.headerhighttextcolor = WHITE;			// default value
 	conf.consolebgcolor = BLACK;            // default value
-  conf.consoletextcolor = WHITE;          // default value
-  conf.prompttextcolor = GREEN;           // default value
+  conf.consoletextcolor = LIGHTGRAY;      // default value
+  conf.prompttextcolor = LIGHTGREEN;      // default value
 	conf.usecmdthemes = 1;									//1 = yes, 0 = false
     
   memset(conf.promptlabel, 0, SMALL_BUFFER);
@@ -742,3 +542,239 @@ struct CONFIGURATION getDefaultConfiguration()
 
 }
 
+/* 
+  Purpose: Load shellDOS configuration from file
+  Created date: 07/07/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 08/07/2026
+  Last modified username: Juan Manuel Mar Hdz.
+*/
+void loadConfiguration()
+{
+	
+	int exists, itmp;
+	FILE *fp = fopen(confpath, "r");
+	
+	if(fp != NULL)
+  {
+		
+		//load configuration from shdos.cfg, every line start with key=value
+		while(fgets(line, SMALL_BUFFER, fp) != NULL)
+	  {
+			
+			line[strcspn(line, "\r\n")] = '\0';
+		  
+			if(strncasecmp(line, "showheader=", strlen("showheader=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					
+					if(strcasecmp(stmp, "1")	== 0 || strcasecmp(stmp, "0") == 0) 
+						conf.showheader = atoi(stmp);
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headertype=", strlen("headertype=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+
+					if(strcasecmp(value, "1")	== 0 || strcasecmp(value, "2") == 0) 
+						conf.headertype = atoi(value);
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headerbgcolor=", strlen("headerbgcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.headerbgcolor = itmp;
+			
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headertextcolor=", strlen("headertextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.headertextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "headerhighttextcolor=", strlen("headerhighttextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.headerhighttextcolor = itmp;
+				
+				}
+				
+			}
+			
+			if(strncasecmp(line, "consolebgcolor=", strlen("consolebgcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.consolebgcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "consoletextcolor=", strlen("consoletextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.consoletextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "prompttextcolor=", strlen("prompttextcolor=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					itmp = (int)strtol(stmp, NULL, 16);
+					if(itmp >= BLACK && itmp <= WHITE) conf.prompttextcolor = itmp;
+					
+				}
+				
+			}
+			
+			if(strncasecmp(line, "promptlabel=", strlen("promptlabel=")) == 0) 
+			{
+				
+				getValueFromKey(line, value);
+				
+				if(value != NULL) 
+				{
+					
+					getCorrectValueToLoad(value, stmp);
+					
+					memset(conf.promptlabel, 0, SMALL_BUFFER);
+					strncpy(conf.promptlabel, stmp, sizeof(conf.promptlabel) - 1);
+					conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
+					
+				}
+				
+			}
+				
+		}
+
+		fclose(fp);
+    exists = TRUE;
+
+	}
+	else
+	  exists = FALSE;
+
+	//create configuration file
+	if(exists == FALSE)
+	{
+		
+		fp = fopen(confpath, "w");
+	
+    //if not fail then write on the created file (fail to write on cdrom by example)	
+		if(fp != NULL)
+		{
+			
+			if(conf.showheader == 1)
+				fprintf(fp, "showheader=yes\n");
+			else
+				fprintf(fp, "showheader=no\n");
+		
+			fprintf(fp, "headertype=%d\n", conf.headertype);
+			fprintf(fp, "headerbgcolor=%X\n", conf.headerbgcolor);
+			fprintf(fp, "headertextcolor=%X\n", conf.headertextcolor);
+			fprintf(fp, "headerhighttextcolor=%X\n", conf.headerhighttextcolor);
+			fprintf(fp, "consolebgcolor=%X\n", conf.consolebgcolor);
+			fprintf(fp, "consoletextcolor=%X\n", conf.consoletextcolor);
+			fprintf(fp, "prompttextcolor=%X\n", conf.prompttextcolor);
+		
+			if(conf.usecmdthemes == 1)
+				fprintf(fp, "usecmdthemes=yes ;work only with Windows 10 or superior\n");
+			else
+				fprintf(fp, "usecmdthemes=no ;work only with Windows 10 or superior\n");
+		
+			fprintf(fp, "promptlabel=%s\n", conf.promptlabel);
+
+		  fclose(fp);
+			
+		}
+		
+		cls();
+		
+	}
+	
+	// read shdos.cfg, if not exists then create by default
+	//conf.consolebgcolor=4;conf.headerhighttextcolor=4;
+	//patch if two colors in association are equals
+	
+	if(conf.headerbgcolor == conf.headertextcolor)
+	{
+		
+		if(conf.headerbgcolor < 0 || conf.headerbgcolor > 15) conf.headerbgcolor = 0;
+		conf.headertextcolor = getContrastColor(conf.headerbgcolor);
+	
+	}
+	
+	if(conf.consolebgcolor == conf.headerhighttextcolor)
+	{
+		
+		if(conf.consolebgcolor < 0 || conf.consolebgcolor > 15) conf.consolebgcolor = 0;
+		conf.headerhighttextcolor = getContrastColor(conf.consolebgcolor);
+	
+	}
+
+}

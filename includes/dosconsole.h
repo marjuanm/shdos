@@ -8,7 +8,7 @@
 #ifndef DOSCONSOLE_H
 #define DOSCONSOLE_H
 
-int getOriginalCmdTextColor();
-void restoreCmdTextColor(unsigned short);
+int getOriginalConsole();
+void restoreConsole(unsigned short);
 
 #endif

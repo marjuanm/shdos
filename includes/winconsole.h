@@ -10,7 +10,10 @@
 
 #include <windows.h>
 
-int getOriginalCmdTextColor();
-void restoreCmdTextColor(WORD);
+int getOriginalConcole();
+void restoreConsole(WORD);
+
+int getTextColor(WORD);
+int getBackgroundColor(WORD);
 
 #endif
