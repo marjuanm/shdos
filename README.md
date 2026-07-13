@@ -29,7 +29,7 @@ ShellDOS is released under GPL-3 license, but is provided "as is". Use at your o
 
 The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss. Always keep backups of important data.
 
-# 💻 Installation
+# 💻 Installation:
 
 To install ShellDOS on your computer, simply download and unzip the project file; if you are using 32-bit or 64-bit Windows, run the `shdos.exe` file corresponding to your version.
 
@@ -37,21 +37,13 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 
 # 🛠️ Compiling from source code:
 
-ShellDOS is written in C language using the OpenWatcom compiler, allowing it to generate both 16 / 32-bit executables. Before building the project, download and install <a href="https://openwatcom.org/ftp/install/" target="_blank">OpenWatcom</a>, preferably in a directory without spaces (for example, C:\OpenWatcom), and run BINNT\IDE.EXE.
+ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables. Download and extract the project source code, configure OpenWatcom, and run the compile command to build shdos.exe. 
 
-Download and unzip the project file, since the project is constantly changing due to ongoing development, it's recommended delete any existing folders and unzip the project un a new clean project folder and not unzipping into a folder containing a previously tested version.
+For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
 
-To compile ShellDOS, open the shdos.wpj project file located in either the 16 or 32-bit folder and click Make Target. The 32-bit version can be executed directly on modern Windows systems, while the 16-bit version should be tested in DOSBox, MS-DOS, or FreeDOS. As the project is still in its early stages, new features and improvements will be added gradually over time.
+# ⚙️ Implemented Commands:
 
-# ⚙️ How to run:
-
-For Windows platforms, you can run the executable from the command prompt. Simply open it, navigate to the folder containing the shdos.exe file and run the program.
-
-Alternatively, you can simply double-click the shdos.exe file and wait for the command prompt window to open. If you are using DOSBox or FreeDOS/MS-DOS you must navigate to the folder containing the shdos.exe file and launch the program.
-
-From the ShellDOS console, execute the implemented commands to begin managing your files, programs, etc., <b>just like in the old days!</b>
-
-<b>Implemented Commands:</b>
+The list of implemented commands is still quite short, but we are continuing to work on it.
 
 * `ver`: displays the current version of shDOS.
 * `cls`: clears the screen.
