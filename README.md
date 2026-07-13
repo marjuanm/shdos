@@ -37,7 +37,7 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 
 # 🛠️ Compiling from source code:
 
-ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables. Download and extract the project source code, configure OpenWatcom, and run the compile command to build shdos.exe. 
+ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables. Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
 
 For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
 
