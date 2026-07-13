@@ -29,15 +29,11 @@ ShellDOS is released under GPL-3 license, but is provided "as is". Use at your o
 
 The software will be regularly updated to correct any bugs that may appear during development. We recommend downloading the latest version to minimize the risk of data loss. Always keep backups of important data.
 
-# 💻 Prerequisites & System Compatibility
+# 💻 Installation
 
-| Operating System | Architecture Support | Configuration & Stability Notes |
-| :--- | :---: | :--- |
-| **Windows 11 / 7** | `32-bit (x86)` | Fully functional |
-| **Windows 95** | `16-bit` / `32-bit` | Supported. Great for hybrid retro-compatibility testing. |
-| **MS-DOS / FreeDOS**| `16-bit` only | Native support. Ideal for pure legacy disk environments. |
-| **DOSBox** | `16-bit` emulation | Fully supported. Recommended emulator for safe testing. |
-| **ReactOS** | `16-bit` (Partial) | Experimental support. Limited 16-bit subsystem stability. |
+To install ShellDOS on your computer, simply download and unzip the project file; if you are using 32-bit or 64-bit Windows, run the `shdos.exe` file corresponding to your version.
+
+If you wish to run the 16-bit version, you must do so via DOSBox or a virtual machine with a 16-bit operating system installed. ShellDOS has very low system requirements; however, please check <a href="https://software.webxpress.top/projects/shdos/wiki/prerequisites/" target="_blank">the prerequisites</a> to ensure you meet them and can run our application without issues.
 
 # 🛠️ Compiling from source code:
 
