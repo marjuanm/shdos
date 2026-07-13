@@ -8,7 +8,7 @@
 # What is ShellDOS?
 **ShellDOS** (or **shDOS**) is a retro-styled DOS command interpreter that combines the classic MS-DOS/FreeDOS experience with selected modern features inspired by Linux. It's designed to run in both 16-bit and 32-bit environments.
 
-The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBox, FreeDOS, and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details).
+The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBOX, FreeDOS, and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details).
 
 ### 🗺️ Development Roadmap
 
