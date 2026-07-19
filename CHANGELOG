@@ -1,3 +1,9 @@
+0.2.7
+
+- Implemented functions to retrieve the operating system type and version, with the aim of customizing console colors based on the system version where the console is running.
+
+- Reorganized code by separating variables into their respective .h files.
+
 0.2.6
 
 - A mirror repository was created on GitLab; it will be synchronized regularly with the GitHub repository. However, GitHub will remain the primary repository, so they may—at times—be out of sync for up to several weeks.

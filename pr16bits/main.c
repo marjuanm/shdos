@@ -3,14 +3,16 @@
   Original file name: main.c
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
- */
+*/
 
 #include <io.h>
+#include <dos.h>
 #include <conio.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #include "../includes/constants.h"
 #include "../includes/structures.h"
@@ -20,11 +22,13 @@
 #include "../includes/console.h"
 #include "../includes/commands.h"
 #include "../includes/dosconsole.h"
+#include "../includes/configuration.h"
 
 #include "../core/console/16bits.c"
 #include "../core/console/colors.c"
 #include "../core/console/generic.c"
 #include "../core/os/16bits.c"
+#include "../core/configuration.c"
 #include "../core/commands/execute.c"
 #include "../core/commands/16bits.c"
 #include "../core/commands/generic.c"
@@ -37,7 +41,7 @@
   Last modified date: 21/06/2026
   Last modified username: Juan Manuel Mar Hdz. 
   Thanks to chatGPT
- */
+*/
 int main(int argc, char *argv[])
 {
 	
@@ -45,4 +49,3 @@ int main(int argc, char *argv[])
 	return 0;
 	
 }
-

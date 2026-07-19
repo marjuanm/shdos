@@ -8,12 +8,7 @@
 #ifndef WINCONSOLE_H
 #define WINCONSOLE_H
 
-#include <windows.h>
-
 int getOriginalConcole();
 void restoreConsole(WORD);
-
-int getTextColor(WORD);
-int getBackgroundColor(WORD);
 
 #endif

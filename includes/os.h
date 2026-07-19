@@ -8,7 +8,13 @@
 #ifndef OS_H
 #define OS_H
 
+int osbits;
 char separator;
+char osflavor[MEDIUM_BUFFER];
+
 int getOSBits();
+void getOSFlavor(char *);
+int getOSMajorVersion();
+int getOSMinorVersion();
 
 #endif

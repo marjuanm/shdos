@@ -11,6 +11,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
+#include <sys/stat.h>
 
 #include "../includes/constants.h"
 #include "../includes/structures.h"
@@ -20,11 +22,13 @@
 #include "../includes/console.h"
 #include "../includes/commands.h"
 #include "../includes/winconsole.h"
+#include "../includes/configuration.h"
 
 #include "../core/console/32bits.c"
 #include "../core/console/colors.c"
 #include "../core/console/generic.c"
 #include "../core/os/32bits.c"
+#include "../core/configuration.c"
 #include "../core/commands/execute.c"
 #include "../core/commands/32bits.c"
 #include "../core/commands/generic.c"

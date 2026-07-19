@@ -5,8 +5,6 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-#include <dos.h>
-
 int cursor_x = 0, cursor_y = 0;
 static unsigned short far *video = (unsigned short far *)MK_FP(0xB800, 0);
 
@@ -60,7 +58,7 @@ int getOriginalConsole()
    Last modified date: 08/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
-void restoreCconsole(unsigned short original_attr)
+void restoreConsole(unsigned short original_attr)
 {
 	
 	snprintf(largebuffer, sizeof(largebuffer), "");

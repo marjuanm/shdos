@@ -43,3 +43,25 @@ void drawPrompt()
 	fflush(stdout);
 	
 }
+
+/* Purpose: Get text color from attr
+   Created date: 08/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 08/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+*/
+int getTextColor(unsigned char attr)
+{
+    return attr & 0x0F;
+}
+
+/* Purpose: Get background color from attr
+   Created date: 08/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 08/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+*/
+int getBackgroundColor(unsigned char attr)
+{
+    return (attr >> 4) & 0x07;
+}

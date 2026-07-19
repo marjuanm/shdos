@@ -13,6 +13,10 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
+unsigned short original_attr, global_attr;
+unsigned short console_attr, prompt_attr;
+unsigned short original_text_attr, original_bg_attr;
+
 int getWidth();
 int getHeight();
 
@@ -24,5 +28,8 @@ void setCconsoleColor(int);
 
 void drawPrompt();
 void setPromptBuffer();
+
+int getTextColor(unsigned char);
+int getBackgroundColor(unsigned char);
 
 #endif

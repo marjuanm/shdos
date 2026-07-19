@@ -215,13 +215,3 @@ void setConsoleColor(int attr)
   SetConsoleTextAttribute(hConsole, (WORD)attr);
 
 }
-
-int getTextColor(WORD attr)
-{
-    return attr & 0x0F;
-}
-
-int getBackgroundColor(WORD attr)
-{
-    return (attr >> 4) & 0x0F;
-}
