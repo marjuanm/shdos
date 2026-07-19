@@ -21,9 +21,9 @@ The project is currently in an early stage, providing a functional shell interfa
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.5):
+# 🚀 Updates for the latest version (0.2.7):
 
-ShellDOS is now also on <b><a href="https://gitlab.com/marjuanm/shdos">GitLab!</b></b> However, the main repository will remain on GitHub and will be synchronized every few weeks.
+Implementation of various functions to detect the operating system and its version (in a general sense); these enable ShellDOS to generate a configuration file with console colors customized for the specific operating system.
 
 # 📋 License:
 
