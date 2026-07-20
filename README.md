@@ -59,7 +59,7 @@ Official 16-bit and 32-bit precompiled binaries **are not included in this repos
 
 Each official binary release includes the corresponding GPL-licensed source code. The public GitHub repository is synchronized with these releases at a later date. For more information about binary distribution please refer to the <a href="https://software.webxpress.top/projects/shdos/wiki/binaries/" target="_blank">ShellDOS Wiki</a>.
 
-# ❤️ Donations & Community Support
+# ❤️ Donations & community support
 
 If you don't wish to purchase a commercial license but would like to support this project <a href="https://software.webxpress.top/projects/shdos/wiki/how-to-contribute/#donations" target="_blank">you may donate</a> any amount you wish—any contribution is greatly appreciated; please select one of the following methods.
 
