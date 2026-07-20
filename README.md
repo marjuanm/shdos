@@ -59,9 +59,9 @@ However, the repository will not include official binaries. The 16-bit and 32-bi
 
 The idea is to help fund the project's development without limiting the freedoms granted by the GPL license. Those who purchase the download will receive a ZIP file with the ready-to-use executables and a more recent version of the source code (the version on GitHub will be synchronized a few months later).
 
-Of course, anyone who does not wish to purchase the download can obtain the source code, install OpenWatcom, and compile the project themselves. The process is simple and is part of shDOS's open philosophy.
+Of course, anyone who don't wish to purchase the download can obtain the source code, install OpenWatcom, and compile the project themselves. The process is simple and is part of shDOS's open philosophy.
 
-Furthermore, as mentioned, the commercial versions will be updated more frequently, and the public repository may remain a few months behind the officially distributed version.
+Furthermore, as mentioned, the commercial versions will be updated more frequently, and the public repository may remain a few months behind the officially distributed version. If, however, you do not wish to purchase a commercial license but would like to support this project, you can make a donation using one of the methods described in the next section.
 
 Thank you for supporting the development of shDOS.
 
@@ -73,6 +73,14 @@ When available, users will be able to purchase a copy for approximately $6 USD. 
 * Ready-to-use 16-bit executables.
 * Ready-to-use 32-bit executables.
 * Files and resources needed to compile the project.
+
+# ❤️ Donations
+
+If you don't wish to purchase a commercial license but would like to support this project, thank you very much in advance. You may donate any amount you wish—any contribution is greatly appreciated; please select one of the following methods.
+
+- ⭐ <a href="https://github.com/sponsors/marjuanm?frequency=recurring" target="_blank">GitHub Sponsors</a>
+- ☕ <a href="https://ko-fi.com/msproys" target="_blank">Ko-fi</a>
+- 💳 <a href="https://www.paypal.com/donate/?business=73JT73SJF2HXY&no_recurring=0&item_name=Thank+you+for+donating+and+supporting+my+projects.+If+you+don%27t+need+a+commercial+license%2C+any+donation+helps.+Many+thanks%21&currency_code=MXN" target="_blank">PayPal</a>
 
 # 🔗 Useful resources:
 
