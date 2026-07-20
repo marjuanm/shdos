@@ -53,42 +53,19 @@ The list of implemented commands is still quite short, but we are continuing to 
 
 # 📦 Binaries:
 
-ShellDOS is a free software project distributed under the GPL-3.0 license. The source code will be publicly available for anyone who wants to study, modify, or compile the project.
+ShellDOS is free software released under the GPL-3.0 license. The complete source code is publicly available for anyone who wishes to study, modify, or compile the project.
 
-However, the repository will not include official binaries. The 16-bit and 32-bit executables will be offered as a paid download for approximately $6 USD.
+Official 16-bit and 32-bit precompiled binaries **are not included in this repository** (nor complementary components too, such as MS-DOS recreated commands or Linux recreated commands). They will be available as a paid download (approximately USD 6) under distribution platforms. Users who prefer not purchase the binaries can compile ShellDOS themselves from the available source code.
 
-The idea is to help fund the project's development without limiting the freedoms granted by the GPL license. Those who purchase the download will receive a ZIP file with the ready-to-use executables and a more recent version of the source code (the version on GitHub will be synchronized a few months later).
+Each official binary release includes the corresponding GPL-licensed source code. The public GitHub repository is synchronized with these releases at a later date. For more information about binary distribution please refer to the <a href="https://software.webxpress.top/projects/shdos/wiki/binaries/" target="_blank">ShellDOS Wiki</a>.
 
-Of course, anyone who don't wish to purchase the download can obtain the source code, install OpenWatcom, and compile the project themselves. The process is simple and is part of shDOS's open philosophy.
+# ❤️ Donations & Community Support
 
-Furthermore, as mentioned, the commercial versions will be updated more frequently, and the public repository may remain a few months behind the officially distributed version. If, however, you do not wish to purchase a commercial license but would like to support this project, you can make a donation using one of the methods described in the next section.
+If you don't wish to purchase a commercial license but would like to support this project <a href="https://software.webxpress.top/projects/shdos/wiki/how-to-contribute/#donations" target="_blank">you may donate</a> any amount you wish—any contribution is greatly appreciated; please select one of the following methods.
 
-Thank you for supporting the development of shDOS.
+We welcome bug reports and feature suggestions from all users. Confirmed issues will be reviewed and addressed as development progresses. While every report is appreciated, requests from project sponsors and commercial license holders may receive higher priority when scheduling bug fixes, new features, and technical support.
 
-----------------------------------
-
-When available, users will be able to purchase a copy for approximately $6 USD. The download will include:
-
-* Complete project source code.
-* Ready-to-use 16-bit executables.
-* Ready-to-use 32-bit executables.
-* Files and resources needed to compile the project.
-
-# ❤️ Donations
-
-If you don't wish to purchase a commercial license but would like to support this project, thank you very much in advance. You may donate any amount you wish—any contribution is greatly appreciated; please select one of the following methods.
-
-* ⭐ <a href="https://github.com/sponsors/marjuanm?frequency=recurring" target="_blank">GitHub Sponsors</a>
-* ☕ <a href="https://ko-fi.com/msproys" target="_blank">Ko-fi</a>
-* 💳 <a href="https://www.paypal.com/donate/?business=73JT73SJF2HXY&no_recurring=0&item_name=Thank+you+for+donating+and+supporting+my+projects.+If+you+don%27t+need+a+commercial+license%2C+any+donation+helps.+Many+thanks%21&currency_code=MXN" target="_blank">PayPal</a>
-
-# 🤝 Community Support
-
-* ShellDOS is a project maintained in my spare time.
-* Bug reports and feature suggestions are always welcome and will be reviewed as soon as possible.
-* There is no Service Level Agreement (SLA) or guaranteed support for users who are not project sponsors.
-* Sponsors help fund the ongoing development of ShellDOS. As a token of appreciation, their bug reports, feature requests, and support inquiries may be given higher priority (once binary distribution is active, I will post the link for reporting bugs as a sponsor).
-- Pull requests are always welcome. Well-documented, tested, and high-quality contributions are more likely to be accepted.
+Please refer to the <a href="https://software.webxpress.top/projects/shdos/wiki/how-to-contribute/#community" target="_blank">corresponding section</a> of the Wiki for a detailed explanation of our support and prioritization policy.
 
 # 🔗 Useful resources:
 
