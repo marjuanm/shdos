@@ -78,16 +78,16 @@ When available, users will be able to purchase a copy for approximately $6 USD. 
 
 If you don't wish to purchase a commercial license but would like to support this project, thank you very much in advance. You may donate any amount you wish—any contribution is greatly appreciated; please select one of the following methods.
 
-- ⭐ <a href="https://github.com/sponsors/marjuanm?frequency=recurring" target="_blank">GitHub Sponsors</a>
-- ☕ <a href="https://ko-fi.com/msproys" target="_blank">Ko-fi</a>
-- 💳 <a href="https://www.paypal.com/donate/?business=73JT73SJF2HXY&no_recurring=0&item_name=Thank+you+for+donating+and+supporting+my+projects.+If+you+don%27t+need+a+commercial+license%2C+any+donation+helps.+Many+thanks%21&currency_code=MXN" target="_blank">PayPal</a>
+* ⭐ <a href="https://github.com/sponsors/marjuanm?frequency=recurring" target="_blank">GitHub Sponsors</a>
+* ☕ <a href="https://ko-fi.com/msproys" target="_blank">Ko-fi</a>
+* 💳 <a href="https://www.paypal.com/donate/?business=73JT73SJF2HXY&no_recurring=0&item_name=Thank+you+for+donating+and+supporting+my+projects.+If+you+don%27t+need+a+commercial+license%2C+any+donation+helps.+Many+thanks%21&currency_code=MXN" target="_blank">PayPal</a>
 
 # 🤝 Community Support
 
-- ShellDOS is a project maintained in my spare time.
-- Bug reports and feature suggestions are always welcome and will be reviewed as soon as possible.
-- There is no Service Level Agreement (SLA) or guaranteed support for users who are not project sponsors.
-- Sponsors help fund the ongoing development of ShellDOS. As a token of appreciation, their bug reports, feature requests, and support inquiries may be given higher priority (once binary distribution is active, I will post the link for reporting bugs as a sponsor).
+* ShellDOS is a project maintained in my spare time.
+* Bug reports and feature suggestions are always welcome and will be reviewed as soon as possible.
+* There is no Service Level Agreement (SLA) or guaranteed support for users who are not project sponsors.
+* Sponsors help fund the ongoing development of ShellDOS. As a token of appreciation, their bug reports, feature requests, and support inquiries may be given higher priority (once binary distribution is active, I will post the link for reporting bugs as a sponsor).
 - Pull requests are always welcome. Well-documented, tested, and high-quality contributions are more likely to be accepted.
 
 # 🔗 Useful resources:
