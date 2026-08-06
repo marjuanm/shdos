@@ -21,9 +21,11 @@ The project is currently in an early stage, providing a functional shell interfa
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.7):
+# 🚀 Updates for the latest version (0.2.7.1):
 
-Implementation of various functions to detect the operating system and its version (in a general sense); these enable ShellDOS to generate a configuration file with console colors customized for the specific operating system.
+ShellDOS now supports navigating through captured commands (moving backward and forward), and the Home and End keys are functional.
+
+However, I have disabled command capture because the entire functionality has been rewritten; the command module is also being rewritten. These "experimental" features only work in the 32-bit version.
 
 # 📋 License:
 
