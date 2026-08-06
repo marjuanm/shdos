@@ -10,16 +10,7 @@
 # What is ShellDOS?
 **ShellDOS** (or **shDOS**) is a retro-styled DOS command interpreter that combines the classic MS-DOS/FreeDOS experience with selected modern features inspired by Linux. It's designed to run in both 16-bit and 32-bit (requiere Windows) environments.
 
-The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBOX, FreeDOS and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details).
-
-### 🗺️ Development Roadmap
-
-- [/] 🐻 Visual identity and core system concept
-- [/] ⚙️ Main command interpreter architecture
-- [/] 🛠️ Basic command support *(In progress)*
-- [ ] 💾 Implementation of all native MS-DOS commands
-- [ ] 🐧 Support and translation for essential Linux commands
-- [ ] 🎨 Text coloring system for console command output
+The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBOX, FreeDOS and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details). You can view the project's overall progress via our <a href="https://software.webxpress.top/projects/shdos/roadmap/" target="_blank">roadmap</a>.
 
 # 🚀 Updates for the latest version (0.2.7):
 
@@ -39,9 +30,9 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 
 # 🛠️ Compiling from source code:
 
-ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
+ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe.
 
-For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
+ShellDOS now has several <a href="https://software.webxpress.top/projects/shdos/wiki/development-branches/">development branches</a>; we recommend the `main` branch for testing the system. For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
 
 # ⚙️ Implemented Commands:
 
