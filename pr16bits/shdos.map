@@ -1,6 +1,6 @@
 Open Watcom Linker Version 1.9
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       26/07/19 07:17:00
+Created on:       26/07/20 23:09:37
 Executable Image: shdos.exe
 creating a DOS executable
 
@@ -93,18 +93,18 @@ Module: main.obj(C:\trabajos\programas\shdos\pr16bits\main.c)
 0000:098d+     getCorrectValueToLoad_
 0000:0ab1+     getDefaultConfiguration_
 0000:0b84+     loadConfiguration_
-0000:1401+     executeCommand_
-0000:194c+     isExecutable_
-0000:19fe+     commandNotFound_
-0000:1aa5+     invalidExecutable_
-0000:1b05+     unsupportedComFile_
-0000:1b65+     cls_
-0000:1bbf+     ver_
-0000:1c44+     cmd_
-0000:22dd+     trim_
-0000:23bd+     showWelcome_
-0000:2600+     clearcmdbuffer_
-0000:2637+     getExePath_
+0000:1401+     isExecutable_
+0000:14b3+     getExePath_
+0000:1546+     executeCommand_
+0000:1a91+     commandNotFound_
+0000:1b38+     invalidExecutable_
+0000:1b98+     unsupportedComFile_
+0000:1bf8+     cls_
+0000:1c52+     ver_
+0000:1cd7+     cmd_
+0000:2370+     trim_
+0000:2450+     showWelcome_
+0000:2693+     clearcmdbuffer_
 0000:26ca      main_
 0874:063e+     _pos
 0874:0640+     _firsttime

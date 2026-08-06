@@ -12,7 +12,6 @@ void ver(unsigned short);
 void cls();
 
 void executeCommand(char *, char *, unsigned short);
-int isExecutable(char command[MEDIUM_BUFFER]);
 void commandNotFound(unsigned short);
 void invalidExecutable(unsigned short);
 void unsupportedComFile(unsigned short);

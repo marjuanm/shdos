@@ -214,31 +214,6 @@ CHECK_COM_16_BITS:
 	
 }
 
-/* Purpose: Check if executable file exists
-	 Created date: 25/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-int isExecutable(char command[MEDIUM_BUFFER])
-{
-	
-	char *dot;
-	
-	//get command extension
-	dot = strrchr(command, '.');
-
-	if(dot &&
-    (stricmp(dot, ".com") == 0 ||
-    stricmp(dot, ".exe") == 0 ||
-    stricmp(dot, ".bat") == 0))
-      return TRUE;
-	else
-	  return FALSE;
-	
-}
-
 /* Purpose: Show command not found message
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.

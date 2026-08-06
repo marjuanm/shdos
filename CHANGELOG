@@ -1,3 +1,9 @@
+0.2.7.1 (experimental)
+
+- Code cleanup and reorganization; restored the ShellDOS header upon program startup, as it had been disabled during the repeated rewriting of text-input functions.
+
+- Over the course of several weeks, I attempted to implement functionality allowing users to type in the ShellDOS command console while navigating backward and forward through the text naturally. Since ShellDOS requires handling special keys, I had to manage text input manually; while moving through the text was possible, these actions failed with multi-line text, requiring me to rewrite the routines repeatedly until I finally found the solution. A special thanks to the ChatGPT and Gemini AIs—without them, I never would have found the answer.
+
 0.2.7
 
 - Implemented functions to retrieve the operating system type and version, with the aim of customizing console colors based on the system version where the console is running.

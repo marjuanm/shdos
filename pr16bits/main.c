@@ -7,6 +7,7 @@
 
 #include <io.h>
 #include <dos.h>
+#include <math.h>
 #include <conio.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -17,6 +18,7 @@
 #include "../includes/constants.h"
 #include "../includes/structures.h"
 #include "../includes/os.h"
+#include "../includes/file.h"
 #include "../includes/core.h"
 #include "../includes/colors.h"
 #include "../includes/console.h"
@@ -29,6 +31,7 @@
 #include "../core/console/generic.c"
 #include "../core/os/16bits.c"
 #include "../core/configuration.c"
+#include "../core/fs-operations/file.c"
 #include "../core/commands/execute.c"
 #include "../core/commands/16bits.c"
 #include "../core/commands/generic.c"
