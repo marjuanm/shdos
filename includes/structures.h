@@ -26,13 +26,4 @@ struct CONFIGURATION
 	
 };
 
-struct MAP
-{
-	
-	int x;
-	int y;
-	char c;
-	
-};
-
 #endif

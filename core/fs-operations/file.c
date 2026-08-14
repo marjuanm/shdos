@@ -5,7 +5,7 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-/* Purpose: Check if executable file exists
+/* Purpose: Check if file is executable
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
    Last modified date: 25/06/2026
@@ -29,7 +29,6 @@ int isExecutable(char command[MEDIUM_BUFFER])
 	  return FALSE;
 	
 }
-
 
 /* 
   Purpose: Return folder from path

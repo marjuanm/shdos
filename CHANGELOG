@@ -1,3 +1,7 @@
+0.2.7.2 (experimental)
+
+- Minor corrections and code organization. The 16-bit version does not yet work with the code implemented to handle the console and allow navigating forward and backward through the text; I am working on it.
+
 0.2.7.1 (experimental)
 
 - Code cleanup and reorganization; restored the ShellDOS header upon program startup, as it had been disabled during the repeated rewriting of text-input functions.

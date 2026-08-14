@@ -18,7 +18,6 @@
 #include "../includes/constants.h"
 #include "../includes/structures.h"
 #include "../includes/os.h"
-#include "../includes/file.h"
 #include "../includes/core.h"
 #include "../includes/colors.h"
 #include "../includes/commands.h"
@@ -26,6 +25,7 @@
 #include "../includes/console/32bits/input.h"
 #include "../includes/console/32bits/console.h"
 #include "../includes/configuration.h"
+#include "../includes/fs-operations/file.h"
 
 #include "../core/console/32bits/input.c"
 #include "../core/console/32bits/console.c"

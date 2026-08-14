@@ -1,6 +1,6 @@
 Open Watcom Linker Version 1.9
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       26/08/06 00:43:10
+Created on:       26/08/14 14:32:56
 Executable Image: shdos.exe
 creating a Windows NT character-mode executable
 
@@ -64,8 +64,8 @@ Module: main.obj(C:\trabajos\programas\shdos\pr32bits\main.c)
 0040e070+      _prevheight
 0040e074+      _prevwidth
 0040e078+      _hOut
-0040e07c+      _startY
-0040e080+      _startX
+0040e07c+      _startX
+0040e080+      _startY
 0040e084+      _osbits
 0040e088+      _value
 0040e0ca+      _stmp
@@ -714,4 +714,4 @@ C:\trabajos\programas\openwatcom/lib386/nt\clib3r.lib
 Stack size:  00010000 (65536.)
 Memory size:  0001dbfe (121854.)
 Entry point address: 00404512
-Link time: 00:00.78
+Link time: 00:00.32
