@@ -27,8 +27,9 @@
 #include "../includes/configuration.h"
 #include "../includes/fs-operations/file.h"
 
-
-#include "../core/console/16bits.c"
+#include "../core/console/16bits/input.c"
+#include "../core/console/16bits/console.c"
+#include "../core/console/generic/input.c"
 #include "../core/console/generic/colors.c"
 #include "../core/console/generic/commons.c"
 #include "../core/os/16bits.c"

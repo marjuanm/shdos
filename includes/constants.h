@@ -17,6 +17,22 @@
 #define MEDIUM_BUFFER 257 //129 original
 #define SMALL_BUFFER 66
 
+#define KEY_LEFT   1075
+#define KEY_RIGHT  1077
+#define KEY_UP     1072
+#define KEY_DOWN   1080
+#define KEY_HOME   1071
+#define KEY_END    1079
+
+
+
+
+
+
+
+
+
+
 
 
 #define MAX_FILES 10

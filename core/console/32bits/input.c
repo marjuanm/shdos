@@ -63,47 +63,10 @@ void redrawCommand()
 
 }
 
-/* Purpose: Insert chars on the string between the text
-	 Created date: 04/08/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 04/08/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-void insertCommandChar(char c)
-{
-	
-	if(latestpos >= MEDIUM_BUFFER-1) return;
-	
-	memmove(&command[currpos + 1], &command[currpos], latestpos - currpos + 1);
-	command[currpos] = c;
-  
-	latestpos++;
-  currpos++;
-
-}
-
-void deleteCommandChar()
-{
-    if(currpos<=0)
-        return;
-
-
-    memmove(
-        &command[currpos-1],
-        &command[currpos],
-        latestpos-currpos+1
-    );
-
-
-    currpos--;
-    latestpos--;
-}
-
 /* Purpose: Return key pressed (code)
 	 	 Created date: 04/08/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 04/08/2026
+   Last modified date: 14/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -112,44 +75,48 @@ int readKey()
 	
 	HANDLE h;
   DWORD read;
-	INPUT_RECORD rec;
-  
-	h = GetStdHandle(STD_INPUT_HANDLE);
+  INPUT_RECORD rec;
 
-	while(TRUE)
+  h = GetStdHandle(STD_INPUT_HANDLE);
+
+  while(TRUE)
   {
+
+		ReadConsoleInput(h, &rec, 1, &read); 
 		
-		ReadConsoleInput(h, &rec, 1, &read);
+		if(rec.EventType != KEY_EVENT) continue;
+		if(!rec.Event.KeyEvent.bKeyDown) continue;
 		
-		if(rec.EventType == KEY_EVENT && rec.Event.KeyEvent.bKeyDown)
+		// Normal ASCII character
+		
+		if(rec.Event.KeyEvent.uChar.AsciiChar) 
+			return rec.Event.KeyEvent.uChar.AsciiChar;
+
+    // detect special keys
+
+		switch(rec.Event.KeyEvent.wVirtualKeyCode)
     {
 
-      if(rec.Event.KeyEvent.uChar.AsciiChar)
-        return rec.Event.KeyEvent.uChar.AsciiChar;
+			case VK_LEFT:
+        return KEY_LEFT;
 
-			return 1000 +
-      rec.Event.KeyEvent.wVirtualKeyCode;
+      case VK_RIGHT:
+        return KEY_RIGHT;
+
+      case VK_UP:
+        return KEY_UP;
+
+      case VK_DOWN:
+        return KEY_DOWN;
+
+      case VK_HOME:
+        return KEY_HOME;
+
+      case VK_END:
+        return KEY_END;
         
 		}
     
 	}
-	
-}
-
-/* Purpose: Calculate command length in rows
-	 Created date: 04/08/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 04/08/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-int getCommandRows(void)
-{
-	
-	int total;
-
-  total = strlen(prompt) + latestpos;
-  if(total == 0) return 0;
-	return (total - 1) / getWidth();
 
 }

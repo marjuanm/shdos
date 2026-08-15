@@ -29,6 +29,7 @@
 
 #include "../core/console/32bits/input.c"
 #include "../core/console/32bits/console.c"
+#include "../core/console/generic/input.c"
 #include "../core/console/generic/colors.c"
 #include "../core/console/generic/commons.c"
 #include "../core/os/32bits.c"

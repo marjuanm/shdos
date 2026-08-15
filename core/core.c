@@ -13,15 +13,15 @@ int prevwidth, prevheight;
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 05/08/2026
+   Last modified date: 14/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
 {
 
-  int c;
   char *args;
-
+  int c, running = TRUE;
+  
 	getExePath(argv[0], currentpath);
 	strcat(shellpath, currentpath);
 	strcat(confpath, currentpath);
@@ -53,7 +53,7 @@ void cmd(char *argv[])
 
 	// process commands area
 
-	while(TRUE)
+	while(running)
 	{
 		
 		// welcome message to start
@@ -82,31 +82,36 @@ void cmd(char *argv[])
       case 8: // BACKSPACE
 
         deleteCommandChar();
-				redrawCommand();
+				updateCommandCursor();
+				
 				break;
 
-      case 1000 + VK_LEFT:
+      case KEY_LEFT:
 
         if(currpos > 0) currpos--;
-				redrawCommand();
+				updateCommandCursor();
+				
 				break;
 
-      case 1000 + VK_RIGHT:
+      case KEY_RIGHT:
 
         if(currpos<latestpos) currpos++;
-				redrawCommand();
+				updateCommandCursor();
+				
 				break;
 
-        case 1000 + VK_HOME:
+        case KEY_HOME:
 
         currpos = 0;
-				redrawCommand();
+				updateCommandCursor();
+				
 				break;
 
-      case 1000 + VK_END:
+      case KEY_END:
 
         currpos = latestpos;
-				redrawCommand();
+				updateCommandCursor();
+				
 				break;
 
       default:
@@ -127,7 +132,7 @@ void cmd(char *argv[])
 	
 	// process commands area
 		
-	//restoreConsole(original_attr);
+	restoreConsole(original_attr);
 
 }
 

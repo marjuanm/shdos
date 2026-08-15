@@ -1,3 +1,7 @@
+0.2.7.3 (experimental)
+
+- The forward and back keys in the 16-bit code are now working correctly, but the remaining special keys still need to be tested, and the text to activate basic commands has not yet been restored.
+
 0.2.7.2 (experimental)
 
 - Minor corrections and code organization. The 16-bit version does not yet work with the code implemented to handle the console and allow navigating forward and backward through the text; I am working on it.
