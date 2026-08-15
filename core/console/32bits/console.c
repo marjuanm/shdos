@@ -185,6 +185,49 @@ void fill_line(int y, int attr)
 	
 }
 
+/* Purpose: Set color to char
+   Created date: 15/08/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 15/08/2026
+   Last modified username: Juan Manuel Mar Hdz.
+   Thanks to gemini
+*/
+void print_colored_char(char c, int color)
+{
+	
+	DWORD written;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  
+  if(c == '\r') return;
+	GetConsoleScreenBufferInfo(hConsole, &csbi); // current cursor position
+
+  if(c == '\n')
+  {
+		
+		csbi.dwCursorPosition.X = 0;
+    csbi.dwCursorPosition.Y++;
+    SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    
+    return;
+  
+  }
+
+  SetConsoleTextAttribute(hConsole, (WORD)color);
+	WriteConsoleA(hConsole, &c, 1, &written, NULL);
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+  
+  if(csbi.dwCursorPosition.X >= csbi.dwSize.X)
+  {
+    
+    csbi.dwCursorPosition.X = 0;
+    csbi.dwCursorPosition.Y++;
+    SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    
+	}
+	
+}
+
 /* Purpose: Set color to string
 	 Created date: 14/06/2026
    Created by username: Juan Manuel Mar Hdz.

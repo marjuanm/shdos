@@ -23,24 +23,3 @@
 #define KEY_DOWN   1080
 #define KEY_HOME   1071
 #define KEY_END    1079
-
-
-
-
-
-
-
-
-
-
-
-
-#define MAX_FILES 10
-
-#define MAX_TRY_ATTEMPS 10
-
-
-
-#define FILE_COPY_OK 1
-#define FILE_COPY_FAILSOURCE 2
-#define FILE_COPY_FAILDEST 3

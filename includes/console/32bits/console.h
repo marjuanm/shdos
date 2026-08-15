@@ -9,7 +9,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-int getOriginalConcole();
 void restoreConsole(WORD);
 
 #endif

@@ -25,29 +25,23 @@ void clear_line(int y)
 /* Purpose: Print on screen typing chars
    Created date: 14/08/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/08/2026
+   Last modified date: 15/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
 void redrawCommand()
 {
 	
+	int x, y;
 	int total, attr;
-	int x, y, i;
-	int width, rows;
+  int width = getWidth();
 	
-	width = getWidth();
-  rows = getCommandRows();
+	setCursorPosition(0, startY);
 
-  for(i=0; i<=rows; i++)
-    clear_line(startY + i);
-
-  setCursorPosition(0, startY);
   attr = (conf.consolebgcolor << 4) | conf.prompttextcolor;
-	print_colored_text(prompt, attr);
-
-  attr = (conf.consolebgcolor << 4) | conf.consoletextcolor;
-	print_colored_text(command, attr);
+  print_colored_text(prompt, attr);
+	attr = (conf.consolebgcolor << 4) | conf.consoletextcolor;
+  print_colored_text(command, attr);
 
   total = strlen(prompt) + currpos;
   x = total % width;
@@ -56,8 +50,6 @@ void redrawCommand()
   setCursorPosition(x, y);
 
 }
-
-
 
 /* Purpose: Return key pressed
    Created date: 14/08/2026

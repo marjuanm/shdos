@@ -9,7 +9,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-int getOriginalConsole();
 void restoreConsole(unsigned short);
 
 #endif

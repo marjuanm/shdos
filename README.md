@@ -21,9 +21,9 @@ The project is currently in an early stage, providing a functional shell interfa
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.7.3):
+# 🚀 Updates for the latest version (0.2.7.4):
 
-The forward and back keys in the 16-bit code are now working correctly, but the remaining special keys still need to be tested.
+Various fixes for the 16-bit console; the backspace key now works in both versions.
 
 However, I have disabled command capture because the entire functionality has been rewritten; the command module is also being rewritten. These "experimental" features only work in the 32-bit version.
 

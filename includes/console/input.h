@@ -11,12 +11,9 @@
 int startX, startY;
 int currpos = 0, latestpos = 0;
 
-int readKey();
 int getCommandRows();
-void clear_line(int);
-void redrawCommand();
-void insertCommandChar(char);
 void deleteCommandChar();
 void updateCommandCursor();
+void insertCommandChar(char);
 
 #endif

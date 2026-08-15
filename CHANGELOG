@@ -1,3 +1,7 @@
+0.2.7.4 (experimental)
+
+- Various fixes for the 16-bit console; the backspace key now works in both versions.
+
 0.2.7.3 (experimental)
 
 - The forward and back keys in the 16-bit code are now working correctly, but the remaining special keys still need to be tested, and the text to activate basic commands has not yet been restored.

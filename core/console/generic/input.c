@@ -28,20 +28,32 @@ void insertCommandChar(char c)
 /* Purpose: Delete character before cursor
    Created date: 04/08/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 04/08/2026
+   Last modified date: 15/08/2026
    Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
+	 Thanks to chatgpt and gemini
 */
 void deleteCommandChar()
 {
 	
-	if(currpos <= 0)
+	int total, endX, endY;
+  int width = getWidth();
+
+  if(currpos <= 0)
     return;
 
   memmove(&command[currpos - 1], &command[currpos], latestpos - currpos + 1);
-
   currpos--;
   latestpos--;
+
+  redrawCommand();
+
+  total = strlen(prompt) + latestpos;
+  endX = total % width;
+  endY = startY + (total / width);
+
+  setCursorPosition(endX, endY);
+  print_colored_char(' ', console_attr);
+	updateCommandCursor();
 
 }
 
