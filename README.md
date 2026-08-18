@@ -21,11 +21,9 @@ The project is currently in an early stage, providing a functional shell interfa
 - [ ] 🐧 Support and translation for essential Linux commands
 - [ ] 🎨 Text coloring system for console command output
 
-# 🚀 Updates for the latest version (0.2.7.4):
+# 🚀 Updates for the latest version (0.2.7.5):
 
-Various fixes for the 16-bit console; the backspace key now works in both versions.
-
-However, I have disabled command capture because the entire functionality has been rewritten; the command module is also being rewritten. These "experimental" features only work in the 32-bit version.
+The command-entry functionality has been reintroduced; it was rewritten to accept internal commands with parameters, and several of them are already working. This new feature still requires considerable refinement to that the experimental branch can be merged with the main one. I hope this will be possible in the coming days (perhaps a week or two).
 
 # 📋 License:
 
@@ -41,7 +39,7 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 
 # 🛠️ Compiling from source code:
 
-ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executabless (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
+ShellDOS is written in C and compiled with the OpenWatcom compiler (version 1.9), allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
 
 For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
 

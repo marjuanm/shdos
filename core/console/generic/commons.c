@@ -33,7 +33,7 @@ int getBackgroundColor(unsigned char attr)
   Purpose: Prepare prompt buffer
   Created date: 24/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 06/08/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt
 */
@@ -41,7 +41,7 @@ void showPrompt()
 {
 	
 	// path
-	memset(prompt, 0, LARGE_BUFFER);
+	prompt[0] = '\0';
   strncpy(prompt, currentpath, sizeof(prompt) - 1);
 	
 	// >

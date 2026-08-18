@@ -8,12 +8,12 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-void ver(unsigned short);
 void cls();
+void ver(unsigned short);
 
-void executeCommand(char *, char *, unsigned short);
 void commandNotFound(unsigned short);
 void invalidExecutable(unsigned short);
 void unsupportedComFile(unsigned short);
+int executeCommand(char *, char *, unsigned short);
 
 #endif

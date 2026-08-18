@@ -19,13 +19,13 @@ int getOSBits()
 /* Purpose: Return OS flavor
 	 Created date: 15/07/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/07/2026
+   Last modified date: 17/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void getOSFlavor(char *flavor)
 {
 	
-	memset(flavor, 0, MEDIUM_BUFFER);
+	flavor[0] = '\0';
 
 	if(separator == '\\')
 		strncpy(flavor, "WINDOWS", MEDIUM_BUFFER - 1);

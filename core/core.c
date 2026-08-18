@@ -13,7 +13,7 @@ int prevwidth, prevheight;
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 14/08/2026
+   Last modified date: 18/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
@@ -39,6 +39,7 @@ void cmd(char *argv[])
 	
 	conf = getDefaultConfiguration();
 	loadConfiguration();
+	cls();
 	
 	//conf.consolebgcolor=RED;
 	original_attr = getOriginalConsole();
@@ -51,6 +52,8 @@ void cmd(char *argv[])
 	
 	// load configuration	
 
+  clearcmdbuffer();
+	
 	// process commands area
 
 	while(running)
@@ -73,8 +76,22 @@ void cmd(char *argv[])
       case 13: // ENTER
 
         command[latestpos] = '\0';
-				setCursorPosition(0, startY + getCommandRows() + 1);
-				if(strlen(command) > 0) executeCommand(command, NULL, console_attr);
+				setCursorPosition(0, startY + getCommandRows());
+				
+				trim(command);
+				args = strchr(command, ' '); // get command paramenters
+				
+				if(args != NULL)
+				{
+    
+		      // prepare parameters to send
+					*args = '\0';
+					args++;
+					trim(args);
+
+				}
+				
+				if(strlen(command) > 0) running = executeCommand(command, args, console_attr);
 				showPrompt();
 
         break;
@@ -131,7 +148,8 @@ void cmd(char *argv[])
 	}
 	
 	// process commands area
-		
+	
+	cls();
 	restoreConsole(original_attr);
 
 }
@@ -140,15 +158,20 @@ void cmd(char *argv[])
   Purpose: Trim string
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 24/06/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt
 */
 void trim(char *str)
 {
 	
+	char *end;
 	char *start = str;
-  char *end;
+  
+	if(str == NULL || *str == '\0')
+    return;
+
+  start = str;
 
   while(*start && isspace((unsigned char)*start))
 		start++;
@@ -177,7 +200,7 @@ void trim(char *str)
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 05/08/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
@@ -188,7 +211,7 @@ void showWelcome()
 	int pos, columns = getWidth();
 	char helpstr[SMALL_BUFFER];
 	
-	memset(helpstr, 0, SMALL_BUFFER);
+	helpstr[0] = '\0';
   strncpy(helpstr, "Type HELP or press F1 = Help", SMALL_BUFFER - 1);
   helpstr[SMALL_BUFFER - 1] = '\0';
 	
@@ -257,7 +280,7 @@ void showWelcome()
   Purpose: Clear command buffer
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 05/08/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void clearcmdbuffer()
@@ -265,6 +288,6 @@ void clearcmdbuffer()
 	
 	currpos = 0;
 	latestpos = currpos;
-	memset(command, 0, MEDIUM_BUFFER);
+	command[0] = '\0';
 	
 }

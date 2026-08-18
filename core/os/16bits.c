@@ -19,7 +19,7 @@ int getOSBits()
 /* Purpose: Return OS flavor
 	 Created date: 15/07/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 15/07/2026
+   Last modified date: 17/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -28,8 +28,7 @@ void getOSFlavor(char *flavor)
   
   union REGS r;
 
-  memset(flavor, 0, MEDIUM_BUFFER);
-
+  flavor[0] = '\0';
   r.x.ax = 0x1600;
   int86(0x2F, &r, &r);
 

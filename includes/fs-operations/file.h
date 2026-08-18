@@ -8,6 +8,7 @@
 #ifndef FILE_H
 #define FILE_H
 
+int file_exists(char *);
 void getExePath(char *, char *);
 int isExecutable(char command[MEDIUM_BUFFER]);
 
