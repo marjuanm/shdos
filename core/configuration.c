@@ -9,7 +9,7 @@
   Purpose: Return value from string in key=value format
   Created date: 21/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 22/06/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void getValueFromKey(char *stream, char *val)
@@ -17,7 +17,7 @@ void getValueFromKey(char *stream, char *val)
 	
 	char *p;
 
-  //ignore full comments
+  // ignore full comments
 	if(stream[0] == ';' || stream[0] == '#')
   {
 		
@@ -26,15 +26,15 @@ void getValueFromKey(char *stream, char *val)
     
 	}
 	
-	//ignore comments section on the line, the line is truncate at found ; or #
+	// ignore comments section on the line, the line is truncate at found ; or #
 	p = strpbrk(stream, ";#");
   if(p != NULL) *p = '\0';
 	
-	//extract value at found '=' on the line
+	// extract value at found '=' on the line
 	
 	p = strchr(stream, '=');
   
-	//no value found to line
+	// no value found to line
 	if(p == NULL)
   {
 		
@@ -43,11 +43,11 @@ void getValueFromKey(char *stream, char *val)
     
 	}
 	
-	//copy the value section
+	// copy the value section
 	p++;
 	while(*p == ' ' || *p == '\t') p++;
 
-	memset(val, 0, SMALL_BUFFER);
+	val[0] = '\0';
   strncpy(val, p, SMALL_BUFFER - 1);
   val[SMALL_BUFFER - 1] = '\0';
 
@@ -95,7 +95,7 @@ void getCorrectValueToLoad(char *stream, char *val)
   Purpose: Return default shellDOS configuration
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 17/07/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 struct CONFIGURATION getDefaultConfiguration()
@@ -139,7 +139,7 @@ struct CONFIGURATION getDefaultConfiguration()
 	
 	conf.usecmdthemes = 1;									// 1 = yes, 0 = false
 	  
-  memset(conf.promptlabel, 0, SMALL_BUFFER);
+  conf.promptlabel[0] = '\0';
   strncpy(conf.promptlabel, "$p$g", sizeof(conf.promptlabel) - 1); // prompt like C:\>
 	conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
   
@@ -151,7 +151,7 @@ struct CONFIGURATION getDefaultConfiguration()
   Purpose: Load shellDOS configuration from file
   Created date: 07/07/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 08/07/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void loadConfiguration()
@@ -307,7 +307,7 @@ void loadConfiguration()
 					
 					getCorrectValueToLoad(value, stmp);
 					
-					memset(conf.promptlabel, 0, SMALL_BUFFER);
+					conf.promptlabel[0] = '\0';
 					strncpy(conf.promptlabel, stmp, sizeof(conf.promptlabel) - 1);
 					conf.promptlabel[sizeof(conf.promptlabel) - 1] = '\0';
 					
@@ -324,13 +324,13 @@ void loadConfiguration()
 	else
 	  exists = FALSE;
 
-	//create configuration file
+	// create configuration file
 	if(exists == FALSE)
 	{
 		
 		fp = fopen(confpath, "w");
 	
-    //if not fail then write on the created file (fail to write on cdrom by example)	
+    // if not fail then write on the created file (fail to write on cdrom by example)	
 		if(fp != NULL)
 		{
 			
@@ -357,8 +357,6 @@ void loadConfiguration()
 		  fclose(fp);
 			
 		}
-		
-		cls();
 		
 	}
 	

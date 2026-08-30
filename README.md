@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://software.webxpress.top/projects/shdos" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"></a><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/CHANGELOG"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=9" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/CHANGELOG"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=10" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/latest.png?v=2" height="20" alt="Download current version"></a>
     <a href="https://software.webxpress.top/projects/shdos/repositories/" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png?v=3" height="20" alt="Repositories"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
@@ -12,9 +12,11 @@
 
 The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBOX, FreeDOS and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details). You can view the project's overall progress via our <a href="https://software.webxpress.top/projects/shdos/roadmap/" target="_blank">roadmap</a>.
 
-# 🚀 Updates for the latest version (0.2.7):
+# 🚀 Updates for the latest version (0.2.8):
 
-Implementation of various functions to detect the operating system and its version (in a general sense); these enable ShellDOS to generate a configuration file with console colors customized for the specific operating system.
+The ShDOS editor was rewritten to handle command entry; you can type commands, delete them, and move the cursor forward and backward through the text without issues.
+
+It can also execute certain internal commands along with their respective parameters.
 
 # 📋 License:
 
@@ -30,17 +32,9 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 
 # 🛠️ Compiling from source code:
 
-ShellDOS is written in C and compiled with the OpenWatcom compiler, allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe.
+ShellDOS is written in C and compiled with the OpenWatcom compiler (version 1.9), allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
 
 ShellDOS now has several <a href="https://software.webxpress.top/projects/shdos/wiki/development-branches/">development branches</a>, we recommend the `main` branch for testing the system. For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
-
-# ⚙️ Implemented Commands:
-
-The list of implemented commands is still quite short, but we are continuing to work on it.
-
-* `ver`: displays the current version of shDOS.
-* `cls`: clears the screen.
-* `exit`: exits the shDOS console and returns to the system that launched it.
 
 # 📦 Binaries:
 

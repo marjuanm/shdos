@@ -1,7 +1,7 @@
 /*
   shDOS - Command interpreter
   Original file name: commands.c
-	Current file name: execute.c
+  New file name: execute.c
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
@@ -9,233 +9,383 @@
 /* Purpose: Execute command with parameters from os terminal
 	 Created date: 25/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 29/06/2026
+   Last modified date: 18/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
-void executeCommand(char *command, char *args, unsigned short attr)
+int executeCommand(char *command, char *args, unsigned short attr)
 {
 	
 	FILE *fp;
+	char *dot;
+	char tmp[LARGE_BUFFER];
 	int ok =  FALSE, isCOM = FALSE;
-	char *dot, exe[LARGE_BUFFER];
   
-	memset(exe, 0, LARGE_BUFFER);
+	exe[0] = '\0';
 	strncpy(exe, currentpath, LARGE_BUFFER - 1);
 	strcat(exe, command);
 	
-	if(isExecutable(exe) == TRUE)
+	// prepare parameters to run with exe
+	
+	if(stricmp(command, "dir") == 0)
+	{
+    
+		if(args != NULL && *args != '\0')
+		{
+        
+			if(strlen(args) == 2 && args[1] == ':')
+        snprintf(syscommand, sizeof(syscommand), "%s \"%s\\\"", command, args);
+			else
+        snprintf(syscommand, sizeof(syscommand), "%s \"%s\"", command, args);
+    
+		}
+		else
+			snprintf(syscommand, sizeof(syscommand), "%s \"%s\"", command, currentpath);
+			
+	}
+	else 
+	{ 
+		
+		if(args != NULL && *args != '\0') 
+			snprintf(syscommand, sizeof(syscommand), "%s %s", command, args); 
+		else 
+		{ 
+			
+			strncpy(syscommand, command, sizeof(syscommand) - 1); 
+			syscommand[sizeof(syscommand) - 1] = '\0'; 
+					
+		} 
+				
+	}
+			
+	// prepare parameters to run with exe
+  
+	// check if is a internal command and execute from system function (all are common in MS-DOS/Windows)
+	if(stricmp(command, "dir") == 0 || 
+		stricmp(command, "md") == 0 || 
+		stricmp(command, "mkdir") == 0 || 
+		stricmp(command, "copy") == 0 || 
+		stricmp(command, "del") == 0 || 
+		stricmp(command, "erase") == 0 || 
+		stricmp(command, "ren") == 0 || 
+		stricmp(command, "rename") == 0 || 
+		stricmp(command, "type") == 0 || 
+		stricmp(command, "attrib") == 0 || 
+		stricmp(command, "xcopy") == 0 || 
+		stricmp(command, "date") == 0 || 
+		stricmp(command, "time") == 0 || 
+		stricmp(command, "ver") == 0 || 
+		stricmp(command, "exit") == 0 || 
+		stricmp(command, "cls") == 0 || 
+		stricmp(command, "path") == 0 || 
+		stricmp(command, "set") == 0 || 
+		stricmp(command, "help") == 0 || 
+		stricmp(command, "chkdsk") == 0 || 
+		stricmp(command, "format") == 0 || 
+		stricmp(command, "fc") == 0 || 
+		stricmp(command, "mode") == 0 || 
+		stricmp(command, "choice") == 0 || 
+		stricmp(command, "doskey") == 0 || 
+		stricmp(command, "rem") == 0 || 
+		stricmp(command, "echo") == 0 || 
+		stricmp(command, "for") == 0 || 
+		stricmp(command, "if") == 0 || 
+		stricmp(command, "goto") == 0 || 
+		stricmp(command, "call") == 0 || 
+		stricmp(command, "pause") == 0
+  )
 	{
 		
-		dot = strrchr(exe, '.');
+		if(stricmp(command, "exit") == 0) // exit command
+			return 0;
+		else if(stricmp(command, "cls") == 0) // cls command
+		{
+			
+			cls();
+			return 1; 
 		
-		if(dot && stricmp(dot, ".com") == 0)
-		{
-
-			if(getOSBits() == 32)
-			  ok = FALSE;
-			else
-				ok = TRUE;
-			
 		}
-		else
-			ok = TRUE;
-
-		if(ok == FALSE)
-		  unsupportedComFile(attr);
+		else if(stricmp(command, "ver") == 0) // ver command
+		{
+			
+			ver(attr);
+			return 1; 
+		
+		}
+		else if(stricmp(command, "choice") == 0)
+		{
+			printf("verificar cambios en xp/2000");
+		}	
 		else
 		{
 			
-			if(access(exe, 0) != 0)
-				commandNotFound(attr);
-			else
+			if(stricmp(command, "copy") == 0 || stricmp(command, "xcopy") == 0) // adjust copy/xcopy to force confirm before overwrite
 			{
 				
-				clearcmdbuffer();
-				snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
-				print_colored_text(mediumbuffer, attr);
-				fflush(stdout);
+				// enter only if not confirm overwrite explicit instruction found
+				if(strstr(syscommand, "/-Y") == NULL && strstr(syscommand, "/Y") == NULL)
+				{
+					
+					/* force to confirm before overwrite
+						 extract parameters (+5/6 position), replace copy for copy /-Y and attach 
+						 the parameters string. If parameters not found only attach /-Y
+					*/
+					
+					if(stricmp(command, "copy") == 0)
+					{
+						
+						if(args != NULL && *args != '\0')
+              snprintf(tmp, sizeof(tmp), "copy /-Y %s", syscommand + 5); 
+				    else
+              snprintf(tmp, sizeof(tmp), "copy /-Y");
+						
+					}
+					else
+					{
+						
+						if(args != NULL && *args != '\0')
+              snprintf(tmp, sizeof(tmp), "xcopy /-Y %s", syscommand + 6); 
+				    else
+              snprintf(tmp, sizeof(tmp), "xcopy /-Y");
+						
+					}
 
-			}
+					/* force to confirm before overwrite
+						 extract parameters (+5/6 position), replace copy for copy /-Y and attach 
+						 the parameters string. If parameters not found only attach /-Y
+					*/
+					
+				  strncpy(syscommand, tmp, sizeof(syscommand) - 1);
+				  syscommand[sizeof(syscommand) - 1] = '\0';
+					
+				}
+	
+			} 
+
+			printf("\n");
+			fflush(stdout);
+			
+			system(syscommand); // execute command
+			fflush(stdout); // force to print command output
+			
+			printf("\n");
+			clearcmdbuffer();
+			
+			return 1;
 			
 		}
-		
-	}	
+					
+	}
 	else
 	{
 		
-		dot = strrchr(exe, '.');
+		// stricmp(command, "tree") == 0 || es comando externo, no siempre presente en todas las instalaciones el archivo .com
 		
-		if(!dot)
+		// check external command type
+		
+		if(isExecutable(exe) == TRUE)
 		{
 		
-			//check is .com file
-			memset(exe, 0, LARGE_BUFFER);
-			strncpy(exe, currentpath, LARGE_BUFFER - 1);
-			strcat(exe, command);
-			strcat(exe, ".com");
-			
-			if(access(exe, 0) == 0)
+			dot = strrchr(exe, '.');
+		
+		  // if file is a .com, 16 bits os then is valid, 32 bits is invalid format
+			if(dot && stricmp(dot, ".com") == 0)
 			{
-				
-				if(getOSBits() == 16)
-					ok = TRUE;
-				else
-				{
-					
-					isCOM = TRUE;
-					ok = FALSE;
 
-				}
-				
-		  }
-			else
-			{
-			
-				//check is .exe file
-				memset(exe, 0, LARGE_BUFFER);
-				strncpy(exe, currentpath, LARGE_BUFFER - 1);
-				strcat(exe, command);
-			  strcat(exe, ".exe");
-				
-				if(access(exe, 0) != 0)
-				{
-					
-					//check is .bat file
-					memset(exe, 0, LARGE_BUFFER);
-					strncpy(exe, currentpath, LARGE_BUFFER - 1);
-					strcat(exe, command);
-					strcat(exe, ".bat");
-			
-					if(access(exe, 0) == 0)
-						ok = TRUE;
-					else
-						ok = FALSE;
-					
-				}
+				if(getOSBits() == 32)
+					ok = FALSE;
 				else
 					ok = TRUE;
-				
+			
 			}
-			
-		}
-		else
-			ok = TRUE;
-		
-		if(ok == FALSE)
-		{
-			
-			if(isCOM == TRUE)
+			else
+				ok = TRUE;
+
+			if(ok == FALSE)
 				unsupportedComFile(attr);
 			else
-				invalidExecutable(attr);
+			{
 			
-		}
+			  // check if file exists, then run
+				if(file_exists(exe) == FALSE)
+					commandNotFound(attr);
+				else
+				{
+				
+					clearcmdbuffer();
+					snprintf(mediumbuffer, sizeof(mediumbuffer), "\nComando externo existe\n");
+					print_colored_text(mediumbuffer, attr);
+					fflush(stdout);
+
+				}
+			
+			}
+		
+		}	
 		else
 		{
-			
-			if(access(exe, 0) != 0)
+		
+			dot = strrchr(exe, '.');
+		
+			if(!dot) // the file not contain extension
 			{
+		
+				//check is a .com file without extension
+				exe[0] = '\0';
+				strncpy(exe, currentpath, LARGE_BUFFER - 1);
+				strcat(exe, command);
+				strcat(exe, ".com");
+			
+				if(file_exists(exe) == TRUE)
+				{
 				
+					if(getOSBits() == 16)
+						ok = TRUE;
+					else
+					{
+					
+						isCOM = TRUE;
+						ok = FALSE;
+
+					}
+				
+				}
+				else
+				{
+			
+					//check is .exe file without extension
+					exe[0] = '\0';
+					strncpy(exe, currentpath, LARGE_BUFFER - 1);
+					strcat(exe, command);
+					strcat(exe, ".exe");
+				
+					if(file_exists(exe) == FALSE)
+					{
+					
+						//check is .bat file without extension
+						exe[0] = '\0';
+						strncpy(exe, currentpath, LARGE_BUFFER - 1);
+						strcat(exe, command);
+						strcat(exe, ".bat");
+			
+						if(file_exists(exe) == TRUE)
+							ok = TRUE;
+						else
+							ok = FALSE;
+					
+					}
+					else
+						ok = TRUE;
+				
+				}
+			
+			}
+			else
+				ok = TRUE;
+		
+			if(ok == FALSE) // invalid file, but the .com files are valid on 16 bits system
+			{
+			
+			  // file is not valid on the system (.com on 32 bits or invalid executable)
+				if(isCOM == TRUE)
+					unsupportedComFile(attr);
+				else
+					invalidExecutable(attr);
+			
+			}
+			else
+			{
+			
+				if(file_exists(exe) == FALSE)
+				{
+				
+				  // check file type but without extension
+					
 CHECK_COM_16_BITS:
 				
-				dot = strrchr(exe, '.');
+					dot = strrchr(exe, '.');
 		
-				if(dot && stricmp(dot, ".com") == 0)
-				{
-
-					if(getOSBits() == 16)
+		      // .com files are valid on 16 bits os
+					
+					if(dot && stricmp(dot, ".com") == 0)
 					{
-						
-						fp = fopen(exe, "rb");
-						
-						if(fp)
+
+						if(getOSBits() == 16)
 						{
+						
+							fp = fopen(exe, "rb");
+						
+							if(fp)
+							{
 							
-							ok = TRUE;
-							fclose(fp);
+								ok = TRUE;
+								fclose(fp);
 							
+							}
+							else
+								ok = FALSE;
+						
 						}
 						else
 							ok = FALSE;
-						
-					}
-					else
-						ok = FALSE;
 					
-					if(ok == TRUE)
-					{
-						
-						clearcmdbuffer();
-						snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
-						print_colored_text(mediumbuffer, attr);
-						fflush(stdout);
+						if(ok == TRUE)
+						{
+			
+							clearcmdbuffer();
+							snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n\n");
+							print_colored_text(mediumbuffer, attr);
+							fflush(stdout);
 
+						}
+						else
+							commandNotFound(attr);
+					
 					}
 					else
-					  commandNotFound(attr);
-					
+						commandNotFound(attr);
+				
 				}
-				else
-					commandNotFound(attr);
-				
-			}
-			else
-			{
-					
-				dot = strrchr(exe, '.');
-				
-				if(dot && (stricmp(dot, ".com") == 0 && getOSBits() == 16))
-					goto CHECK_COM_16_BITS;
 				else
 				{
 					
-					if(dot && 
-				  (stricmp(dot, ".exe") == 0 || 
-					stricmp(dot, ".bat") == 0))
+					dot = strrchr(exe, '.');
+				
+				  // only execute .com files on 16 bits system, then run
+					
+					if(dot && (stricmp(dot, ".com") == 0 && getOSBits() == 16))
+						goto CHECK_COM_16_BITS;
+					else
 					{
+					
+						if(dot && 
+							(stricmp(dot, ".exe") == 0 || 
+							stricmp(dot, ".bat") == 0)
+						)
+						{
 						
-						clearcmdbuffer();
-						snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n");
-						print_colored_text(mediumbuffer, attr);
-						fflush(stdout);
+							clearcmdbuffer();
+							snprintf(mediumbuffer, sizeof(mediumbuffer), "\nEjecutable existe\n\n");
+							print_colored_text(mediumbuffer, attr);
+							fflush(stdout);
 
+						}
+						else
+							commandNotFound(attr);
+				
 					}
-				  else
-					  commandNotFound(attr);
 				
 				}
-				
-			}
 			
+			}
+		
 		}
+		
+		return 1;
 		
 	}
 	
-}
-
-/* Purpose: Check if executable file exists
-	 Created date: 25/06/2026
-   Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 25/06/2026
-   Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
-*/
-int isExecutable(char command[MEDIUM_BUFFER])
-{
-	
-	char *dot;
-	
-	//get command extension
-	dot = strrchr(command, '.');
-
-	if(dot &&
-    (stricmp(dot, ".com") == 0 ||
-    stricmp(dot, ".exe") == 0 ||
-    stricmp(dot, ".bat") == 0))
-      return TRUE;
-	else
-	  return FALSE;
+	return 0;
 	
 }
 

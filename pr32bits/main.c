@@ -6,6 +6,7 @@
 */
 
 #include <io.h>
+#include <math.h>
 #include <conio.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -19,16 +20,22 @@
 #include "../includes/os.h"
 #include "../includes/core.h"
 #include "../includes/colors.h"
-#include "../includes/console.h"
+#include "../includes/commons.h"
 #include "../includes/commands.h"
-#include "../includes/winconsole.h"
+#include "../includes/console/input.h"
+#include "../includes/console/console.h"
+#include "../includes/console/32bits/console.h"
 #include "../includes/configuration.h"
+#include "../includes/fs-operations/file.h"
 
-#include "../core/console/32bits.c"
-#include "../core/console/colors.c"
-#include "../core/console/generic.c"
+#include "../core/console/32bits/input.c"
+#include "../core/console/32bits/console.c"
+#include "../core/console/generic/input.c"
+#include "../core/console/generic/colors.c"
+#include "../core/console/generic/commons.c"
 #include "../core/os/32bits.c"
 #include "../core/configuration.c"
+#include "../core/fs-operations/file.c"
 #include "../core/commands/execute.c"
 #include "../core/commands/32bits.c"
 #include "../core/commands/generic.c"
@@ -44,7 +51,7 @@
 */
 int main(int argc, char *argv[])
 {
-	
+
 	cmd(argv);
 	return 0;
 	

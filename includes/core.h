@@ -16,12 +16,14 @@ char confpath[LARGE_BUFFER];
 char shellpath[LARGE_BUFFER];
 char currentpath[LARGE_BUFFER];
 
+char exe[LARGE_BUFFER];
 char prompt[LARGE_BUFFER];
+char command[MEDIUM_BUFFER];
+char syscommand[LARGE_BUFFER];
 
 void trim(char *);
 void cmd(char *[]);
 void showWelcome();
 void clearcmdbuffer();
-void getExePath(char *, char *);
 
 #endif

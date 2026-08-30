@@ -1,11 +1,54 @@
 /*
   shDOS - Command interpreter
   Original file name: 32bits.c
+	New file name: console.c
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-#include <windows.h>
+/* Purpose: Return command current x position
+	 Created date: 23/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 23/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+int getX()
+{
+	
+	HANDLE hConsole;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if(GetConsoleScreenBufferInfo(hConsole, &csbi))
+		return csbi.dwCursorPosition.X;
+	else
+		return 1;
+	
+}
+
+/* Purpose: Return command current y position
+	 Created date: 23/07/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 23/07/2026
+   Last modified username: Juan Manuel Mar Hdz.
+	 Thanks to chatgpt
+*/
+int getY()
+{
+	
+	HANDLE hConsole;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if(GetConsoleScreenBufferInfo(hConsole, &csbi))
+		return csbi.dwCursorPosition.Y;
+	else
+		return 1;
+	
+}
 
 /* Purpose: Return command columns number
 	 Created date: 10/06/2026
@@ -89,7 +132,7 @@ void restoreConsole(WORD original_attr)
 /* Purpose: Set cursor text position
 	 Created date: 13/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 13/06/2026
+   Last modified date: 26/07/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -98,8 +141,8 @@ void setCursorPosition(int x, int y)
 	
 	COORD pos;
 
-  pos.X = x - 1;
-  pos.Y = y - 1;
+  pos.X = x;
+  pos.Y = y;
 
   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	
@@ -139,6 +182,49 @@ void fill_line(int y, int attr)
 
   WriteConsoleOutputCharacter(hConsole, spaces, width, pos, &written);
 	WriteConsoleOutputAttribute(hConsole, attributes, width, pos, &written);
+	
+}
+
+/* Purpose: Set color to char
+   Created date: 15/08/2026
+   Created by username: Juan Manuel Mar Hdz.
+   Last modified date: 15/08/2026
+   Last modified username: Juan Manuel Mar Hdz.
+   Thanks to gemini
+*/
+void print_colored_char(char c, int color)
+{
+	
+	DWORD written;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  
+  if(c == '\r') return;
+	GetConsoleScreenBufferInfo(hConsole, &csbi); // current cursor position
+
+  if(c == '\n')
+  {
+		
+		csbi.dwCursorPosition.X = 0;
+    csbi.dwCursorPosition.Y++;
+    SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    
+    return;
+  
+  }
+
+  SetConsoleTextAttribute(hConsole, (WORD)color);
+	WriteConsoleA(hConsole, &c, 1, &written, NULL);
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+  
+  if(csbi.dwCursorPosition.X >= csbi.dwSize.X)
+  {
+    
+    csbi.dwCursorPosition.X = 0;
+    csbi.dwCursorPosition.Y++;
+    SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    
+	}
 	
 }
 

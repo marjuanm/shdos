@@ -1,3 +1,45 @@
+0.2.8
+
+- The copy, xcopy, date, time, ver, exit, cls, and help commands are now fully functional. However, some—such as copy—have only partial implementations in DOSBox, while xcopy not exist in DOSBox.
+
+- The dir command works but fails when using "/" parameters, listing an incorrect path.
+
+- The experimental phase involving the rewrite of the command editor has concluded; ShDOS now supports typing, deleting, and moving the cursor backward and forward while entering commands.
+
+0.2.7.5 (experimental)
+
+- Various fixes for the 16-bit console: the backspace key now works in both versions, as do the Home and End keys.
+
+- Command acceptance has been re-enabled, with a rewrite to detect whether commands are internal or external; internal commands are now executed directly via the MS-DOS/FreeDOS or DOSBox "system" function, rather than being detected and implemented internally as was previously the case.
+
+- ShellDOS can now execute internal commands within its own console—both standalone and with parameters—though this has not yet been thoroughly tested.
+
+0.2.7.5 (experimental)
+
+- Various fixes for the 16-bit console: the backspace key now works in both versions, as do the Home and End keys.
+
+- Command acceptance has been re-enabled, with a rewrite to detect whether commands are internal or external; internal commands are now executed directly via the MS-DOS/FreeDOS or DOSBox "system" function, rather than being detected and implemented internally as was previously the case.
+
+- ShellDOS can now execute internal commands within its own console—both standalone and with parameters—though this has not yet been thoroughly tested.
+
+0.2.7.4 (experimental)
+
+- Various fixes for the 16-bit console; the backspace key now works in both versions.
+
+0.2.7.3 (experimental)
+
+- The forward and back keys in the 16-bit code are now working correctly, but the remaining special keys still need to be tested, and the text to activate basic commands has not yet been restored.
+
+0.2.7.2 (experimental)
+
+- Minor corrections and code organization. The 16-bit version does not yet work with the code implemented to handle the console and allow navigating forward and backward through the text; I am working on it.
+
+0.2.7.1 (experimental)
+
+- Code cleanup and reorganization; restored the ShellDOS header upon program startup, as it had been disabled during the repeated rewriting of text-input functions.
+
+- Over the course of several weeks, I attempted to implement functionality allowing users to type in the ShellDOS command console while navigating backward and forward through the text naturally. Since ShellDOS requires handling special keys, I had to manage text input manually; while moving through the text was possible, these actions failed with multi-line text, requiring me to rewrite the routines repeatedly until I finally found the solution. A special thanks to the ChatGPT and Gemini AIs—without them, I never would have found the answer.
+
 0.2.7
 
 - Implemented functions to retrieve the operating system type and version, with the aim of customizing console colors based on the system version where the console is running.

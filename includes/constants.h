@@ -7,7 +7,7 @@
 
 #define PROJECT_NAME "ShellDOS"
 #define PROJECT_SHORT_NAME "ShDOS"
-#define PROJECT_VERSION "0.2.7"
+#define PROJECT_VERSION "0.2.8"
 #define PROJECT_YEAR "2026"
 #define TEAM_NAME "ShDOS & Contributors"
 
@@ -17,14 +17,9 @@
 #define MEDIUM_BUFFER 257 //129 original
 #define SMALL_BUFFER 66
 
-
-
-#define MAX_FILES 10
-
-#define MAX_TRY_ATTEMPS 10
-
-
-
-#define FILE_COPY_OK 1
-#define FILE_COPY_FAILSOURCE 2
-#define FILE_COPY_FAILDEST 3
+#define KEY_LEFT   1075
+#define KEY_RIGHT  1077
+#define KEY_UP     1072
+#define KEY_DOWN   1080
+#define KEY_HOME   1071
+#define KEY_END    1079

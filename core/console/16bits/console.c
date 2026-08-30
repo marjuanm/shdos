@@ -1,12 +1,54 @@
 /*
   shDOS - Command interpreter
-  Original file name: 32bits.c
+  Original file name: console.c
   Copyright (C) 2026 Juan Manuel Mar Hdz.
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
 int cursor_x = 0, cursor_y = 0;
 static unsigned short far *video = (unsigned short far *)MK_FP(0xB800, 0);
+
+/*
+  Purpose: Return command current x position
+  Created date: 14/08/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 14/08/2026
+  Last modified username: Juan Manuel Mar Hdz.
+  Thanks to chatgpt
+*/
+int getX()
+{
+	
+	union REGS inregs, outregs;
+
+  inregs.h.ah = 0x03;
+  inregs.h.bh = 0x00;
+  int86(0x10, &inregs, &outregs);
+
+  return outregs.h.dl;
+
+}
+
+/*
+  Purpose: Return command current y position
+  Created date: 14/08/2026
+  Created by username: Juan Manuel Mar Hdz.
+  Last modified date: 14/08/2026
+  Last modified username: Juan Manuel Mar Hdz.
+  Thanks to chatgpt
+*/
+int getY()
+{
+	
+	union REGS inregs, outregs;
+
+  inregs.h.ah = 0x03;
+  inregs.h.bh = 0x00;
+  int86(0x10, &inregs, &outregs);
+
+  return outregs.h.dh;
+
+}
 
 /* Purpose: Return command columns number
 	 Created date: 10/06/2026
@@ -71,7 +113,7 @@ void restoreConsole(unsigned short original_attr)
    Created by username: Juan Manuel Mar Hdz.
    Last modified date: 14/06/2026
    Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt
+	 Thanks to chatgpt and gemini
 */
 void setCursorPosition(int x, int y)
 {
@@ -80,13 +122,13 @@ void setCursorPosition(int x, int y)
 
   r.h.ah = 0x02;
   r.h.bh = 0;
-  r.h.dh = y - 1;
-  r.h.dl = x - 1;
+  r.h.dh = (unsigned char)y;
+  r.h.dl = (unsigned char)x;
 
   int86(0x10, &r, &r);
-	
-	cursor_x = x - 1;
-  cursor_y = y - 1;
+
+  cursor_x = x;
+  cursor_y = y;
 
 }
 
@@ -108,41 +150,40 @@ void fill_line(int y, int attr)
 }
 
 /* Purpose: Set color to char
-	 Created date: 10/06/2026
+   Created date: 10/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 08/07/2026
+   Last modified date: 14/08/2026
    Last modified username: Juan Manuel Mar Hdz.
-	 Thanks to chatgpt and gemini
+   Thanks to chatgpt and gemini
 */
 void print_colored_char(char c, int color)
 {
 	
 	if(c == '\n')
   {
-		
-		cursor_x = 0;
-    cursor_y++;
-    setCursorPosition(cursor_x + 1, cursor_y + 1);
-    
-    return;
-    
-	}
-
-  if(c == '\r')
-    return;
-			
-	video[cursor_y * getWidth() + cursor_x] = ((unsigned short)color << 8) | c;
-	cursor_x++;
-
-  if(cursor_x >= getWidth())
-  {
     
     cursor_x = 0;
     cursor_y++;
+    setCursorPosition(cursor_x, cursor_y);
+    return;
     
 	}
 	
-	setCursorPosition(cursor_x + 1, cursor_y + 1);
+	if(c == '\r')
+    return;
+
+  video[cursor_y * getWidth() + cursor_x] = ((unsigned short)color << 8) | (unsigned char)c;
+  cursor_x++;
+
+  if(cursor_x >= getWidth())
+  {
+		
+		cursor_x = 0;
+    cursor_y++;
+    
+	}
+
+  setCursorPosition(cursor_x, cursor_y);
 
 }
 

@@ -5,24 +5,26 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-int pos = 0;
 int firsttime = TRUE;
-char command[MEDIUM_BUFFER];
+int currwidth, currheight;
+int prevwidth, prevheight;
+
 
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 17/07/2026
+   Last modified date: 19/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
 {
 
-  int ext;
-  char c, *args;
-		
-	getExePath(argv[0], currentpath);
+  char *args;
+  int c, running = TRUE;
+  
+	// set console start path
 	
+	getExePath(argv[0], currentpath);
 	strcat(shellpath, currentpath);
 	strcat(confpath, currentpath);
 	strcat(confpath, "shdos.cfg");
@@ -39,6 +41,7 @@ void cmd(char *argv[])
 	
 	conf = getDefaultConfiguration();
 	loadConfiguration();
+	cls();
 	
 	//conf.consolebgcolor=RED;
 	original_attr = getOriginalConsole();
@@ -49,230 +52,106 @@ void cmd(char *argv[])
 	prompt_attr = (conf.consolebgcolor << 4) | conf.prompttextcolor;
 	setConsoleColor((conf.consolebgcolor << 4) | conf.consoletextcolor);
 	
-	// load configuration
-	
-	setPromptBuffer();
+	// load configuration	
+
+  clearcmdbuffer();
 	
 	// process commands area
-	
-	while(TRUE)
+
+	while(running)
 	{
 		
+		// welcome message to start
 		if(firsttime == TRUE)
 		{
 			
-			memset(command, 0, MEDIUM_BUFFER);  //clear command array
 			firsttime = FALSE;
 			showWelcome();
 
 		}
-    
-		c = getch(); //capture user entry, char by char and autocomplete in next steps
 
-    if(c == 9) // TAB
+    c = readKey();
+
+    switch(c)
     {
-        // autocompletar
-    }
-    else if(c == 13) // ENTER
-    {
-      
-			//execute command
-			
-			trim(command);
-			args = strchr(command, ' ');
-			
-			if(args)
-			{
-    
-				*args = '\0';  // split command and args
-				args++;        // args
+
+      case 13: // ENTER
+
+        command[latestpos] = '\0';
+				setCursorPosition(0, startY + getCommandRows());
 				
-			}
-			
-			if(stricmp(command, "exit") == 0)
-			{
+				trim(command);
+				args = strchr(command, ' '); // get command paramenters
 				
-				cls();
-				break;
-				
-			}
-			else if(stricmp(command, "ver") == 0)
-			{
-				
-				ver(console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "cls") == 0)
-			{
-				
-				cls();
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "cd") == 0 || stricmp(command, "chdir") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "dir") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "md") == 0 || stricmp(command, "mkdir") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "rd") == 0 || stricmp(command, "rmdir") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "copy") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "del") == 0 || stricmp(command, "erase") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "ren") == 0 || stricmp(command, "rename") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "type") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "date") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "time") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "prompt") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "vol") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else if(stricmp(command, "truename") == 0)
-			{
-				
-				executeCommand(command, NULL, console_attr);
-				drawPrompt();
-				
-			}
-			else
-			{
-				
-				//process external commands
-				if(args == NULL || *args == '\0')
-					executeCommand(command, NULL, console_attr);
-				else
-					executeCommand(command, args, console_attr);
-				
-				drawPrompt();
-				
-				/* 
-				  EXTRA PROTECTION HERE!
-					If the user continues typing but the command is already full,
-					we trap the remaining characters in a loop so they don't echo
-					or wait on the keyboard, UNTIL ENTER is pressed (13).
-				*/
-				if(c != 13) 
+				if(args != NULL)
 				{
-        
-					while((ext = getch()) != 13) 
-					{
-            
-						// If a special key (2 bytes) is pressed within the excess,
-						// we also consume its second byte so as not to break the cycle.
-            if(ext == 0 || ext == 224) 
-							ext = getch(); 
-            
-					}
-					
-					// We simulate that the current character 'c' is now ENTER (13)
-					// so that the main loop knows that the user has finished.
-					c = 13; 
     
+		      // prepare parameters to send
+					*args = '\0';
+					args++;
+					trim(args);
+
 				}
 				
-			}
-			
-    }
-    else
-    {
-			
-			//ignore special keys
-			if(c == 0 || c == 224)
-			{
-		
-				ext = getch();
-				continue;
-    
-			}
-			
-			// add chars to command array, but prevent overflow
-			if(pos < MEDIUM_BUFFER - 2)
-			{
-        
-				command[pos] = c;
-        pos++;
-				command[pos] = '\0';
+				if(strlen(command) > 0) running = executeCommand(command, args, console_attr);
+				showPrompt();
+
+        break;
+
+      case 8: // BACKSPACE
+
+        deleteCommandChar();
+				updateCommandCursor();
 				
-				//colored putch(c);
-			  tmp[0] = c;
-			  tmp[1] = '\0';
-			  print_colored_text(tmp, console_attr);
-			
-			}
-			
+				break;
+
+      case KEY_LEFT:
+
+        if(currpos > 0) currpos--;
+				updateCommandCursor();
+				
+				break;
+
+      case KEY_RIGHT:
+
+        if(currpos<latestpos) currpos++;
+				updateCommandCursor();
+				
+				break;
+
+        case KEY_HOME:
+
+        currpos = 0;
+				updateCommandCursor();
+				
+				break;
+
+      case KEY_END:
+
+        currpos = latestpos;
+				updateCommandCursor();
+				
+				break;
+
+      default:
+
+				if(c >= 32 && c < 127)
+        {
+
+          insertCommandChar((char)c);
+					redrawCommand();
+
+        }
+
+				break;
+
 		}
 		
 	}
 	
 	// process commands area
 	
+	cls();
 	restoreConsole(original_attr);
 
 }
@@ -281,15 +160,20 @@ void cmd(char *argv[])
   Purpose: Trim string
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 24/06/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt
 */
 void trim(char *str)
 {
 	
+	char *end;
 	char *start = str;
-  char *end;
+  
+	if(str == NULL || *str == '\0')
+    return;
+
+  start = str;
 
   while(*start && isspace((unsigned char)*start))
 		start++;
@@ -318,17 +202,18 @@ void trim(char *str)
   Purpose: Show the welcome message
   Created date: 10/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 08/07/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 	Thanks to chatgpt and gemini
 */
 void showWelcome()
 {
+	
 	int attr = (conf.headerbgcolor << 4) | conf.headertextcolor;
 	int pos, columns = getWidth();
 	char helpstr[SMALL_BUFFER];
 	
-	memset(helpstr, 0, SMALL_BUFFER);
+	helpstr[0] = '\0';
   strncpy(helpstr, "Type HELP or press F1 = Help", SMALL_BUFFER - 1);
   helpstr[SMALL_BUFFER - 1] = '\0';
 	
@@ -351,77 +236,60 @@ void showWelcome()
 		  fflush(stdout);
 		
 	    //write on second row
-		  setCursorPosition(1, 2);
+		  setCursorPosition(0, 1);
 		  snprintf(largebuffer, sizeof(largebuffer), "(c) %s %s", PROJECT_YEAR, TEAM_NAME);
 		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.headerhighttextcolor);
 		  fflush(stdout);
 	
 	    //write on fourth row
-	    setCursorPosition(1, 4);
+	    setCursorPosition(0, 3);
 	
 		}
 		else
 		{
 			
 			//write on first row
-		  setCursorPosition(1, 1);
+		  setCursorPosition(0, 0);
 		  snprintf(largebuffer, sizeof(largebuffer), "%s %s", PROJECT_NAME, PROJECT_VERSION);
 		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.consoletextcolor);
 		  fflush(stdout);
 
 		  //write on second row
-		  setCursorPosition(1, 2);
+		  setCursorPosition(0, 1);
 		  snprintf(largebuffer, sizeof(largebuffer), "(c) %s %s", PROJECT_YEAR, TEAM_NAME);
 		  print_colored_text(largebuffer, (conf.consolebgcolor << 4) | conf.consoletextcolor);
 		  fflush(stdout);
 	
 	    //write on fourth row
-	    setCursorPosition(1, 4);
-	
+	    setCursorPosition(0, 3);
+			
 		}	
 		
 	}
+	else
+	{
+		
+		//write on first row
+		setCursorPosition(0, 0);
+		
+	}
 	
-	drawPrompt();
-
+	showPrompt();
+	
 }
 
 /* 
   Purpose: Clear command buffer
   Created date: 08/06/2026
   Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 22/06/2026
+  Last modified date: 17/08/2026
   Last modified username: Juan Manuel Mar Hdz.
 */
 void clearcmdbuffer()
 {
 	
-	pos = 0;
-	memset(command, 0, MEDIUM_BUFFER);
+	currpos = 0;
+	latestpos = currpos;
+	command[0] = '\0';
 	
-}
-
-/* 
-  Purpose: Return folder from path
-  Created date: 21/06/2026
-  Created by username: Juan Manuel Mar Hdz.
-  Last modified date: 22/06/2026
-  Last modified username: Juan Manuel Mar Hdz.
-*/
-void getExePath(char *fullpath, char *path)
-{
-	
-	char *p;
-
-  memset(path, 0, LARGE_BUFFER);
-	strncpy(path, fullpath, LARGE_BUFFER - 1);
-	path[LARGE_BUFFER - 1] = '\0';
-
-  p = strrchr(path, '\\');
-
-  if(p != NULL)
-    *(p + 1) = '\0';
-  else
-    path[0] = '\0';
-
 }

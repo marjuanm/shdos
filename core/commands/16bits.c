@@ -8,7 +8,7 @@
 /* Purpose: Clear console window
 	 Created date: 13/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 19/06/2026
+   Last modified date: 14/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 	 Thanks to chatgpt
 */
@@ -21,6 +21,6 @@ void cls()
 
 	cursor_x = 0;
 	cursor_y = 0;
-	setCursorPosition(cursor_x + 1, cursor_y + 1);
+	setCursorPosition(cursor_x, cursor_y);  //(cursor_x + 1, cursor_y + 1);
 
 }

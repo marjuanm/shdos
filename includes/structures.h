@@ -5,8 +5,6 @@
   Licensed under GPL-3.0, see the license file on the root project structure for more information.
 */
 
-#include "constants.h"
-
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 
