@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://software.webxpress.top/projects/shdos" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/pet.png?v=2" width="auto" height="331" alt="ShellDOS's pet"></a><br>
-    <a href="https://github.com/marjuanm/shdos/blob/main/CHANGELOG"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=9" height="20" alt="Release version"></a>
+    <a href="https://github.com/marjuanm/shdos/blob/main/CHANGELOG"><img src="https://www.busquedaweb.com/openprojects/shdos/release.png?v=10" height="20" alt="Release version"></a>
     <a href="https://github.com/marjuanm/shdos/archive/refs/heads/main.zip"><img src="https://www.busquedaweb.com/openprojects/shdos/latest.png?v=2" height="20" alt="Download current version"></a>
     <a href="https://software.webxpress.top/projects/shdos/repositories/" target="_blank"><img src="https://www.busquedaweb.com/openprojects/shdos/download.png?v=3" height="20" alt="Repositories"></a>
     <a href="https://github.com/marjuanm/shdos/blob/main/LICENSE"><img src="https://www.busquedaweb.com/openprojects/shdos/license.png" height="20" alt="Project's license"></a>
@@ -35,14 +35,6 @@ If you wish to run the 16-bit version, you must do so via DOSBox or a virtual ma
 ShellDOS is written in C and compiled with the OpenWatcom compiler (version 1.9), allowing it to generate both 16-bit and 32-bit executables (32-bit exe requiere Windows). Download and extract the project source code, configure OpenWatcom and run the compile command to build shdos.exe. 
 
 For detailed installation, configuration, and build instructions, please refer to <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#building" target="_blank">the project's Wiki</a>.
-
-# ⚙️ Implemented Commands:
-
-The list of implemented commands is still quite short, but we are continuing to work on it.
-
-* `ver`: displays the current version of shDOS.
-* `cls`: clears the screen.
-* `exit`: exits the shDOS console and returns to the system that launched it.
 
 # 📦 Binaries:
 
