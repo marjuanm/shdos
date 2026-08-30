@@ -1,3 +1,19 @@
+0.2.8
+
+- The copy, xcopy, date, time, ver, exit, cls, and help commands are now fully functional. However, some—such as copy—have only partial implementations in DOSBox, while xcopy not exist in DOSBox.
+
+- The dir command works but fails when using "/" parameters, listing an incorrect path.
+
+- The experimental phase involving the rewrite of the command editor has concluded; ShDOS now supports typing, deleting, and moving the cursor backward and forward while entering commands.
+
+0.2.7.5 (experimental)
+
+- Various fixes for the 16-bit console: the backspace key now works in both versions, as do the Home and End keys.
+
+- Command acceptance has been re-enabled, with a rewrite to detect whether commands are internal or external; internal commands are now executed directly via the MS-DOS/FreeDOS or DOSBox "system" function, rather than being detected and implemented internally as was previously the case.
+
+- ShellDOS can now execute internal commands within its own console—both standalone and with parameters—though this has not yet been thoroughly tested.
+
 0.2.7.5 (experimental)
 
 - Various fixes for the 16-bit console: the backspace key now works in both versions, as do the Home and End keys.

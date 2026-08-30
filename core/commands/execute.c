@@ -18,6 +18,7 @@ int executeCommand(char *command, char *args, unsigned short attr)
 	
 	FILE *fp;
 	char *dot;
+	char tmp[LARGE_BUFFER];
 	int ok =  FALSE, isCOM = FALSE;
   
 	exe[0] = '\0';
@@ -25,7 +26,7 @@ int executeCommand(char *command, char *args, unsigned short attr)
 	strcat(exe, command);
 	
 	// prepare parameters to run with exe
-			
+	
 	if(stricmp(command, "dir") == 0)
 	{
     
@@ -58,8 +59,8 @@ int executeCommand(char *command, char *args, unsigned short attr)
 	}
 			
 	// prepare parameters to run with exe
-					
-	// check if is a internal command and execute from system function
+  
+	// check if is a internal command and execute from system function (all are common in MS-DOS/Windows)
 	if(stricmp(command, "dir") == 0 || 
 		stricmp(command, "md") == 0 || 
 		stricmp(command, "mkdir") == 0 || 
@@ -81,7 +82,6 @@ int executeCommand(char *command, char *args, unsigned short attr)
 		stricmp(command, "help") == 0 || 
 		stricmp(command, "chkdsk") == 0 || 
 		stricmp(command, "format") == 0 || 
-		stricmp(command, "tree") == 0 || 
 		stricmp(command, "fc") == 0 || 
 		stricmp(command, "mode") == 0 || 
 		stricmp(command, "choice") == 0 || 
@@ -112,11 +112,56 @@ int executeCommand(char *command, char *args, unsigned short attr)
 			return 1; 
 		
 		}
+		else if(stricmp(command, "choice") == 0)
+		{
+			printf("verificar cambios en xp/2000");
+		}	
 		else
 		{
 			
-			//printf("comando=%s", syscommand);getchar();fflush(stdout);
-			
+			if(stricmp(command, "copy") == 0 || stricmp(command, "xcopy") == 0) // adjust copy/xcopy to force confirm before overwrite
+			{
+				
+				// enter only if not confirm overwrite explicit instruction found
+				if(strstr(syscommand, "/-Y") == NULL && strstr(syscommand, "/Y") == NULL)
+				{
+					
+					/* force to confirm before overwrite
+						 extract parameters (+5/6 position), replace copy for copy /-Y and attach 
+						 the parameters string. If parameters not found only attach /-Y
+					*/
+					
+					if(stricmp(command, "copy") == 0)
+					{
+						
+						if(args != NULL && *args != '\0')
+              snprintf(tmp, sizeof(tmp), "copy /-Y %s", syscommand + 5); 
+				    else
+              snprintf(tmp, sizeof(tmp), "copy /-Y");
+						
+					}
+					else
+					{
+						
+						if(args != NULL && *args != '\0')
+              snprintf(tmp, sizeof(tmp), "xcopy /-Y %s", syscommand + 6); 
+				    else
+              snprintf(tmp, sizeof(tmp), "xcopy /-Y");
+						
+					}
+
+					/* force to confirm before overwrite
+						 extract parameters (+5/6 position), replace copy for copy /-Y and attach 
+						 the parameters string. If parameters not found only attach /-Y
+					*/
+					
+				  strncpy(syscommand, tmp, sizeof(syscommand) - 1);
+				  syscommand[sizeof(syscommand) - 1] = '\0';
+					
+				}
+	
+			} 
+
 			printf("\n");
 			fflush(stdout);
 			
@@ -133,6 +178,8 @@ int executeCommand(char *command, char *args, unsigned short attr)
 	}
 	else
 	{
+		
+		// stricmp(command, "tree") == 0 || es comando externo, no siempre presente en todas las instalaciones el archivo .com
 		
 		// check external command type
 		
@@ -337,6 +384,8 @@ CHECK_COM_16_BITS:
 		return 1;
 		
 	}
+	
+	return 0;
 	
 }
 

@@ -12,9 +12,11 @@
 
 The project is currently in an early stage, providing a functional shell interface. Future releases will add command execution, color support and additional Linux-inspired commands. It has been successfully tested on DOSBOX, FreeDOS and other compatible environments (see the <a href="https://software.webxpress.top/projects/shdos/wiki/installation/#running" target="_blank">project's Wiki</a> for details). You can view the project's overall progress via our <a href="https://software.webxpress.top/projects/shdos/roadmap/" target="_blank">roadmap</a>.
 
-# 🚀 Updates for the latest version (0.2.7.5):
+# 🚀 Updates for the latest version (0.2.8):
 
-The command-entry functionality has been reintroduced; it was rewritten to accept internal commands with parameters, and several of them are already working. This new feature still requires considerable refinement to that the experimental branch can be merged with the main one. I hope this will be possible in the coming days (perhaps a week or two).
+The ShDOS editor was rewritten to handle command entry; you can type commands, delete them, and move the cursor forward and backward through the text without issues.
+
+It can also execute certain internal commands along with their respective parameters.
 
 # 📋 License:
 

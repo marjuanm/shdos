@@ -13,7 +13,7 @@ int prevwidth, prevheight;
 /* Purpose: Main cmd function
 	 Created date: 08/06/2026
    Created by username: Juan Manuel Mar Hdz.
-   Last modified date: 18/08/2026
+   Last modified date: 19/08/2026
    Last modified username: Juan Manuel Mar Hdz.
 */
 void cmd(char *argv[])
@@ -22,6 +22,8 @@ void cmd(char *argv[])
   char *args;
   int c, running = TRUE;
   
+	// set console start path
+	
 	getExePath(argv[0], currentpath);
 	strcat(shellpath, currentpath);
 	strcat(confpath, currentpath);
